@@ -1,13 +1,14 @@
-require("dotenv").config()
+import dotenv from 'dotenv';
+dotenv.config();
 
-const express = require("express")
-const cors = require("cors");
-const userRoute = require("./src/routes/user.route")
+import express from 'express';
+import cors from 'cors';
+import connectDatabase from './config/db.js';
+import userRoute from './src/routes/user.route.js';
 
 const port = process.env.PORT;
 
 const app = express();
-const connectDatabase = require("./config/db.js")
 
 connectDatabase();
 app.use(express.json());
@@ -17,8 +18,6 @@ app.use(cors({credentials: true, origin: "http://localhost:5173"}))
 
 app.use(express.json())
 app.use("/user", userRoute);
-
-require("./config/db.js");
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`);

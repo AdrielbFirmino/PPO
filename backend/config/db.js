@@ -11,7 +11,7 @@ function connectDatabase() {
       useUnifiedTopology: true,
     })
     .then(() => console.log("MongoDB Atlas Connected!"))
-    .catch((err) => console.log(`${dbUser} Error connecting to MongoDB Atlas: ${err}`));
+    .catch((err) => console.log(`Error connecting to MongoDB Atlas: ${err}`));
 }
 
 export default connectDatabase;

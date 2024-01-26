@@ -11,7 +11,7 @@ const create = async (req, res) => {
         await postService.create({
             title,
             body,
-            user: { _id: "65b317f9605128d35d4acb7c" }
+            user: req.userId
         })
 
         res.send(201)

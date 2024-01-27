@@ -140,7 +140,7 @@ export const searchByTitle = async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
-}
+};
 
 export const byUser = async (req, res) => {
     try {
@@ -162,7 +162,7 @@ export const byUser = async (req, res) => {
     } catch(err) {
         res.status(500).send({ message: err.message })
     }
-}
+};
 
 export const update = async (req, res) => {
     try {
@@ -184,6 +184,21 @@ export const update = async (req, res) => {
 
         return res.status(200).send({message: "Post sucessfuly updated!"})
     } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const erase = async (req, res) => {
+    try{
+        const {id} = req.params;
+        const post = await postService.findById(id)
+        if(post.user._id != req.userId) {
+            return res.status(400).send({message: "You cannot delete this post"})
+        }
+
+        await postService.erase(id);
+        return res.status(200).send({message: "Post sucessfuly deleted!"})
+    } catch(err) {
         res.status(500).send({ message: err.message })
     }
 };

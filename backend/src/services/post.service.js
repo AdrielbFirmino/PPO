@@ -22,6 +22,8 @@ const byUser = (id) => Post.find({user: id}).sort({ _id: -1 }).populate("user");
 
 const update = (id, title, body) => Post.findOneAndUpdate({_id: id},{title, body},{rawResult:true});
 
+const erase = (id) => Post.findByIdAndDelete({_id: id});
+
 export default {
     create,
     findAll,
@@ -30,5 +32,6 @@ export default {
     findById,
     searchByTitle,
     byUser,
-    update
+    update,
+    erase
 }

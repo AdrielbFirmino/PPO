@@ -141,3 +141,25 @@ export const searchByTitle = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 }
+
+export const byUser = async (req, res) => {
+    try {
+        const id = req.userId;
+        const post = await postService.byUser(id);
+
+        return res.send({
+            results: post.map(postItem => ({
+                id: postItem._id,
+                title: postItem.title,
+                body: postItem.body,
+                likes: postItem.likes,
+                comments: postItem.comments,
+                name: postItem.user.name,
+                userName: postItem.user.username,
+                userAvatar: postItem.user.avatar
+            }))
+        })
+    } catch(err) {
+        res.status(500).send({ message: err.message })
+    }
+}

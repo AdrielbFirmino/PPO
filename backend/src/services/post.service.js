@@ -18,7 +18,9 @@ const searchByTitle = (title) =>
  .sort({ _id: -1 })
  .populate("user");
 
-export const byUser = (id) => Post.find({user: id}).sort({ _id: -1 }).populate("user");
+const byUser = (id) => Post.find({user: id}).sort({ _id: -1 }).populate("user");
+
+const update = (id, title, body) => Post.findOneAndUpdate({_id: id},{title, body},{rawResult:true});
 
 export default {
     create,
@@ -27,5 +29,6 @@ export default {
     topPosts,
     findById,
     searchByTitle,
-    byUser
+    byUser,
+    update
 }

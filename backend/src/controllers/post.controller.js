@@ -163,3 +163,27 @@ export const byUser = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 }
+
+export const update = async (req, res) => {
+    try {
+        const {title, body} = req.body;
+        const {id} = req.params;
+
+        if(!title && !body) {
+            return res.status(400).send({
+                message: "Submit at least one field to update the post"
+            })
+        }
+
+        const post = await postService.findById(id)
+        if(post.user._id != req.userId) {
+            return res.status(400).send({message: "You cannot create this post"})
+        }
+
+        await postService.update(id, title, body);
+
+        return res.status(200).send({message: "Post sucessfuly updated!"})
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};

@@ -6,8 +6,11 @@ const findAll = (offset, limit) => Post.find().sort({ _id: -1 }).skip(offset).li
 
 const countPost = () => Post.countDocuments();
 
+const topPosts = () => Post.findOne().sort({_id: -1}).populate("user");
+
 export default {
     create,
     findAll,
-    countPost
+    countPost,
+    topPosts
 }

@@ -71,4 +71,27 @@ const findAll = async (req, res) => {
     }
 }
 
-export { create, findAll }
+const topPosts = async (req, res) => {
+    try {
+        const post = await postService.topPosts();
+
+        if (!post) {
+            return res.status(400).send({ message: "There are no posts available" });
+        }
+
+        res.send({
+            id: post._id,
+            title: post.title,
+            body: post.body,
+            likes: post.likes,
+            comments: post.comments,
+            name: post.user.name,
+            userName: post.user.username,
+            userAvatar: post.user.avatar
+        })
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}
+
+export { create, findAll, topPosts }

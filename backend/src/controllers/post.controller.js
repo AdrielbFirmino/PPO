@@ -115,3 +115,29 @@ export const findById = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 };
+
+export const searchByTitle = async (req, res) => {
+    try {
+        const { title } = req.query;
+
+        const post = await postService.searchByTitle(title);
+
+        if (post.length == 0) {
+            return res.status(400).send({ message: "There are no posts with this title" });
+        }
+        return res.send({
+            results: post.map(postItem => ({
+                id: postItem._id,
+                title: postItem.title,
+                body: postItem.body,
+                likes: postItem.likes,
+                comments: postItem.comments,
+                name: postItem.user.name,
+                userName: postItem.user.username,
+                userAvatar: postItem.user.avatar
+            }))
+        })
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+}

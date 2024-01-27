@@ -8,9 +8,12 @@ const countPost = () => Post.countDocuments();
 
 const topPosts = () => Post.findOne().sort({_id: -1}).populate("user");
 
+const findById = (id) => Post.findById(id).populate("user")
+
 export default {
     create,
     findAll,
     countPost,
-    topPosts
+    topPosts,
+    findById
 }

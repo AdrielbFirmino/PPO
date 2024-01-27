@@ -1,6 +1,6 @@
 import postService from '../services/post.service.js'
 
-const create = async (req, res) => {
+export const create = async (req, res) => {
     try {
         const { title, body } = req.body;
 
@@ -18,9 +18,9 @@ const create = async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
-}
+};
 
-const findAll = async (req, res) => {
+export const findAll = async (req, res) => {
     try {
         let { limit, offset } = req.query;
 
@@ -69,9 +69,9 @@ const findAll = async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
-}
+};
 
-const topPosts = async (req, res) => {
+export const topPosts = async (req, res) => {
     try {
         const post = await postService.topPosts();
 
@@ -92,6 +92,26 @@ const topPosts = async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
-}
+};
 
-export { create, findAll, topPosts }
+export const findById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const post = await postService.findById(id)
+
+        return res.send({
+            post: {
+                id: post._id,
+                title: post.title,
+                body: post.body,
+                likes: post.likes,
+                comments: post.comments,
+                name: post.user.name,
+                userName: post.user.username,
+                userAvatar: post.user.avatar
+            }
+        })
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};

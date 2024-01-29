@@ -202,3 +202,21 @@ export const erase = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 };
+
+export const likePost = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const userId = req.userId;
+
+        const postLiked = await postService.likePost(id, userId);
+        
+        if(!postLiked){
+            await postService.deleteLikePost(id, userId);
+            return res.status(200).send({message: "like removed successfully!"});
+        }
+
+        res.status(200).send({message: "Like done successfully!"})
+    } catch(err) {
+        res.status(500).send({ message: err.message })
+    }
+};

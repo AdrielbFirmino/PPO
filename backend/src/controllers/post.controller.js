@@ -159,64 +159,121 @@ export const byUser = async (req, res) => {
                 userAvatar: postItem.user.avatar
             }))
         })
-    } catch(err) {
+    } catch (err) {
         res.status(500).send({ message: err.message })
     }
 };
 
 export const update = async (req, res) => {
     try {
-        const {title, body} = req.body;
-        const {id} = req.params;
+        const { title, body } = req.body;
+        const { id } = req.params;
 
-        if(!title && !body) {
+        if (!title && !body) {
             return res.status(400).send({
                 message: "Submit at least one field to update the post"
             })
         }
 
         const post = await postService.findById(id)
-        if(post.user._id != req.userId) {
-            return res.status(400).send({message: "You cannot create this post"})
+        if (post.user._id != req.userId) {
+            return res.status(400).send({ message: "You cannot create this post" })
         }
 
         await postService.update(id, title, body);
 
-        return res.status(200).send({message: "Post sucessfuly updated!"})
+        return res.status(200).send({ message: "Post sucessfuly updated!" })
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
 };
 
 export const erase = async (req, res) => {
-    try{
-        const {id} = req.params;
+    try {
+        const { id } = req.params;
         const post = await postService.findById(id)
-        if(post.user._id != req.userId) {
-            return res.status(400).send({message: "You cannot delete this post"})
+        if (post.user._id != req.userId) {
+            return res.status(400).send({ message: "You cannot delete this post" })
         }
 
         await postService.erase(id);
-        return res.status(200).send({message: "Post sucessfuly deleted!"})
-    } catch(err) {
+        return res.status(200).send({ message: "Post sucessfuly deleted!" })
+    } catch (err) {
         res.status(500).send({ message: err.message })
     }
 };
 
 export const likePost = async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const userId = req.userId;
 
         const postLiked = await postService.likePost(id, userId);
-        
-        if(!postLiked){
+
+        if (!postLiked) {
             await postService.deleteLikePost(id, userId);
-            return res.status(200).send({message: "like removed successfully!"});
+            return res.status(200).send({ message: "like removed successfully!" });
         }
 
-        res.status(200).send({message: "Like done successfully!"})
-    } catch(err) {
+        res.status(200).send({ message: "Like done successfully!" })
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const addComment = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userId = req.userId;
+        const {text} = req.body;
+
+        if (!text) {
+            return res.status(400).send({ message: "Comment body can't be empty." });
+        }
+        if (!id) {
+            return res.status(404).send({
+                message: `Post with ID: ${id} does not exist in database.`,
+            });
+        }
+        if (!userId) {
+            return res
+                .status(404)
+                .send({ message: "User does not exist in database." });
+        }
+
+        await postService.addComment(id, userId, text);
+
+        res.status(200).send({message: "Your comment was successfully added!"});
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const deleteComment = async (req, res) => {
+    try {
+        const { idPost, idComment } = req.params;
+        const userId = req.userId;
+
+        const commentDeleted = await postService.deleteComment(
+            idPost,
+            idComment,
+            userId
+        );
+
+        const commentFinder = commentDeleted.comments.find(
+            (comment) => comment.idComment === idComment
+        );
+
+        if(!commentFinder) {
+            return res.status(404).send({message: "Comment not found"})
+        }
+
+        if(commentFinder.userId !== userId) {
+            return res.status(400).send({message: "You can't delete this comment"})
+        }
+
+        res.status(200).send({message: "Your comment was successfully removed!"});
+    } catch (err) {
         res.status(500).send({ message: err.message })
     }
 };

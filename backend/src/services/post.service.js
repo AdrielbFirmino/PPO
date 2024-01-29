@@ -34,6 +34,19 @@ const deleteLikePost = (idPost, userId) => Post.findOneAndUpdate(
     { $pull: { likes: { userId } } }
 );
 
+const addComment = (idPost, userId, body) => {
+    const idComment = Math.floor(Date.now() * Math.random()).toString(36);
+
+    return Post.findOneAndUpdate(
+        { _id: idPost },
+        { $push: { comments: { idComment, userId, body, createdAt: new Date() } } }
+    )
+}
+
+const deleteComment = (idPost, idComment, userId) =>
+    Post.findOneAndUpdate({ _id: idPost }, { $pull: { comments: { idComment, userId } } }
+    );
+
 export default {
     create,
     findAll,
@@ -45,5 +58,7 @@ export default {
     update,
     erase,
     likePost,
-    deleteLikePost
+    deleteLikePost,
+    addComment,
+    deleteComment
 }

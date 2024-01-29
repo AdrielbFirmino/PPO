@@ -16,11 +16,11 @@ const PostSchema = new mongoose.Schema({
     },
     likes: {
         type: Array,
-        require: true
+        required: true
     },
     comments: {
         type: Array,
-        require: true
+        required: true
     },
     createdAt: {
         type: Date,

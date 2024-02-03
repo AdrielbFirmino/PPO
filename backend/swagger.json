@@ -597,7 +597,7 @@
                         "in": "path",
                         "name": "id",
                         "type": "string",
-                        "description": "User ID",
+                        "description": "Post ID",
                         "required": true
                     }
                 ],
@@ -610,7 +610,7 @@
                             "examples": {
                                 "Comment": {
                                     "value": {
-                                        "message": "Testing Comment"
+                                        "text": "Testing Comment"
                                     }
                                 }
                             }
@@ -738,6 +738,14 @@
                     "createdAt": {
                         "type": "date"
                     }
+                }
+            },
+            "Comment": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
                 }
             }
         }

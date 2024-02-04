@@ -5,6 +5,7 @@ const Home = () => {
   return (
     <>
     <Navbar />
+    <h1>Teste</h1>
     <ButtonLogin>Teste</ButtonLogin>
     </>
   )

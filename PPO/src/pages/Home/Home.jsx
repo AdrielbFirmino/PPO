@@ -1,10 +1,11 @@
 import Navbar from "../../components/Navbar/Navbar";
+import { ButtonLogin } from "../../components/Navbar/NavbarStyled";
 
 const Home = () => {
   return (
     <>
     <Navbar />
-    <div>Home</div>
+    <ButtonLogin>Teste</ButtonLogin>
     </>
   )
 }

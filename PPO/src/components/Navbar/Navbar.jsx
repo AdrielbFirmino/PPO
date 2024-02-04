@@ -1,21 +1,30 @@
 import purplelogo from '../../images/purplelogo.png'
-import "./Navbar.css";
+/*import "./Navbar.css";*/
+import {
+  ButtonLogin,
+  ButtonSwitchTop,
+  ImageLogo,
+  LogoText,
+  LogoTextSpace,
+  Nav,
+  SwitchForumSong
+} from './NavbarStyled';
 
 const Navbar = () => {
   return (
     <>
-    <nav>
-        <div className="logo-text-space">
-            <img src={purplelogo} alt="PurpleNote logo" />
-            <h2 className="logo-text">PurpleNote</h2>
-        </div>
-        <div className="switch-forum-song">
-            <button className="switch-song">Músicas</button>
-            <h2>|</h2>
-            <button className="switch-forum">Fórum</button>
-        </div>
-        <button className="lgn-btn">Entrar</button>
-    </nav>
+      <Nav>
+        <LogoText>
+          <ImageLogo src={purplelogo} alt="PurpleNote logo" />
+          <LogoTextSpace>PurpleNote</LogoTextSpace>
+        </LogoText>
+        <SwitchForumSong>
+          <ButtonSwitchTop>Músicas</ButtonSwitchTop>
+          <h2>|</h2>
+          <ButtonSwitchTop>Fórum</ButtonSwitchTop>
+        </SwitchForumSong>
+        <ButtonLogin>Entrar</ButtonLogin>
+      </Nav>
     </>
   )
 }

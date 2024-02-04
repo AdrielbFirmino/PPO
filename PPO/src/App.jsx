@@ -1,13 +1,13 @@
 import './App.css'
-import Home from './pages/Home/Home'
 import { GlobalStyled } from './GlobalStyled'
+import HomeForum from './pages/Forum/HomeForum'
 
 function App() {
 
   return (
     <>
       <GlobalStyled/>
-      <Home/>
+      <HomeForum/>
     </>
   )
 }

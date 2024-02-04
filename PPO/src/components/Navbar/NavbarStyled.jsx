@@ -9,8 +9,8 @@ export const Nav = styled.nav`
     width: 98%;
     padding: 1rem;
     background-color: transparent;
-    backdrop-filter: blur(2px);
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    backdrop-filter: blur(4px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 1;
     color: white;
 `
@@ -34,6 +34,11 @@ export const SwitchForumSong = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`
+export const LineD = styled.h2`
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 1rem;
+    margin-right: 1rem;
 `
 export const ButtonSwitchTop = styled.button`
     background-color: transparent;

@@ -1,4 +1,4 @@
-export const Post = [
+export const post = [
     {
         title: "Post 1",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nulla massa, porttitor vel ante quis, scelerisque tincidunt tellus. Sed vitae rhoncus mi. Pellentesque ut scelerisque nibh.",

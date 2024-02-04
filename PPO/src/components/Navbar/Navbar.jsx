@@ -7,7 +7,8 @@ import {
   LogoText,
   LogoTextSpace,
   Nav,
-  SwitchForumSong
+  SwitchForumSong,
+  LineD
 } from './NavbarStyled';
 
 const Navbar = () => {
@@ -16,11 +17,11 @@ const Navbar = () => {
       <Nav>
         <LogoText>
           <ImageLogo src={purplelogo} alt="PurpleNote logo" />
-          <LogoTextSpace>PurpleNote</LogoTextSpace>
+          <LogoTextSpace><h2>PurpleNote</h2></LogoTextSpace>
         </LogoText>
         <SwitchForumSong>
           <ButtonSwitchTop>Músicas</ButtonSwitchTop>
-          <h2>|</h2>
+          <LineD> | </LineD>
           <ButtonSwitchTop>Fórum</ButtonSwitchTop>
         </SwitchForumSong>
         <ButtonLogin>Entrar</ButtonLogin>

@@ -1,0 +1,67 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 98%;
+    padding: 1rem;
+    background-color:  transparent;
+    z-index: 1;
+    color: white;
+}
+
+img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    cursor: pointer
+}
+
+div .logo-text-space {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+div .logo-text {
+    margin-left: 1rem;
+}
+
+div .switch-forum-song {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    border: none;
+}
+
+div .switch-forum-song button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.lgn-btn {
+    background-color: rgb(122, 5, 212);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    padding: 0.4rem;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 10%;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    margin-right: 1rem;
+}
+.lgn-btn:hover {
+    background-color: rgb(78, 17, 125);
+}

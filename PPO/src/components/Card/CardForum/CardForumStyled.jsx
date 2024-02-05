@@ -45,7 +45,7 @@ export const CardPost = styled.div`
     border-radius: 4px;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-
+    color: white;
 `
 
 export const IconPost = styled.img`
@@ -58,24 +58,25 @@ export const IconPost = styled.img`
 
 export const TitlePost = styled.h4`
     margin-left: 2rem;
-    color: white;
+    width: 15vw;
 `
 
 export const LeftPost = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 10vw;
 `
 
-export const CenterPost = styled.div`
+export const BodyPost = styled.div`
     display: flex;
     background-color: black;
-    width: 55vw;
+    width: 40vw;
     border-radius: 4px;
     color: white;
     justify-content: center;
     align-items: center;
-    padding-left: 1rem;
+    padding: 1rem;
     cursor: pointer;
 `
 
@@ -84,6 +85,7 @@ export const RightPost = styled.div`
     color: white;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `
 
 export const CardMain = styled.div`
@@ -92,7 +94,7 @@ export const CardMain = styled.div`
     flex-direction: column;
     margin-left: 10vw;
     width: 80vw;
-    height: 135vh;
+    height: 100%;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
 `

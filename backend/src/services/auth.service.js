@@ -5,4 +5,4 @@ const loginService = (email) => User.findOne({email: email}).select("+password")
 
 const generateToken = (id) => jwt.sign({id: id}, process.env.JWT_SECRET, {expiresIn: 86400});
 
-export {loginService, generateToken};
+export default {loginService, generateToken};

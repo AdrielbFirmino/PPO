@@ -14,18 +14,18 @@ import {
 } from '../controllers/post.controller.js';
 import { authMiddleware } from '../middlewares/auth.middleware.js';
 
-const router = Router();
+const postRouter = Router();
 
-router.post("/", authMiddleware, create);
-router.get("/", findAll);
-router.get("/top", topPosts);
-router.get("/search", searchByTitle);
-router.get("/byUser", authMiddleware, byUser);
-router.get("/:id", authMiddleware, findById);
-router.patch("/:id", authMiddleware, update);
-router.delete("/:id", authMiddleware, erase);
-router.patch("/like/:id", authMiddleware, likePost);
-router.patch("/comment/:id", authMiddleware, addComment);
-router.patch("/comment/:idPost/:idComment", authMiddleware, deleteComment);
+postRouter.post("/create", authMiddleware, create);
+postRouter.get("/", findAll);
+postRouter.get("/top", topPosts);
+postRouter.get("/search", searchByTitle);
+postRouter.get("/byUser", authMiddleware, byUser);
+postRouter.get("/byIdPost/:id", authMiddleware, findById);
+postRouter.patch("/update/:id", authMiddleware, update);
+postRouter.delete("/delete/:id", authMiddleware, erase);
+postRouter.patch("/like/:id", authMiddleware, likePost);
+postRouter.patch("/comment/:id", authMiddleware, addComment);
+postRouter.patch("/comment/:idPost/:idComment", authMiddleware, deleteComment);
 
-export default router;
+export default postRouter;

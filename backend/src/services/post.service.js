@@ -1,4 +1,3 @@
-import Post from "../models/Post.js";
 import postRepositories from "../repositories/post.repositories.js";
 
 async function createPostService(corpo) {

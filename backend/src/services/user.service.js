@@ -8,9 +8,13 @@ async function createUserService(body) {
     if (!username || !name || !email || !password || !avatar)
         throw new Error("Submit all fields for registration");
 
-    const foundUser = await userRepositories.findByEmailUserRepository(email);
+    const foundUserEmail = await userRepositories.findByEmailUserRepository(email);
 
-    if (foundUser) throw new Error("User already exists");
+    if (foundUserEmail) throw new Error("User already exists");
+
+    const foundUsername = await userRepositories.findByUsernameRepository(username);
+
+    if (foundUsername) throw new Error("Username already in use");
 
     const user = await userRepositories.createUserRepository(body);
 

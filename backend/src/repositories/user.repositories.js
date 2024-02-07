@@ -2,6 +2,8 @@ import User from "../models/User.js";
 
 const findByEmailUserRepository = (email) => User.findOne({ email: email });
 
+const findByUsernameRepository = (username) => User.findOne({username: username})
+
 const createUserRepository = ({
   name,
   username,
@@ -37,6 +39,7 @@ const updateUserRepository = (
 
 export default {
   findByEmailUserRepository,
+  findByUsernameRepository,
   createUserRepository,
   findAllUserRepository,
   findByIdUserRepository,

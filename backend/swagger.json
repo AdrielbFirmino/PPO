@@ -67,10 +67,10 @@
                 ],
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
-                "reponses": {
+                "responses": {
                     "401": {
                         "description": "Unauthorized"
                     },
@@ -227,7 +227,7 @@
                 }
             }
         },
-        "/post/": {
+        "/post/create": {
             "post": {
                 "summary": "Create a new post",
                 "description": "Route responsible for creating a new Post",
@@ -248,11 +248,8 @@
                             "examples": {
                                 "Post": {
                                     "value": {
-                                        "user": "",
                                         "title": "ECMAScript 6",
-                                        "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                                        "likes": [],
-                                        "comments": []
+                                        "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                                     }
                                 }
                             }
@@ -386,6 +383,11 @@
                 "tags": [
                     "Post"
                 ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Not Found"
@@ -409,8 +411,8 @@
                 }
             }
         },
-        "/post/{id}/": {
-            "patch": {
+        "/post/byIdPost/{id}": {
+            "get": {
                 "summary": "Search post by id",
                 "description": "Route responsible for fetching post by id",
                 "tags": [
@@ -451,7 +453,7 @@
                 }
             }
         },
-        "/post/{id}": {
+        "/post/update/{id}": {
             "patch": {
                 "summary": "Update a post",
                 "description": "Route responsible for updating a Post",
@@ -510,7 +512,7 @@
                 }
             }
         },
-        "/post/{id}/": {
+        "/post/delete/{id}/": {
             "delete": {
                 "summary": "Delete a post",
                 "description": "Route responsible for deleting a Post",
@@ -561,7 +563,7 @@
                         "in": "path",
                         "name": "id",
                         "type": "string",
-                        "description": "User ID",
+                        "description": "Post ID",
                         "required": true
                     }
                 ],
@@ -661,13 +663,6 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Comment"
-                            },
-                            "examples": {
-                                "Comment": {
-                                    "value": {
-                                        "message": "Testing Comment"
-                                    }
-                                }
                             }
                         }
                     }

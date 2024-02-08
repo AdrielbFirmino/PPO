@@ -6,6 +6,8 @@ import Navbar from './components/Navbar/Navbar.jsx'
 import HomeForum from './pages/Forum/HomeForum.jsx'
 import Search from './pages/Search/Search.jsx'
 import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
+import SignIn from './pages/Authentication/Signin.jsx'
+import SignUp from './pages/Authentication/Signup.jsx'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,16 @@ const router = createBrowserRouter([
       {
         path: "/search/:title",
         element: <Search />
-      }]
+      },
+    ]
+  },
+  {
+    path: "/signin",
+    element: <SignIn />
+  },
+  {
+    path: "/signup",
+    element: <SignUp />
   }
 ])
 

@@ -19,6 +19,6 @@ export const GlobalStyled = createGlobalStyle`
         background-image: linear-gradient(black, rgba(78, 17, 125, 1));
         background-repeat: no-repeat;
         background-attachment: fixed;
-        padding-top: 6rem;
+        padding-top: ${(props) => (props.isAuthPage ? '0' : '6rem')};
     }
 `;

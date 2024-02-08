@@ -1,5 +1,5 @@
 import purplelogo from '../../images/purplelogo.png'
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 import {
   ButtonLogin,
   ButtonSwitchTop,
@@ -12,6 +12,12 @@ import {
 } from './NavbarStyled';
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  function goAuth() {
+    navigate("/signin")
+  }
 
   return (
     <>
@@ -27,7 +33,7 @@ const Navbar = () => {
           <LineD> | </LineD>
           <ButtonSwitchTop>Fórum</ButtonSwitchTop>
         </SwitchForumSong>
-        <ButtonLogin>Entrar</ButtonLogin>
+        <ButtonLogin onClick={goAuth}>Entrar</ButtonLogin>
       </Nav>
       <Outlet/>
     </>

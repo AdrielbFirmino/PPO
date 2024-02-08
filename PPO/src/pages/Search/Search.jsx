@@ -9,19 +9,11 @@ import {
   TitleForumPage,
 } from "../../components/Card/CardForum/CardForumStyled";
 import CardForum from "../../components/Card/CardForum/CardForum";
-import { z } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
+import { searchSchema } from "../../schemas/searchSchema";
 
-const searchSchema = z.object({
-  title: z
-    .string()
-    .min(1, { message: "A pesquisa não pode ser vazia" })
-    .refine(value => !/^\s*$/.test(value), {
-      message: "A pesquisa não pode ser vazia"
-    })
-});
 
 const Search = () => {
   const { title } = useParams();

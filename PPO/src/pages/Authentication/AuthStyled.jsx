@@ -22,7 +22,7 @@ export const RightSideDiv = styled.div`
     flex-direction: column;
 
     h1 {
-        padding-top: 4rem;
+        padding-top: 3rem;
         font-size: 2.5em;
     }
     P {
@@ -64,27 +64,12 @@ export const FormDiv = styled.div`
     align-items: center;
     flex-direction: column;
     width: 25vw;
-    height: ${(props) => (props.isSignInPage ? '35vh' : '46vh')};
-    border: 1px solid black;
-    border-radius: 4px;
-    background-color: rgb(11, 11, 11);
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    height: ${(props) => (props.issigninpage ? '35vh' : '49vh')};
     text-align: left;
 
     label {
         display: flex;
         align-self: baseline;
-        padding-left: 2vw;
-    }
-
-    input {
-        border: 1px solid rgba(78, 17, 125, 1);
-        width: 20vw;
-        padding: 0.5rem;
-        border-radius: 6px;
-        background-color: black;
-        color: white;
-        outline: none;
     }
 `
 export const LeftSideDiv = styled.div`

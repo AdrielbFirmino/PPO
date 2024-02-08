@@ -10,14 +10,37 @@ import {
   SwitchForumSong,
   LineD
 } from './NavbarStyled';
+import { userLogged } from '../../services/userService';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+  const [user, setUser] = useState({})
 
   function goAuth() {
     navigate("/signin")
   }
+
+  async function findUserLogged() {
+    try {
+      const response = await userLogged();
+      setUser(response.data);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  function signout() {
+    Cookies.remove("token");
+    setUser(undefined);
+    navigate("/")
+  }
+
+  useEffect(() => {
+    if(Cookies.get("token")) findUserLogged();
+  }, [])
 
   return (
     <>
@@ -33,7 +56,17 @@ const Navbar = () => {
           <LineD> | </LineD>
           <ButtonSwitchTop>Fórum</ButtonSwitchTop>
         </SwitchForumSong>
-        <ButtonLogin onClick={goAuth}>Entrar</ButtonLogin>
+        {user ? (
+          <section>
+            <p>{user.name}</p>
+            <Link to="/profile">
+              <img src={user.avatar} alt="Imagem de perfil"/>
+            </Link>
+            <i className="bi bi-box-arrow-right" onClick={signout}></i>
+          </section>
+        ) : (
+          <ButtonLogin onClick={goAuth}>Entrar</ButtonLogin>
+        )}
       </Nav>
       <Outlet/>
     </>

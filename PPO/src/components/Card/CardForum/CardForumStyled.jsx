@@ -122,6 +122,5 @@ export const CardMain = styled.div`
     margin-left: 10vw;
     width: 80vw;
     height: 100%;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
+    border-radius: 8px;
 `

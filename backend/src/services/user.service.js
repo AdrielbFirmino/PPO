@@ -22,16 +22,7 @@ async function createUserService(body) {
 
     const token = authService.generateToken(user.id);
 
-    return {
-        user: {
-            id: user.id,
-            name,
-            username,
-            email,
-            avatar
-        },
-        token
-    };
+    return token;
 };
 
 async function findAllUserService() {

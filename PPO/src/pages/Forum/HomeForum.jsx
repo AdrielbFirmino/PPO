@@ -4,17 +4,9 @@ import { CardMain, SearchPost, TitleForumPage, ValidationErrorMessage } from "..
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
-import { z } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
-
-const searchSchema = z.object({
-  title: z
-    .string()
-    .min(1, { message: "A pesquisa não pode ser vazia" })
-    .refine(value => !/^\s*$/.test(value), {
-      message: "A pesquisa não pode ser vazia"
-    })
-});
+import { searchSchema } from "../../schemas/searchSchema";
+import Cookies from "js-cookie";
 
 const HomeForum = () => {
 

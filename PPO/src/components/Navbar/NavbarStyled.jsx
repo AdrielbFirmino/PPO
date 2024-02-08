@@ -13,6 +13,30 @@ export const Nav = styled.nav`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 1;
     color: white;
+
+    section {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        p {
+            padding-right: 1.5vw;
+        }
+
+        i {
+            padding-left: 1.5vw;
+            width: 2rem;
+            height: 2rem;
+        }
+
+        img {
+            width: 3rem;
+            height: 3rem;
+            object-fit: cover;
+            border-radius: 90px;
+            cursor: pointer
+        }
+    }
 `
 export const ImageLogo = styled.img`
     width: 3rem;

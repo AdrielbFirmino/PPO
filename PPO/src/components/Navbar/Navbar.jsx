@@ -1,5 +1,5 @@
 import purplelogo from '../../images/purplelogo.png'
-/*import "./Navbar.css";*/
+import { Outlet, Link } from 'react-router-dom';
 import {
   ButtonLogin,
   ButtonSwitchTop,
@@ -12,11 +12,14 @@ import {
 } from './NavbarStyled';
 
 const Navbar = () => {
+
   return (
     <>
       <Nav>
         <LogoText>
+          <Link to="/">
           <ImageLogo src={purplelogo} alt="PurpleNote logo" />
+          </Link>
           <LogoTextSpace><h2>PurpleNote</h2></LogoTextSpace>
         </LogoText>
         <SwitchForumSong>
@@ -26,6 +29,7 @@ const Navbar = () => {
         </SwitchForumSong>
         <ButtonLogin>Entrar</ButtonLogin>
       </Nav>
+      <Outlet/>
     </>
   )
 }

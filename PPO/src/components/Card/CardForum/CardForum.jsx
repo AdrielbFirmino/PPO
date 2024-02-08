@@ -6,8 +6,6 @@ import {
     IconPost,
     TitlePost
 } from "./CardForumStyled"
-
-import icone from '../../../images/icone.jpg'
 import { TextLimit } from "../../TextLimit/TextLimit"
 
 const CardForum = (props) => {
@@ -15,7 +13,7 @@ const CardForum = (props) => {
     <>
         <CardPost>
             <LeftPost>
-                <IconPost src={icone} alt="" />
+                <IconPost src={props.userAvatar} alt="" />
                 <TitlePost>{props.userName}</TitlePost>
             </LeftPost>
             <div>
@@ -26,9 +24,9 @@ const CardForum = (props) => {
             </div>
             <RightPost>
                 <i className="bi bi-hand-thumbs-up"></i>
-                <h4>{props.likes}</h4>
+                <h4>{props.likes?.length}</h4>
                 <i className="bi bi-chat-left-text"></i>
-                <h4>{props.comments}</h4>
+                <h4>{props.comments?.length}</h4>
             </RightPost>
         </CardPost>
     </>

@@ -8,14 +8,21 @@ export const SearchPost = styled.div`
     margin-top: 2vh;
     width: 40vw;
     margin-left: 20vw;
-    justify-content: left;
+    justify-content: space-around;
     padding-left: 2vw;
     border-radius: 8px;
 
     i {
         display: flex;
         align-items: center;
-        padding-right: 1vw;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: white;
+        transition: all 0.4s ease-in-out;
+
+        &:hover {
+            color: rgb(122, 5, 212);
+        }
     }
 
     input {
@@ -24,6 +31,13 @@ export const SearchPost = styled.div`
         border: none;
         outline: none;
         width: 35vw;
+    }
+
+    button{
+        background-color: black;
+        border: none;
+        cursor: pointer;
+        
     }
 `
 
@@ -73,7 +87,6 @@ export const BodyPost = styled.div`
     background-color: black;
     width: 40vw;
     border-radius: 4px;
-    color: white;
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -82,10 +95,24 @@ export const BodyPost = styled.div`
 
 export const RightPost = styled.div`
     display: flex;
-    color: white;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    i {
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+
+        &:hover {
+            color: rgb(122, 5, 212);
+        }
+    }
+`
+
+export const ValidationErrorMessage = styled.h5`
+    display: flex;
+    justify-content: center;
+    color: white;
 `
 
 export const CardMain = styled.div`

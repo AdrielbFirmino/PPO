@@ -15,8 +15,8 @@ export const Nav = styled.nav`
     color: white;
 `
 export const ImageLogo = styled.img`
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     object-fit: cover;
     cursor: pointer;
 `

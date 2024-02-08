@@ -6,3 +6,8 @@ export function getAllPosts() {
     const response = axios.get(`${baseURL}/post`);
     return response;
 }
+
+export function searchPosts(title) {
+    const response = axios.get(`${baseURL}/post/search?title=${title}`)
+    return response;
+}

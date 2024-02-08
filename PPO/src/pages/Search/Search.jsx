@@ -1,11 +1,18 @@
+import { useParams } from "react-router-dom"
+import { searchPosts } from "../../services/postServices";
+import { useState, useEffect } from "react";
+import { TextResult } from "./SearchStyled";
+import { 
+  CardMain, 
+  SearchPost, 
+  ValidationErrorMessage, 
+  TitleForumPage,
+} from "../../components/Card/CardForum/CardForumStyled";
 import CardForum from "../../components/Card/CardForum/CardForum";
-import { getAllPosts } from "../../services/postServices";
-import { CardMain, SearchPost, TitleForumPage, ValidationErrorMessage } from "../../components/Card/CardForum/CardForumStyled";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom";
 
 const searchSchema = z.object({
   title: z
@@ -16,9 +23,24 @@ const searchSchema = z.object({
     })
 });
 
-const HomeForum = () => {
+const Search = () => {
+  const { title } = useParams();
+  const [post, setPost] = useState([]);
 
-  const [post, setPost] = useState([])
+  async function search() {
+    try {
+      const postApi = await searchPosts(title);
+      setPost(postApi.data.results);
+    } catch (err) {
+      console.log(err);
+      setPost([]);
+    }
+  }
+
+  useEffect(() => {
+    search()
+  }, [title])
+
 
   const { 
     register, 
@@ -36,18 +58,9 @@ const HomeForum = () => {
     reset;
   }
 
-  async function findAllPosts() {
-    const response = await getAllPosts();
-    setPost(response.data.results);
-  }
-
-  useEffect(() => {
-    findAllPosts();
-  }, []);
 
   return (
-    <>
-      <CardMain>
+    <CardMain>
         <form onSubmit={handleSubmit(onSearch)}>
           <SearchPost>
             <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
@@ -59,7 +72,16 @@ const HomeForum = () => {
         <ValidationErrorMessage>
           {errors.title && <span>{errors.title.message}</span>}
         </ValidationErrorMessage>
-        <TitleForumPage>Posts Recentes...</TitleForumPage>
+        <TitleForumPage>resultados de {title}</TitleForumPage>
+        <TextResult>
+          <span>
+            {post.length
+              ? `Encontramos ${post.length} ${
+                  post.length > 1 ? "posts relacionados a pesquisa" : "post relacionado a pesquisa"
+              }`
+              : "Não encontramos resultados para esta pesquisa"}
+          </span>
+        </TextResult>
         {post.map((item) => (
           <CardForum key={item.id}
             userAvatar={item.userAvatar}
@@ -71,8 +93,7 @@ const HomeForum = () => {
           />
         ))}
       </CardMain>
-    </>
   )
 }
 
-export default HomeForum
+export default Search

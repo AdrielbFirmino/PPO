@@ -43,8 +43,6 @@ async function findAllPostsService(limit, offset, currentUrl) {
         return res.status(400).send({ message: "There are no posts available" })
     }
 
-    posts.shift();
-
     return {
         nextUrl,
         previousUrl,

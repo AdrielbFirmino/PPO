@@ -9,6 +9,7 @@ import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
 import SignIn from './pages/Authentication/Signin.jsx'
 import SignUp from './pages/Authentication/Signup.jsx'
 import Profile from './pages/Profile/Profile.jsx'
+import UserProvider from './Context/UserContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <GlobalStyled />
-    <RouterProvider router={router}/>
+    <UserProvider>
+      <RouterProvider router={router}/>
+    </UserProvider>
   </React.StrictMode>,
 )

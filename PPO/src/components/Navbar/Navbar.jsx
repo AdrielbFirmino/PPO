@@ -11,13 +11,14 @@ import {
   LineD
 } from './NavbarStyled';
 import { userLogged } from '../../services/userService';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { UserContext } from '../../Context/UserContext';
 
 const Navbar = () => {
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({})
+  const {user, setUser} = useContext(UserContext)
 
   function goAuth() {
     navigate("/signin")

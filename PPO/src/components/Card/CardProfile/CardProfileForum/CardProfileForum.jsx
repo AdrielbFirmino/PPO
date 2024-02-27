@@ -6,8 +6,20 @@ import {
 } from "../../CardForum/CardForumStyled"
 import { SideBarPost, CardProfilePostContainer } from "./CardProfileForumStyled"
 import { TextLimit } from "../../../TextLimit/TextLimit"
+import { deletePost } from "../../../../services/postServices"
 
 const CardProfileForum = (props) => {
+  
+  async function handleDeletePost(postId) {
+    try {
+        console.log(props.name, props.id)
+        const response = await deletePost(postId);
+        console.log("Post deletado com sucesso:", response.data);
+    } catch (error) {
+        console.error("Erro ao deletar post:", error);
+    }
+  }
+
   return (
     <CardProfilePostContainer>
         <CardPost className="Card">
@@ -29,8 +41,8 @@ const CardProfileForum = (props) => {
             <button className="EditButton">
                 <i className="bi bi-pencil-square"></i>
             </button>
-            <button className="DeleteButton">
-                <i class="bi bi-trash"></i>
+            <button className="DeleteButton" onClick={() => handleDeletePost(props.id)}>
+                <i className="bi bi-trash"></i>
             </button>
         </SideBarPost>
     </CardProfilePostContainer>

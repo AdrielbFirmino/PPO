@@ -144,6 +144,7 @@ const Profile = () => {
             body={item.body}
             likes={item.likes}
             comments={item.likes}
+            id={item.id}
             />
         ))}
     </CardMain> 

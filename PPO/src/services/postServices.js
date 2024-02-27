@@ -30,3 +30,12 @@ export function createUserPosts(data) {
     });
     return response;
 }
+
+export function deletePost(postId) {
+    const response = axios.delete(`${baseURL}/post/delete/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`
+        }
+    });
+    return response;
+}

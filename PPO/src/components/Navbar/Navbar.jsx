@@ -23,6 +23,9 @@ const Navbar = () => {
   function goAuth() {
     navigate("/signin")
   }
+  function goProfile() {
+    navigate("/profile")
+  }
 
   async function findUserLogged() {
     try {
@@ -60,9 +63,7 @@ const Navbar = () => {
         {user ? (
           <section>
             <p>{user.name}</p>
-            <Link to="/profile">
-              <img src={user.avatar} alt="Imagem de perfil"/>
-            </Link>
+            <img src={user.avatar} onClick={goProfile}/>
             <i className="bi bi-box-arrow-right" onClick={signout}></i>
           </section>
         ) : (

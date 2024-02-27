@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import {zodResolver} from "@hookform/resolvers/zod"
 import { searchSchema } from "../../schemas/searchSchema";
-import Cookies from "js-cookie";
 
 const HomeForum = () => {
 
@@ -56,6 +55,7 @@ const HomeForum = () => {
           <CardForum key={item.id}
             userAvatar={item.userAvatar}
             userName={item.userName}
+            name={item.name}
             title={item.title}
             body={item.body}
             likes={item.likes}

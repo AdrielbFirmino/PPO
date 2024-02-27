@@ -1,10 +1,8 @@
 import { 
     CardPost, 
     RightPost,
-    BodyPost,
     LeftPost,
-    IconPost,
-    TitlePost
+    IconPost
 } from "./CardForumStyled"
 import { TextLimit } from "../../TextLimit/TextLimit"
 
@@ -13,15 +11,12 @@ const CardForum = (props) => {
     <>
         <CardPost>
             <LeftPost>
-                <IconPost src={props.userAvatar} alt="" />
-                <TitlePost>{props.userName}</TitlePost>
+                <IconPost src={props.userAvatar} />
+                <h4>{props.name}</h4>
             </LeftPost>
-            <div>
-                <h3>{props.title}</h3>
-                <BodyPost>
-                    <TextLimit text= {props.body} limit={125}/>
-                </BodyPost>
-            </div>
+            <section>
+                <h3><TextLimit text = {props.title} limit={35}/></h3>
+            </section>
             <RightPost>
                 <i className="bi bi-hand-thumbs-up"></i>
                 <h4>{props.likes?.length}</h4>

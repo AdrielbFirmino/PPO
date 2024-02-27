@@ -13,8 +13,7 @@ export const GlobalStyled = createGlobalStyle`
         height: 100%;
     }
     body {
-        max-width: 100vh;
-        height: 100%;
+        max-width: 100vw;
         margin: 0;
         background-image: linear-gradient(black, rgba(78, 17, 125, 1));
         background-repeat: no-repeat;

@@ -79,6 +79,7 @@ const Search = () => {
             userAvatar={item.userAvatar}
             userName={item.userName}
             title={item.title}
+            name={item.name}
             body={item.body}
             likes={item.likes}
             comments={item.likes}

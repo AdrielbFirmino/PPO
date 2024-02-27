@@ -39,6 +39,10 @@ const SignUp = () => {
     }
   }
 
+  function goSignin() {
+    navigate("/signin")
+  }
+
   return (
     <>
       <GlobalStyled isAuthPage={true} />
@@ -86,8 +90,8 @@ const SignUp = () => {
             </FormDiv>
             <button type="submit">Cadastrar</button>
             <hr />
-            <p>Não possui uma conta?</p>
-            <SingUpText>Inscreva-se</SingUpText>
+            <p>Já possui uma conta?</p>
+            <SingUpText onClick={goSignin}>Entrar</SingUpText>
           </form>
         </RightSideDiv>
       </MainAuthDiv>

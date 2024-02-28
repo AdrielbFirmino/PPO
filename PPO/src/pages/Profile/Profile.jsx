@@ -58,11 +58,16 @@ const Profile = () => {
   async function inHandleSubmit(data) {
     try {
       const response = await createUserPosts(data);
+      findAllUserPosts();
       return console.log(response.data)
     } catch (err) {
       console.log(err)
     }
   }
+
+  const updatePostsAfterDelete = async () => {
+    await findAllUserPosts();
+  };
 
   useEffect(() => {
     findAllUserPosts();
@@ -145,6 +150,7 @@ const Profile = () => {
             likes={item.likes}
             comments={item.likes}
             id={item.id}
+            updatePosts={updatePostsAfterDelete}
             />
         ))}
     </CardMain> 

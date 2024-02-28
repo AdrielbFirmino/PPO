@@ -39,3 +39,12 @@ export function deletePost(postId) {
     });
     return response;
 }
+
+export function editPost(postId, newData) {
+    const response = axios.patch(`${baseURL}/post/update/${postId}`, newData, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`
+        }
+    });
+    return response
+}

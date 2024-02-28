@@ -43,8 +43,12 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    if(Cookies.get("token")) findUserLogged();
-  }, [])
+    if (Cookies.get("token")) {
+      findUserLogged();
+    } else {
+      setUser(undefined);
+    }
+  }, [setUser])
 
   return (
     <>
@@ -58,7 +62,7 @@ const Navbar = () => {
         <SwitchForumSong>
           <ButtonSwitchTop>Músicas</ButtonSwitchTop>
           <LineD> | </LineD>
-          <ButtonSwitchTop>Fórum</ButtonSwitchTop>
+          <Link to="/"><ButtonSwitchTop>Fórum</ButtonSwitchTop></Link>
         </SwitchForumSong>
         {user ? (
           <section>

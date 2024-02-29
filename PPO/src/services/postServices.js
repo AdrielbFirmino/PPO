@@ -41,10 +41,15 @@ export function deletePost(postId) {
 }
 
 export function editPost(postId, newData) {
-    const response = axios.patch(`${baseURL}/post/update/${postId}`, newData, {
-        headers: {
-            Authorization: `Bearer ${Cookies.get("token")}`
-        }
-    });
-    return response
+    try {
+        const response = axios.patch(`${baseURL}/post/update/${postId}`, newData, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao editar postagem:", error);
+        throw error;
+    }
 }

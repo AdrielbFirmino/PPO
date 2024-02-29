@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { useState, useEffect } from "react";
 import { createUserPosts, getUserPosts } from "../../services/postServices";
+import { editUser } from "../../services/userService";
 import CardProfileForum from "../../components/Card/CardProfile/CardProfileForum/CardProfileForum";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +17,10 @@ import { CardMain,
   PostProfileShowDiv,
   MenuDotIcon,
   NewPostContainer,
-  NewPostFormContainer
+  NewPostFormContainer,
+  ModalBackground,
+  ModalContent,
+  CloseButton
 } from "./ProfileStyled";
 import { creatPostSchema } from "../../schemas/createPostSchema";
 import { useForm } from "react-hook-form";
@@ -36,6 +40,31 @@ const Profile = () => {
   const [posts, setPosts] = useState([])
   const [menuOpen, setMenuOpen] = useState(false);
   const [newPostOpen, setNewPostOpen] = useState(false);
+  const [editedName, setEditedName] = useState(user.name);
+  const [editedUsername, setEditedUsername] = useState(user.username);
+  const [editedAvatar, setEditedAvatar] = useState(user.avatar);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    console.log(editedName)
+    console.log(user.name)
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleUserEditSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await editUser(user._id, { name: editedName, username: editedUsername, avatar: editedAvatar });
+      setUser({ ...user, name: editedName, username: editedUsername, avatar: editedAvatar });
+      closeModal();
+    } catch (error) {
+      console.error('Erro ao editar perfil:', error);
+    }
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -58,7 +87,7 @@ const Profile = () => {
   async function inHandleSubmit(data) {
     try {
       const response = await createUserPosts(data);
-      findAllUserPosts();
+      await findAllUserPosts();
       return console.log(response.data)
     } catch (err) {
       console.log(err)
@@ -91,7 +120,37 @@ const Profile = () => {
           <i className="bi bi-three-dots" onClick={toggleMenu}></i>
           {menuOpen && (
             <MenuDotIcon>
-              <h3>Editar Perfil</h3>
+              <h3 onClick={openModal}>Editar Perfil</h3>
+              {isModalOpen && (
+                <ModalBackground>
+                  <ModalContent>
+                    <CloseButton onClick={closeModal}>&times;</CloseButton>
+                    <h2>Editar Perfil</h2>
+                    <form onSubmit={handleUserEditSubmit}>
+                      <label>Nome:</label>
+                      <input
+                        type="text"
+                        value = {editedName}
+                        name="name"
+                        onChange={(e) => setEditedName(e.target.value)}
+                      />
+                      <label>Username:</label>
+                      <input
+                        type="text"
+                        value={editedUsername}
+                        onChange={(e) => setEditedUsername(e.target.value)}
+                      />
+                      <label>Avatar:</label>
+                      <input
+                        type="text"
+                        value={editedAvatar}
+                        onChange={(e) => setEditedAvatar(e.target.value)}
+                      />
+                      <button type="submit">Salvar</button>
+                    </form>
+                  </ModalContent>
+                </ModalBackground>
+              )}
               <h3 onClick={signout}>Sair</h3>
             </MenuDotIcon>
           )}
@@ -150,7 +209,7 @@ const Profile = () => {
             likes={item.likes}
             comments={item.likes}
             id={item.id}
-            updatePosts={updatePostsAfterDelete}
+            updatePosts={findAllUserPosts}
             />
         ))}
     </CardMain> 

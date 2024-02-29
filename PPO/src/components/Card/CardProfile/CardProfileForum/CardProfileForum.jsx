@@ -25,11 +25,14 @@ const CardProfileForum = (props) => {
   }
 
   async function handleEditPost() {
+    console.log(editedTitle)
+    console.log(props.title)
     try {
       const newData = { title: editedTitle, body: editedBody };
       await editPost(props.id, newData);
-      props.updatePosts();
       setIsEditing(false);
+      props.updatePosts();
+
     } catch (error) {
       console.error("Erro ao editar post:", error);
     }
@@ -53,6 +56,7 @@ const CardProfileForum = (props) => {
             onChange={(e) => setEditedBody(e.target.value)}
           />
           <button type="submit">Salvar</button>
+          <button onClick={!isEditing}>Fechar</button>
         </form>
       ) : (
         <>
@@ -62,7 +66,7 @@ const CardProfileForum = (props) => {
                 <h4>{props.name}</h4>
             </LeftPost>
             <section>
-                <h3><TextLimit text = {props.title} limit={35}/></h3>
+                <h3><TextLimit text = {editedTitle} limit={35}/></h3>
             </section>
             <RightPost>
                 <i className="bi bi-hand-thumbs-up"></i>

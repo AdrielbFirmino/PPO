@@ -24,6 +24,20 @@ export function userLogged() {
     return response;
 }
 
+export function editUser(userId, newData) {
+    try {
+        const response = axios.patch(`${baseURL}/user/update/${userId}`, newData, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao editar usuário:", error);
+        throw error;
+    }
+}
+
 function generateUserName(name) {
     const nameLowerCaseWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
     const randomNumber = Math.floor(Math.random() * 1000);

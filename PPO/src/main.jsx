@@ -10,6 +10,7 @@ import SignIn from './pages/Authentication/Signin.jsx'
 import SignUp from './pages/Authentication/Signup.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import UserProvider from './Context/UserContext.jsx'
+import Post from './pages/Post/Post.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />
       },
+      {
+        path: "/post/:id",
+        element: <Post />
+      }
     ]
   },
   {

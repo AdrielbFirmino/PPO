@@ -8,8 +8,11 @@ import { SideBarPost, CardProfilePostContainer } from "./CardProfileForumStyled"
 import { TextLimit } from "../../../TextLimit/TextLimit"
 import { deletePost, editPost } from "../../../../services/postServices"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const CardProfileForum = (props) => {
+
+  const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(props.title);
@@ -66,7 +69,7 @@ const CardProfileForum = (props) => {
                 <h4>{props.name}</h4>
             </LeftPost>
             <section>
-                <h3><TextLimit text = {editedTitle} limit={35}/></h3>
+                <h3 onClick={() => navigate(`/post/${props.id}`)}><TextLimit text = {editedTitle} limit={35}/></h3>
             </section>
             <RightPost>
                 <i className="bi bi-hand-thumbs-up"></i>

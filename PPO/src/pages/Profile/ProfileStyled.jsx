@@ -230,7 +230,7 @@ export const ModalBackground = styled.div`
 export const ModalContent = styled.div`
   background-image: linear-gradient(rgb(31, 31, 31), rgb(10, 10, 10));
   padding: 20px;
-  border: 2px solid purple;
+  border: 2px solid rgb(78, 17, 125);
 
   form {
     display: flex;
@@ -240,8 +240,29 @@ export const ModalContent = styled.div`
         margin-top: 2vh;
     }
 
+    input {
+        color: white;
+        background-color: black;
+        outline: none;
+        border: 1px solid rgb(122, 5, 212);
+        border-radius: 2px;
+        padding: 0.5rem;
+    }
+
     button {
         margin-top: 2vh;
+        background-color: rgb(122, 5, 212);
+        color: white;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        font-size: 1rem;
+        transition: all 0.4s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(78, 17, 125);
+        }
     }
   }
 `;
@@ -251,5 +272,10 @@ export const CloseButton = styled.span`
   right: 10px;
   cursor: pointer;
   font-size: 24px;
-  color: red;
+  color: grey;
+  transition: all 0.4s ease-in-out;
+  
+  &:hover {
+        color: red;
+    }
 `;

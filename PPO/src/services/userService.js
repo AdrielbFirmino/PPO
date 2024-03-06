@@ -24,6 +24,15 @@ export function userLogged() {
     return response;
 }
 
+export function findUserById(userId) {
+    const response = axios.get(`${baseURL}/user/findById/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`
+        }
+    })
+    return response;
+}
+
 export function editUser(userId, newData) {
     try {
         const response = axios.patch(`${baseURL}/user/update/${userId}`, newData, {

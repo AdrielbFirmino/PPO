@@ -5,17 +5,22 @@ import {
     IconPost
 } from "./CardForumStyled"
 import { TextLimit } from "../../TextLimit/TextLimit"
+import { useNavigate } from "react-router-dom";
+
 
 const CardForum = (props) => {
+
+  const navigate = useNavigate();
+  
   return (
     <>
         <CardPost>
             <LeftPost>
-                <IconPost src={props.userAvatar} />
+                <IconPost src={props.userAvatar}/>
                 <h4>{props.name}</h4>
             </LeftPost>
             <section>
-                <h3><TextLimit text = {props.title} limit={35}/></h3>
+                <h3 onClick={() => navigate(`/post/${props.postId}`)}><TextLimit text = {props.title} limit={35}/></h3>
             </section>
             <RightPost>
                 <i className="bi bi-hand-thumbs-up"></i>

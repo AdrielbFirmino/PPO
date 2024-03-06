@@ -94,10 +94,6 @@ const Profile = () => {
     }
   }
 
-  const updatePostsAfterDelete = async () => {
-    await findAllUserPosts();
-  };
-
   useEffect(() => {
     findAllUserPosts();
   }, []);
@@ -207,7 +203,7 @@ const Profile = () => {
             name={item.name}
             body={item.body}
             likes={item.likes}
-            comments={item.likes}
+            comments={item.comments}
             id={item.id}
             updatePosts={findAllUserPosts}
             />

@@ -59,7 +59,8 @@ const HomeForum = () => {
             title={item.title}
             body={item.body}
             likes={item.likes}
-            comments={item.likes}
+            comments={item.comments}
+            postId={item.id}
           />
         ))}
       </CardMain>

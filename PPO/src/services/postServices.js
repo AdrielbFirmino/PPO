@@ -53,3 +53,31 @@ export function editPost(postId, newData) {
         throw error;
     }
 }
+
+export function getPostById(postId) {
+    try {
+        const response = axios.get(`${baseURL}/post/byIdPost/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao procurar a postagem:", error);
+        throw error;
+    }
+}
+
+export function addComment(postId, data) {
+    try {
+        const response = axios.patch(`${baseURL}/post/comment/${postId}`, data, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao fazer o comentário:", error);
+        throw error;
+    }
+}

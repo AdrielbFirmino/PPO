@@ -15,13 +15,18 @@ const Post = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({ resolver: zodResolver(creatCommentSchema)});
 
   async function inHandleSubmit(postId, data) {
     try {
+      console.log(postId, data)
       const response = await addComment(postId, data);
-      return console.log(response.data)
+      const updatedPost = { ...post, comments: [...post.comments, response.data] };
+      setPost(updatedPost);
+      reset();
+      window.location.reload();
     } catch (err) {
       console.log("Erro ao adicionar comentário: ", err)
     }
@@ -75,11 +80,13 @@ const Post = () => {
             <button type="submit">Postar</button>
           </form>
         </NewPostFormContainer>
-        {post.comments && post.comments.map((item) => (
+        {post.comments && post.comments.map((item) =>(
           <CardComment key={item.idComment}
             idComment={item.idComment}
             userId={item.userId}
             body={item.body}
+            postId={id}
+            updatePost={setPost}
           />
         ))}
       </CardMain>

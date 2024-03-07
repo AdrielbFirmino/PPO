@@ -40,6 +40,20 @@ export function deletePost(postId) {
     return response;
 }
 
+export function deleteComment(postId, idComment) {
+    try {
+        const response = axios.patch(`${baseURL}/post/comment/${postId}/${idComment}`, null, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao deletar comentário:", error);
+        throw error;
+    }
+}
+
 export function editPost(postId, newData) {
     try {
         const response = axios.patch(`${baseURL}/post/update/${postId}`, newData, {

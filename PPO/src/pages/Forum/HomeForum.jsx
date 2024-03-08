@@ -90,20 +90,24 @@ const HomeForum = () => {
         ))}
       </CardMain>
       <PaginationBoxContainer>
-        <PaginationBox onClick={handlePreviousPage} disabled={!hasPreviousPage}>
-            {"<"}
+        <PaginationBox onClick={handlePreviousPage} disabled={!hasPreviousPage || currentPage === 1}>
+          {currentPage === 1
+            ? ""
+            : <i className="bi bi-arrow-left-circle"></i>}
         </PaginationBox>
         {Array.from(Array(totalPages).keys()).map((page) => (
-            <PaginationBox
-                key={page + 1}
-                onClick={() => setCurrentPage(page + 1)}
-                  isActive={currentPage === page + 1}
-            >
-                <h1>{page + 1}</h1>
-            </PaginationBox>
+          <PaginationBox
+            key={page + 1}
+            onClick={() => setCurrentPage(page + 1)}
+            isActive={currentPage === page + 1}
+          >
+            <h1>{page + 1}</h1>
+          </PaginationBox>
         ))}
-        <PaginationBox onClick={handleNextPage} disabled={!hasNextPage}>
-            {">"}
+        <PaginationBox onClick={handleNextPage} disabled={!hasNextPage || currentPage === totalPages}>
+        {currentPage === totalPages
+            ? ""
+            : <i className="bi bi-arrow-right-circle"></i>}
         </PaginationBox>
       </PaginationBoxContainer>
     </>

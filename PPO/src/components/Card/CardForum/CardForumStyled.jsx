@@ -7,7 +7,6 @@ export const SearchPost = styled.div`
     border-bottom: 2px solid rgb(122, 5, 212);
     margin-top: 2vh;
     width: 40vw;
-    margin-left: 20vw;
     justify-content: space-around;
     padding-left: 2vw;
     border-radius: 8px;

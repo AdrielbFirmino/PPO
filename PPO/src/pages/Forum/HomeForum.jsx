@@ -1,6 +1,8 @@
 import CardForum from "../../components/Card/CardForum/CardForum";
 import { getAllPosts } from "../../services/postServices";
 import { CardMain, SearchPost, TitleForumPage, ValidationErrorMessage } from "../../components/Card/CardForum/CardForumStyled";
+import { FormContainer } from "../Search/SearchStyled";
+import { PaginationBoxContainer, PaginationBox } from "./HomeForumStyled";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
@@ -10,6 +12,8 @@ import { searchSchema } from "../../schemas/searchSchema";
 const HomeForum = () => {
 
   const [post, setPost] = useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [paginationInfo, setPaginationInfo] = useState(null);
 
   const { 
     register, 
@@ -39,14 +43,17 @@ const HomeForum = () => {
   return (
     <>
       <CardMain>
-        <form onSubmit={handleSubmit(onSearch)}>
-          <SearchPost>
-            <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
-            <button type="submit">
-              <i className="bi bi-search"></i>
-            </button>
-          </SearchPost>
-        </form>
+        <FormContainer>
+          <form onSubmit={handleSubmit(onSearch)}>
+            <SearchPost>
+              <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
+              <button type="submit">
+                <i className="bi bi-search"></i>
+              </button>
+            
+            </SearchPost>
+          </form>
+        </FormContainer>
         <ValidationErrorMessage>
           {errors.title && <span>{errors.title.message}</span>}
         </ValidationErrorMessage>
@@ -64,6 +71,11 @@ const HomeForum = () => {
           />
         ))}
       </CardMain>
+      <PaginationBoxContainer>
+        <PaginationBox>
+          <h1>1</h1>
+        </PaginationBox>
+      </PaginationBoxContainer>
     </>
   )
 }

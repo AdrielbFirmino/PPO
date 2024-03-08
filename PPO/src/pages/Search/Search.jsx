@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { searchPosts } from "../../services/postServices";
 import { useState, useEffect } from "react";
-import { TextResult } from "./SearchStyled";
+import { TextResult, FormContainer } from "./SearchStyled";
 import { 
   CardMain, 
   SearchPost, 
@@ -53,14 +53,16 @@ const Search = () => {
 
   return (
     <CardMain>
-        <form onSubmit={handleSubmit(onSearch)}>
-          <SearchPost>
-            <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
-            <button type="submit">
-              <i className="bi bi-search"></i>
-            </button>
-          </SearchPost>
-        </form>
+        <FormContainer>
+          <form onSubmit={handleSubmit(onSearch)}>
+              <SearchPost>
+                <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
+                <button type="submit">
+                  <i className="bi bi-search"></i>
+                </button>
+              </SearchPost>
+          </form>
+        </FormContainer>
         <ValidationErrorMessage>
           {errors.title && <span>{errors.title.message}</span>}
         </ValidationErrorMessage>
@@ -78,11 +80,12 @@ const Search = () => {
           <CardForum key={item.id}
             userAvatar={item.userAvatar}
             userName={item.userName}
-            title={item.title}
             name={item.name}
+            title={item.title}
             body={item.body}
             likes={item.likes}
-            comments={item.likes}
+            comments={item.comments}
+            postId={item.id}
           />
         ))}
       </CardMain>

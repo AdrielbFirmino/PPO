@@ -95,3 +95,17 @@ export function addComment(postId, data) {
         throw error;
     }
 }
+
+export function likePost(id) {
+    try {
+        const response = axios.patch(`${baseURL}/post/like/${id}`, null, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao dar like no post:", error);
+        throw error;
+    }
+}

@@ -7,3 +7,7 @@ export const TextResult = styled.div`
     padding-right: 1rem;
     padding-bottom: 1rem;
 `
+export const FormContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`

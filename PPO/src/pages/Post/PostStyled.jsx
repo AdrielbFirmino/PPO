@@ -24,14 +24,20 @@ export const TituloPost = styled.h1`
     font-size: 5vh;
 `
 export const PostLikesContainer = styled.h1`
-    color: white;
+    color: ${({ isLiked }) => (isLiked ? "rgb(122, 5, 212)" : "white")};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: -2vh;
     margin-right: 3vh;
-    font-size: 3vh;
+    font-size: 4vh;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
+        color: rgb(122, 5, 212);
+    }
 `
 export const BodyContainer = styled.div`
     display: flex;

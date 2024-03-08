@@ -37,6 +37,10 @@ export const Nav = styled.nav`
             cursor: pointer
         }
     }
+
+    .CenterSwitch {
+        margin-left: 3vw;
+    }
 `
 export const ImageLogo = styled.img`
     width: 3rem;

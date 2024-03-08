@@ -59,7 +59,7 @@ const Navbar = () => {
           </Link>
           <LogoTextSpace><h2>PurpleNote</h2></LogoTextSpace>
         </LogoText>
-        <SwitchForumSong>
+        <SwitchForumSong className='CenterSwitch'>
           <ButtonSwitchTop>Músicas</ButtonSwitchTop>
           <LineD> | </LineD>
           <Link to="/"><ButtonSwitchTop>Fórum</ButtonSwitchTop></Link>

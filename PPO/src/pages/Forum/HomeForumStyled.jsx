@@ -7,12 +7,18 @@ export const PaginationBoxContainer = styled.div`
 `
 export const PaginationBox = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    color: white;
-    background-color: transparent;
-    border: 3px solid black;
-    width: 2vw;
-    height: 2vw;
 
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: transparent;
+        border: 3px solid black;
+        width: 2vw;
+        height: 2vw;
+        margin-right: 1rem;
+    }
 `

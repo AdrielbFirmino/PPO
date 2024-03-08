@@ -3,8 +3,13 @@ import Cookies from 'js-cookie';
 
 const baseURL = "http://localhost:5000";
 
-export function getAllPosts() {
-    const response = axios.get(`${baseURL}/post`);
+export function getAllPosts(limit, offset) {
+    const response = axios.get(`${baseURL}/post`, {
+        params: {
+            limit,
+            offset
+        }
+    });
     return response;
 }
 

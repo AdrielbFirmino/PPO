@@ -13,7 +13,9 @@ const HomeForum = () => {
 
   const [post, setPost] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
-  const [paginationInfo, setPaginationInfo] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+  const [hasNextPage, setHasNextPage] = useState(false);
+  const [hasPreviousPage, setHasPreviousPage] = useState(false);
 
   const { 
     register, 
@@ -31,14 +33,30 @@ const HomeForum = () => {
     reset;
   }
 
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   async function findAllPosts() {
-    const response = await getAllPosts();
-    setPost(response.data.results);
+    try {
+      const response = await getAllPosts(5, (currentPage - 1) * 5);
+      const { total, results, nextUrl, previousUrl } = response.data;
+      setPost(results);
+      setTotalPages(Math.ceil(total / 5));
+      setHasNextPage(!!nextUrl);
+      setHasPreviousPage(!!previousUrl);
+    } catch (error) {
+      console.error("Erro ao tentar encontrar todos os posts: ", error);
+    }
   }
 
   useEffect(() => {
     findAllPosts();
-  }, []);
+  }, [currentPage]);
 
   return (
     <>
@@ -72,8 +90,20 @@ const HomeForum = () => {
         ))}
       </CardMain>
       <PaginationBoxContainer>
-        <PaginationBox>
-          <h1>1</h1>
+        <PaginationBox onClick={handlePreviousPage} disabled={!hasPreviousPage}>
+            {"<"}
+        </PaginationBox>
+        {Array.from(Array(totalPages).keys()).map((page) => (
+            <PaginationBox
+                key={page + 1}
+                onClick={() => setCurrentPage(page + 1)}
+                  isActive={currentPage === page + 1}
+            >
+                <h1>{page + 1}</h1>
+            </PaginationBox>
+        ))}
+        <PaginationBox onClick={handleNextPage} disabled={!hasNextPage}>
+            {">"}
         </PaginationBox>
       </PaginationBoxContainer>
     </>

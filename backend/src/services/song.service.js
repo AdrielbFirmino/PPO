@@ -158,6 +158,42 @@ async function eraseSongService(id, userId) {
     await songRepositories.eraseSongRespository(id);
 };
 
+async function addHappyFeelService(id, userId) {
+    const songHappy = await songRepositories.addHappyFeelRepository(id, userId)
+    if (!songHappy) {
+        await songRepositories.eraseHappyFeelRepository(id, userId);
+        return { message: "Hapy feel removed successfully" };
+    }
+    return { message: "Hapy feel added successfully" };
+};
+
+async function addSadFeelService(id, userId) {
+    const songSad = await songRepositories.addSadFeelRepository(id, userId)
+    if (!songSad) {
+        await songRepositories.eraseSadFeelRepository(id, userId);
+        return { message: "Sad feel removed successfully" };
+    }
+    return { message: "Sad feel added successfully" };
+};
+
+async function addLoveFeelService(id, userId) {
+    const songLove = await songRepositories.addLoveFeelRepository(id, userId)
+    if (!songLove) {
+        await songRepositories.eraseLoveFeelRepository(id, userId);
+        return { message: "Love feel removed successfully" };
+    }
+    return { message: "Love feel added successfully" };
+};
+
+async function addRelaxFeelService(id, userId) {
+    const songRelax = await songRepositories.addRelaxFeelRepository(id, userId)
+    if (!songRelax) {
+        await songRepositories.eraseRelaxFeelRepository(id, userId);
+        return { message: "Relax feel removed successfully" };
+    }
+    return { message: "Relax feel added successfully" };
+};
+
 export default {
     createSongService,
     findAllSongsService,
@@ -166,5 +202,9 @@ export default {
     findSongsByUserIdService,
     findSongByIdService,
     updateSongService,
-    eraseSongService
+    eraseSongService,
+    addHappyFeelService,
+    addSadFeelService,
+    addLoveFeelService,
+    addRelaxFeelService
 }

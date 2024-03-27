@@ -87,3 +87,47 @@ export const erase = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 };
+
+export const addHappyFeel = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.userId;
+    try {
+        const response = await songService.addHappyFeelService(id, userId);
+        res.send(response);
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const addSadFeel = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.userId;
+    try {
+        const response = await songService.addSadFeelService(id, userId);
+        res.send(response);
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const addLoveFeel = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.userId;
+    try {
+        const response = await songService.addLoveFeelService(id, userId);
+        res.send(response);
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const addRelaxFeel = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.userId;
+    try {
+        const response = await songService.addRelaxFeelService(id, userId);
+        res.send(response);
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};

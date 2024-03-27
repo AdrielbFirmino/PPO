@@ -8,6 +8,10 @@ import { create,
     findById,
     update,
     erase,
+    addHappyFeel,
+    addSadFeel,
+    addLoveFeel,
+    addRelaxFeel
 } from '../controllers/song.controller.js';
 
 const songRouter = Router();
@@ -20,5 +24,9 @@ songRouter.get("/byUser", authMiddleware, byUser);
 songRouter.get("/byIdSong/:id", authMiddleware, findById);
 songRouter.patch("/update/:id", authMiddleware, update);
 songRouter.delete("/delete/:id", authMiddleware, erase);
+songRouter.patch("/happyFeel/:id", authMiddleware, addHappyFeel);
+songRouter.patch("/sadFeel/:id", authMiddleware, addSadFeel);
+songRouter.patch("/loveFeel/:id", authMiddleware, addLoveFeel);
+songRouter.patch("/relaxFeel/:id", authMiddleware, addRelaxFeel);
 
 export default songRouter;

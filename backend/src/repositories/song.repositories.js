@@ -24,6 +24,46 @@ const updateSongRepository = (id, name, image) => Song.findOneAndUpdate({ _id: i
 
 const eraseSongRespository = (id) => Song.findByIdAndDelete({ _id: id });
 
+const addHappyFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong, "happyFeel.userId": { $nin: [userId] } },
+    { $push: { happyFeel: { userId, created: new Date() } } }
+);
+
+const eraseHappyFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong },
+    { $pull: { happyFeel: { userId } } }
+);
+
+const addSadFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong, "sadFeel.userId": { $nin: [userId] } },
+    { $push: { sadFeel: { userId, created: new Date() } } }
+);
+
+const eraseSadFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong },
+    { $pull: { sadFeel: { userId } } }
+);
+
+const addLoveFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong, "loveFeel.userId": { $nin: [userId] } },
+    { $push: { loveFeel: { userId, created: new Date() } } }
+);
+
+const eraseLoveFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong },
+    { $pull: { loveFeel: { userId } } }
+);
+
+const addRelaxFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong, "relaxFeel.userId": { $nin: [userId] } },
+    { $push: { relaxFeel: { userId, created: new Date() } } }
+);
+
+const eraseRelaxFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
+    { _id: idSong },
+    { $pull: { relaxFeel: { userId } } }
+);
+
 export default {
     createSongRepository,
     findAllSongsRepository,
@@ -33,5 +73,13 @@ export default {
     findSongsByUserIdRepository,
     findSongByIdRepository,
     updateSongRepository,
-    eraseSongRespository
+    eraseSongRespository,
+    addHappyFeelRepository,
+    eraseHappyFeelRepository,
+    addSadFeelRepository,
+    eraseSadFeelRepository,
+    addLoveFeelRepository,
+    eraseLoveFeelRepository,
+    addRelaxFeelRepository,
+    eraseRelaxFeelRepository
 }

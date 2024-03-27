@@ -6,6 +6,8 @@ import { create,
     searchSongByName,
     byUser,
     findById,
+    update,
+    erase,
 } from '../controllers/song.controller.js';
 
 const songRouter = Router();
@@ -16,5 +18,7 @@ songRouter.get("/recent", recentSongs);
 songRouter.get("/search", searchSongByName);
 songRouter.get("/byUser", authMiddleware, byUser);
 songRouter.get("/byIdSong/:id", authMiddleware, findById);
+songRouter.patch("/update/:id", authMiddleware, update);
+songRouter.delete("/delete/:id", authMiddleware, erase);
 
 export default songRouter;

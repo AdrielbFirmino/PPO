@@ -142,6 +142,22 @@ async function findSongByIdService(id) {
     }
 };
 
+async function updateSongService(id, name, image, userId) {
+    if (!name && !image)
+        throw new Error("Submit at least one field to update the song");
+    const song = await songRepositories.findSongByIdRepository(id);
+    if (song.author._id != userId)
+        throw new Error("You cannot update this song");
+    await songRepositories.updateSongRepository(id, name, image)
+};
+
+async function eraseSongService(id, userId) {
+    const song = await songRepositories.findSongByIdRepository(id)
+    if (song.author._id != userId)
+        throw new Error("You cannot delete this song");
+    await songRepositories.eraseSongRespository(id);
+};
+
 export default {
     createSongService,
     findAllSongsService,
@@ -149,4 +165,6 @@ export default {
     searchSongByNameService,
     findSongsByUserIdService,
     findSongByIdService,
+    updateSongService,
+    eraseSongService
 }

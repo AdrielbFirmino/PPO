@@ -20,6 +20,10 @@ const findSongsByUserIdRepository = (id) => Song.find({ author: id }).sort({ _id
 
 const findSongByIdRepository = (id) => Song.findById(id).populate("author");
 
+const updateSongRepository = (id, name, image) => Song.findOneAndUpdate({ _id: id }, { name, image }, { rawResult: true });
+
+const eraseSongRespository = (id) => Song.findByIdAndDelete({ _id: id });
+
 export default {
     createSongRepository,
     findAllSongsRepository,
@@ -27,5 +31,7 @@ export default {
     recentSongsRepository,
     searchSongByNameRepository,
     findSongsByUserIdRepository,
-    findSongByIdRepository
+    findSongByIdRepository,
+    updateSongRepository,
+    eraseSongRespository
 }

@@ -64,3 +64,26 @@ export const findById = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 };
+
+export const update = async (req, res) => {
+    const { name, image } = req.body;
+    const { id } = req.params;
+    const userId = req.userId;
+    try {
+        await songService.updateSongService(id, name, image, userId);
+        return res.status(200).send({ message: "Song sucessfuly updated!" })
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};
+
+export const erase = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.userId;
+    try {
+        await songService.eraseSongService(id, userId);
+        return res.status(200).send({ message: "Song sucessfuly deleted!" })
+    } catch (err) {
+        res.status(500).send({ message: err.message })
+    }
+};

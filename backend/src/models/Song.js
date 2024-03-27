@@ -14,8 +14,20 @@ const SongSchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    songLink: {
-        type: String,
+    happyFeel: {
+        type: Array,
+        required: true
+    },
+    sadFeel: {
+        type: Array,
+        required: true
+    },
+    loveFeel: {
+        type: Array,
+        required: true
+    },
+    relaxFeel: {
+        type: Array,
         required: true
     },
     createdAt: {

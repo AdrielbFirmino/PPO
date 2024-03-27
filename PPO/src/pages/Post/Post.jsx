@@ -76,7 +76,6 @@ const Post = () => {
                   ? <i className="bi bi-hand-thumbs-up-fill"></i>
                   : <i className="bi bi-hand-thumbs-up"></i>}
               <h4>{post.likes?.length}</h4>
-              {console.log(post.likes?.length)}
             </PostLikesContainer>
           </TitleContainer>
         </TopContainer>

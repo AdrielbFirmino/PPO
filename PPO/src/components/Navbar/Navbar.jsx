@@ -55,20 +55,20 @@ const Navbar = () => {
       <Nav>
         <LogoText>
           <Link to="/">
-          <ImageLogo src={purplelogo} alt="PurpleNote logo" />
+          <ImageLogo src={purplelogo} alt="PurpleNote logo" title='home'/>
           </Link>
           <LogoTextSpace><h2>PurpleNote</h2></LogoTextSpace>
         </LogoText>
         <SwitchForumSong className='CenterSwitch'>
-          <ButtonSwitchTop>Músicas</ButtonSwitchTop>
+          <Link to="/home/songs"><ButtonSwitchTop>Músicas</ButtonSwitchTop></Link>
           <LineD> | </LineD>
           <Link to="/"><ButtonSwitchTop>Fórum</ButtonSwitchTop></Link>
         </SwitchForumSong>
         {user ? (
           <section>
-            <p>{user.name}</p>
-            <img src={user.avatar} onClick={goProfile}/>
-            <i className="bi bi-box-arrow-right" onClick={signout}></i>
+            <p onClick={goProfile} title='perfil'>{user.name}</p>
+            <img src={user.avatar} onClick={goProfile} title='perfil'/>
+            <i className="bi bi-box-arrow-right" onClick={signout} title='sair'></i>
           </section>
         ) : (
           <ButtonLogin onClick={goAuth}>Entrar</ButtonLogin>

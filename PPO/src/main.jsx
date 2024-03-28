@@ -4,6 +4,7 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import { GlobalStyled } from './GlobalStyled.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
 import HomeForum from './pages/Forum/HomeForum.jsx'
+import HomeSongs from './pages/HomeSongs/HomeSongs.jsx'
 import Search from './pages/Search/Search.jsx'
 import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
 import SignIn from './pages/Authentication/Signin.jsx'
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomeForum />
+      },
+      {
+        path: "/home/songs",
+        element: <HomeSongs />
       },
       {
         path: "/search/:title",

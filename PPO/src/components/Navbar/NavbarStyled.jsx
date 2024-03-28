@@ -21,12 +21,22 @@ export const Nav = styled.nav`
 
         p {
             padding-right: 1.5vw;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+            color: rgb(122, 5, 212);
+            }
         }
 
         i {
             padding-left: 1.5vw;
             width: 2rem;
             height: 2rem;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+            color: rgb(122, 5, 212);
+            }
         }
 
         img {

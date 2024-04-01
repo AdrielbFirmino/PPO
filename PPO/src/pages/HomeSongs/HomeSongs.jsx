@@ -1,6 +1,17 @@
 import { getAllSongs } from "../../services/songServices"
 import CardSong from "../../components/Card/CardSong/CardSong"
-import { CardMain, ContainerSongs, ArrowContainer, PaginationContainer, PaginationBox, ContainerRowSongs } from "./HomeSongsStyled"
+import {
+  FullPageContainer,
+  CardMain,
+  ContainerSongs,
+  ArrowContainer,
+  PaginationContainer,
+  PaginationBox,
+  ContainerRowSongs,
+  SideBarContainer,
+  SearchContainer,
+  SongFeeling
+} from "./HomeSongsStyled"
 import { useState, useEffect } from "react"
 
 const HomeSongs = () => {
@@ -37,39 +48,54 @@ const HomeSongs = () => {
   }, [currentPage]);
 
   return (
-    <CardMain>
-      <h1>Músicas Novas</h1>
-      <ContainerRowSongs>
-        <ArrowContainer>
-          {currentPage === 1
-            ? ""
-            : <i className="bi bi-arrow-bar-left" onClick={handlePreviousPage} disabled={!hasPreviousPage || currentPage === 1}></i>}
-        </ArrowContainer>
-        <ContainerSongs>
-          {song.map((item) => (
-            <CardSong key={item.id}
-              image={item.image}
-              name={item.name}
-              authorName={item.authorName}
-            />
+    <FullPageContainer>
+      <SideBarContainer>
+        <form>
+          <SearchContainer>
+            <input type="text" placeholder="Procure uma música" />
+            <button type="submit">
+            </button>
+          </SearchContainer>
+        </form>
+        <SongFeeling>Felizes</SongFeeling>
+        <SongFeeling>Tristes</SongFeeling>
+        <SongFeeling>Românticas</SongFeeling>
+        <SongFeeling>Tranquilas</SongFeeling>
+      </SideBarContainer>
+      <CardMain>
+        <h1>Músicas Novas</h1>
+        <ContainerRowSongs>
+          <ContainerSongs>
+            <ArrowContainer>
+              {currentPage === 1
+                ? ""
+                : <i className="bi bi-arrow-bar-left" onClick={handlePreviousPage} disabled={!hasPreviousPage || currentPage === 1}></i>}
+            </ArrowContainer>
+            {song.map((item) => (
+              <CardSong key={item.id}
+                image={item.image}
+                name={item.name}
+                authorName={item.authorName}
+              />
+            ))}
+            <ArrowContainer>
+              {currentPage === totalPages
+                ? ""
+                : <i className="bi bi-arrow-bar-right" onClick={handleNextPage} disabled={!hasNextPage || currentPage === totalPages}></i>}
+            </ArrowContainer>
+          </ContainerSongs>
+        </ContainerRowSongs>
+        <PaginationContainer>
+          {Array.from(Array(totalPages).keys()).map((page) => (
+            <PaginationBox
+              key={page + 1}
+              isActive={currentPage === page + 1}
+            >
+            </PaginationBox>
           ))}
-        </ContainerSongs>
-        <ArrowContainer>
-          {currentPage === totalPages
-            ? ""
-            : <i className="bi bi-arrow-bar-right" onClick={handleNextPage} disabled={!hasNextPage || currentPage === totalPages}></i>}
-        </ArrowContainer>
-      </ContainerRowSongs>
-      <PaginationContainer>
-        {Array.from(Array(totalPages).keys()).map((page) => (
-          <PaginationBox
-            key={page + 1}
-            isActive={currentPage === page + 1}
-          >
-          </PaginationBox>
-        ))}
-      </PaginationContainer>
-    </CardMain>
+        </PaginationContainer>
+      </CardMain>
+    </FullPageContainer>
   )
 }
 

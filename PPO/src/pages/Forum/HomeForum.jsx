@@ -6,7 +6,7 @@ import { PaginationBoxContainer, PaginationBox } from "./HomeForumStyled";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
-import {zodResolver} from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { searchSchema } from "../../schemas/searchSchema";
 
 const HomeForum = () => {
@@ -17,11 +17,11 @@ const HomeForum = () => {
   const [hasNextPage, setHasNextPage] = useState(false);
   const [hasPreviousPage, setHasPreviousPage] = useState(false);
 
-  const { 
-    register, 
-    handleSubmit, 
-    reset, 
-    formState: {errors} 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
   } = useForm({
     resolver: zodResolver(searchSchema)
   });
@@ -68,7 +68,6 @@ const HomeForum = () => {
               <button type="submit">
                 <i className="bi bi-search"></i>
               </button>
-            
             </SearchPost>
           </form>
         </FormContainer>
@@ -105,7 +104,7 @@ const HomeForum = () => {
           </PaginationBox>
         ))}
         <PaginationBox onClick={handleNextPage} disabled={!hasNextPage || currentPage === totalPages}>
-        {currentPage === totalPages
+          {currentPage === totalPages
             ? ""
             : <i className="bi bi-arrow-right-circle"></i>}
         </PaginationBox>

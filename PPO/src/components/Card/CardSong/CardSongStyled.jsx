@@ -15,8 +15,8 @@ export const MainContainer = styled.div`
     }
 
     img {
-        width: 24vh;
-        height: 24vh;
+        width: 8vw;
+        height: 8vw;
         border-radius: 10%;
         object-fit: cover;
     }

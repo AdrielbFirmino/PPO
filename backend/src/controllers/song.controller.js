@@ -15,6 +15,17 @@ export const create = async (req, res) => {
     }
 };
 
+export const addLike = async (req, res) => {
+    const { songId } = req.body;
+    const userId = req.userId;
+    try {
+        const likedSong = await songService.addLikeService(songId, userId);
+        res.status(200).send(likedSong);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+}
+
 export const findAll = async (req, res) => {
     let { limit, offset } = req.query;
     const currentUrl = req.baseUrl
@@ -76,6 +87,17 @@ export const update = async (req, res) => {
         res.status(500).send({ message: err.message })
     }
 };
+
+export const removeLike = async (req, res) => {
+    const { songId } = req.body;
+    const userId = req.userId;
+    try {
+        const unlikedSong = await songService.removeLikeService(songId, userId);
+        res.status(200).send(unlikedSong);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+}
 
 export const erase = async (req, res) => {
     const { id } = req.params;

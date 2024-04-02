@@ -30,6 +30,14 @@ const SongSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
+    likes: {
+        type: Array,
+        required: true
+    },
+    likesCount: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now

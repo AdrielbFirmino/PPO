@@ -2,6 +2,25 @@ import Song from "../models/Song.js";
 
 const createSongRepository = (body) => Song.create(body);
 
+async function addLikeRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+        if (!song.likes.includes(userId)) {
+            song.likes.push(userId);
+            song.likesCount++;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User already liked this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 const findAllSongsRepository = (offset, limit) =>
     Song.find().sort({ _id: -1 }).skip(offset).limit(limit).populate("author");
 
@@ -10,17 +29,39 @@ const countSong = () => Song.countDocuments();
 const recentSongsRepository = () => Song.findOne().sort({ _id: -1 }).populate("author");
 
 const searchSongByNameRepository = (name) =>
-Song.find({
-    name: { $regex: `${name || ""}`, $options: "i" }
-})
-    .sort({ _id: -1 })
-    .populate("author");
+    Song.find({
+        name: { $regex: `${name || ""}`, $options: "i" }
+    })
+        .sort({ _id: -1 })
+        .populate("author");
 
 const findSongsByUserIdRepository = (id) => Song.find({ author: id }).sort({ _id: -1 }).populate("author");
 
 const findSongByIdRepository = (id) => Song.findById(id).populate("author");
 
 const updateSongRepository = (id, name, image) => Song.findOneAndUpdate({ _id: id }, { name, image }, { rawResult: true });
+
+async function removeLikeRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+
+        const index = song.likes.indexOf(userId);
+        if (index !== -1) {
+            song.likes.splice(index, 1);
+            song.likesCount--;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User has not liked this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 
 const eraseSongRespository = (id) => Song.findByIdAndDelete({ _id: id });
 
@@ -81,5 +122,7 @@ export default {
     addLoveFeelRepository,
     eraseLoveFeelRepository,
     addRelaxFeelRepository,
-    eraseRelaxFeelRepository
+    eraseRelaxFeelRepository,
+    removeLikeRepository,
+    addLikeRepository
 }

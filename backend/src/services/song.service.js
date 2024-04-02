@@ -18,6 +18,15 @@ async function createSongService(corpo) {
     };
 };
 
+async function addLikeService(songId, userId) {
+    try {
+        const likedSong = await songRepositories.addLikeRepository(songId, userId);
+        return likedSong;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 async function findAllSongsService(limit, offset, currentUrl) {
     limit = Number(limit);
     offset = Number(offset);
@@ -59,7 +68,9 @@ async function findAllSongsService(limit, offset, currentUrl) {
             happyFeel: songItem.happyFeel,
             sadFeel: songItem.sadFeel,
             loveFeel: songItem.loveFeel,
-            relaxFeel: songItem.relaxFeel
+            relaxFeel: songItem.relaxFeel,
+            likes: songItem.likes,
+            likesCount: songItem.likesCount
         }))
     }
 };
@@ -81,6 +92,8 @@ async function recentSongsService() {
             sadFeel: song.sadFeel,
             loveFeel: song.loveFeel,
             relaxFeel: song.relaxFeel,
+            likes: song.likes,
+            likesCount: song.likesCount
         }
     }
 };
@@ -101,7 +114,9 @@ async function searchSongByNameService(name) {
             happyFeel: songItem.happyFeel,
             sadFeel: songItem.sadFeel,
             loveFeel: songItem.loveFeel,
-            relaxFeel: songItem.relaxFeel
+            relaxFeel: songItem.relaxFeel,
+            likes: songItem.likes,
+            likesCount: songItem.likesCount
         }))
     }
 };
@@ -119,7 +134,9 @@ async function findSongsByUserIdService(id) {
             happyFeel: songItem.happyFeel,
             sadFeel: songItem.sadFeel,
             loveFeel: songItem.loveFeel,
-            relaxFeel: songItem.relaxFeel
+            relaxFeel: songItem.relaxFeel,
+            likes: songItem.likes,
+            likesCount: songItem.likesCount
         }))
     }
 }
@@ -138,7 +155,9 @@ async function findSongByIdService(id) {
         happyFeel: song.happyFeel,
         sadFeel: song.sadFeel,
         loveFeel: song.loveFeel,
-        relaxFeel: song.relaxFeel
+        relaxFeel: song.relaxFeel,
+        likes: song.likes,
+        likesCount: song.likesCount
     }
 };
 
@@ -150,6 +169,15 @@ async function updateSongService(id, name, image, userId) {
         throw new Error("You cannot update this song");
     await songRepositories.updateSongRepository(id, name, image)
 };
+
+async function removeLikeService(songId, userId) {
+    try {
+      const unlikedSong = await songRepositories.removeLikeRepository(songId, userId);
+      return unlikedSong;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 
 async function eraseSongService(id, userId) {
     const song = await songRepositories.findSongByIdRepository(id)
@@ -206,5 +234,7 @@ export default {
     addHappyFeelService,
     addSadFeelService,
     addLoveFeelService,
-    addRelaxFeelService
+    addRelaxFeelService,
+    addLikeService,
+    removeLikeService
 }

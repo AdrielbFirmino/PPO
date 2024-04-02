@@ -11,18 +11,22 @@ import { create,
     addHappyFeel,
     addSadFeel,
     addLoveFeel,
-    addRelaxFeel
+    addRelaxFeel,
+    addLike,
+    removeLike
 } from '../controllers/song.controller.js';
 
 const songRouter = Router();
 
 songRouter.post("/create", authMiddleware, create);
+songRouter.post('/like', authMiddleware, addLike);
 songRouter.get("/", findAll);
 songRouter.get("/recent", recentSongs);
 songRouter.get("/search", searchSongByName);
 songRouter.get("/byUser", authMiddleware, byUser);
 songRouter.get("/byIdSong/:id", authMiddleware, findById);
 songRouter.patch("/update/:id", authMiddleware, update);
+songRouter.delete('/like', authMiddleware, removeLike);
 songRouter.delete("/delete/:id", authMiddleware, erase);
 songRouter.patch("/happyFeel/:id", authMiddleware, addHappyFeel);
 songRouter.patch("/sadFeel/:id", authMiddleware, addSadFeel);

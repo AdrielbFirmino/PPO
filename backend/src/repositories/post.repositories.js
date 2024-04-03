@@ -24,15 +24,45 @@ const updatePostRepository = (id, title, body) => Post.findOneAndUpdate({ _id: i
 
 const erasePostRespository = (id) => Post.findByIdAndDelete({ _id: id });
 
-const likePostRepository = (idPost, userId) => Post.findOneAndUpdate(
-    { _id: idPost, "likes.userId": { $nin: [userId] } },
-    { $push: { likes: { userId, created: new Date() } } }
-);
+async function addLikeRepository(postId, userId) {
+    try {
+        const post = await Post.findById(postId);
+        if (!post) {
+            throw new Error('Post not found');
+        }
+        if (!post.likes.includes(userId)) {
+            post.likes.push(userId);
+            post.likesCount++;
+            await post.save();
+            return post;
+        } else {
+            throw new Error('User already liked this post');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
-const deleteLikePostRepository = (idPost, userId) => Post.findOneAndUpdate(
-    { _id: idPost },
-    { $pull: { likes: { userId } } }
-);
+async function removeLikeRepository(postId, userId) {
+    try {
+        const post = await Post.findById(postId);
+        if (!post) {
+            throw new Error('Song not found');
+        }
+
+        const index = post.likes.indexOf(userId);
+        if (index !== -1) {
+            post.likes.splice(index, 1);
+            post.likesCount--;
+            await post.save();
+            return post;
+        } else {
+            throw new Error('User has not liked this Post');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
 const addCommentRepository = (idPost, userId, body) => {
     const idComment = Math.floor(Date.now() * Math.random()).toString(36);
@@ -57,8 +87,8 @@ export default {
     findPostsByUserIdRepository,
     updatePostRepository,
     erasePostRespository,
-    likePostRepository,
-    deleteLikePostRepository,
+    addLikeRepository,
+    removeLikeRepository,
     addCommentRepository,
     deleteCommentRepository
 }

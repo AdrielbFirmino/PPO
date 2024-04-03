@@ -15,6 +15,17 @@ export const create = async (req, res) => {
     }
 };
 
+export const addLike = async (req, res) => {
+    const { postId } = req.body;
+    const userId = req.userId;
+    try {
+        const likedPost = await postService.addLikeService(postId, userId);
+        res.status(200).send(likedPost);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+}
+
 export const findAll = async (req, res) => {
     let { limit, offset } = req.query;
     const currentUrl = req.baseUrl
@@ -78,23 +89,23 @@ export const update = async (req, res) => {
     }
 };
 
+export const removeLike = async (req, res) => {
+    const { postId } = req.body;
+    const userId = req.userId;
+    try {
+        const unlikedPost = await postService.removeLikeService(postId, userId);
+        res.status(200).send(unlikedPost);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+}
+
 export const erase = async (req, res) => {
     const { id } = req.params;
     const userId = req.userId;
     try {
         await postService.erasePostService(id, userId);
         return res.status(200).send({ message: "Post sucessfuly deleted!" })
-    } catch (err) {
-        res.status(500).send({ message: err.message })
-    }
-};
-
-export const likePost = async (req, res) => {
-    const { id } = req.params;
-    const userId = req.userId;
-    try {
-        const response = await postService.likePostService(id, userId);
-        res.send(response);
     } catch (err) {
         res.status(500).send({ message: err.message })
     }

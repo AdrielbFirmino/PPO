@@ -17,6 +17,15 @@ async function createPostService(corpo) {
     };
 };
 
+async function addLikeService(postId, userId) {
+    try {
+        const likedPost = await postRepositories.addLikeRepository(postId, userId);
+        return likedPost;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 async function findAllPostsService(limit, offset, currentUrl) {
     limit = Number(limit);
     offset = Number(offset);
@@ -54,6 +63,7 @@ async function findAllPostsService(limit, offset, currentUrl) {
             title: postItem.title,
             body: postItem.body,
             likes: postItem.likes,
+            likesCount: postItem.likesCount,
             comments: postItem.comments,
             name: postItem.user.name,
             userName: postItem.user.username,
@@ -145,20 +155,20 @@ async function updatePostService(id, title, body, userId) {
     await postRepositories.updatePostRepository(id, title, body)
 };
 
+async function removeLikeService(postId, userId) {
+    try {
+        const unlikedPost = await postRepositories.removeLikeRepository(postId, userId);
+        return unlikedPost;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 async function erasePostService(id, userId) {
     const post = await postRepositories.findPostByIdRepository(id)
     if (post.user._id != userId)
         throw new Error("You cannot delete this post");
     await postRepositories.erasePostRespository(id);
-};
-
-async function likePostService(id, userId) {
-    const postLiked = await postRepositories.likePostRepository(id, userId)
-    if (!postLiked) {
-        await postRepositories.deleteLikePostRepository(id, userId);
-        return { message: "like removed successfully!" };
-    }
-    return { message: "Like done successfully" };
 };
 
 async function addCommentService(id, userId, text) {
@@ -201,7 +211,8 @@ export default {
     findPostsByUserIdService,
     updatePostService,
     erasePostService,
-    likePostService,
+    removeLikeService,
+    addLikeService,
     addCommentService,
     deleteCommentService
 }

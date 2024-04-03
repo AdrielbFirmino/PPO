@@ -69,7 +69,6 @@ async function findAllSongsService(limit, offset, currentUrl) {
             sadFeel: songItem.sadFeel,
             loveFeel: songItem.loveFeel,
             relaxFeel: songItem.relaxFeel,
-            likes: songItem.likes,
             likesCount: songItem.likesCount
         }))
     }
@@ -115,7 +114,6 @@ async function searchSongByNameService(name) {
             sadFeel: songItem.sadFeel,
             loveFeel: songItem.loveFeel,
             relaxFeel: songItem.relaxFeel,
-            likes: songItem.likes,
             likesCount: songItem.likesCount
         }))
     }
@@ -172,12 +170,12 @@ async function updateSongService(id, name, image, userId) {
 
 async function removeLikeService(songId, userId) {
     try {
-      const unlikedSong = await songRepositories.removeLikeRepository(songId, userId);
-      return unlikedSong;
+        const unlikedSong = await songRepositories.removeLikeRepository(songId, userId);
+        return unlikedSong;
     } catch (error) {
-      throw new Error(error.message);
+        throw new Error(error.message);
     }
-  }
+}
 
 async function eraseSongService(id, userId) {
     const song = await songRepositories.findSongByIdRepository(id)

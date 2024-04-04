@@ -24,7 +24,6 @@ export const TituloPost = styled.h1`
     font-size: 5vh;
 `
 export const PostLikesContainer = styled.h1`
-    color: ${({ isLiked }) => (isLiked ? "rgb(122, 5, 212)" : "white")};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,11 +31,15 @@ export const PostLikesContainer = styled.h1`
     margin-top: -2vh;
     margin-right: 3vh;
     font-size: 4vh;
-    cursor: pointer;
-    transition: all 0.4s ease-in-out;
+    
+    i {
+        color: ${(props) => (props.isLiked ? "rgb(122, 5, 212)" : "white")};
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
 
-    &:hover {
-        color: rgb(122, 5, 212);
+        &:hover {
+            color: rgb(122, 5, 212);
+        }
     }
 `
 export const BodyContainer = styled.div`

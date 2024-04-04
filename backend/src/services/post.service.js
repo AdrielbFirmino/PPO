@@ -102,6 +102,7 @@ async function findPostByIdService(id) {
         title: post.title,
         body: post.body,
         likes: post.likes,
+        likesCount: post.likesCount,
         comments: post.comments,
         name: post.user.name,
         userName: post.user.username,

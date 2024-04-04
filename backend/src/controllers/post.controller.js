@@ -90,7 +90,7 @@ export const update = async (req, res) => {
 };
 
 export const removeLike = async (req, res) => {
-    const { postId } = req.body;
+    const { postId } = req.params;
     const userId = req.userId;
     try {
         const unlikedPost = await postService.removeLikeService(postId, userId);

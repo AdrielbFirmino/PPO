@@ -101,9 +101,9 @@ export function addComment(postId, data) {
     }
 }
 
-export function likePost(id) {
+export function likePost(postId) {
     try {
-        const response = axios.patch(`${baseURL}/post/like/${id}`, null, {
+        const response = axios.post(`${baseURL}/post/like/`, postId, {
             headers: {
                 Authorization: `Bearer ${Cookies.get("token")}`
             }
@@ -111,6 +111,20 @@ export function likePost(id) {
         return response;
     } catch (error) {
         console.error("Erro ao dar like no post:", error);
+        throw error;
+    }
+}
+
+export function removeLikePost(postId) {
+    try {
+        const response = axios.delete(`${baseURL}/post/like/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao remover like no post:", error);
         throw error;
     }
 }

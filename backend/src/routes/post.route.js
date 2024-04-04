@@ -25,7 +25,7 @@ postRouter.get("/search", searchByTitle);
 postRouter.get("/byUser", authMiddleware, byUser);
 postRouter.get("/byIdPost/:id", authMiddleware, findById);
 postRouter.patch("/update/:id", authMiddleware, update);
-postRouter.delete('/like', authMiddleware, removeLike);
+postRouter.delete('/like/:postId', authMiddleware, removeLike);
 postRouter.delete("/delete/:id", authMiddleware, erase);
 postRouter.patch("/comment/:id", authMiddleware, addComment);
 postRouter.patch("/comment/:idPost/:idComment", authMiddleware, deleteComment);

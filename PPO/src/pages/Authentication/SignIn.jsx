@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { signinSchema } from "../../schemas/signinSchema";
 import { signin } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from 'react-responsive'
 import Cookies from "js-cookie";
 
 const SignIn = () => {
@@ -27,6 +28,7 @@ const SignIn = () => {
   } = useForm({ resolver: zodResolver(signinSchema) });
 
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   async function inHandleSubmit(data) {
     try {
@@ -45,7 +47,7 @@ const SignIn = () => {
   return (
     <>
       <GlobalStyled isAuthPage={true} />
-      <MainAuthDiv>
+      <MainAuthDiv isMobile={isMobile}>
         <LeftSideDiv>
           <ImageLogo src={purplelogo} alt="PurpleNote logo" />
           <TitleDiv>
@@ -53,11 +55,13 @@ const SignIn = () => {
           </TitleDiv>
         </LeftSideDiv>
         <br />
-        <RightSideDiv>
+        <RightSideDiv isMobile={isMobile}>
           <h1>Entrar</h1>
-          <p>Conecte-se com a principal comunidade de Música do Brasil</p>
+          <section>
+            <p>Conecte-se com a principal comunidade de Música do Brasil</p>
+          </section>
           <form onSubmit={handleSubmit(inHandleSubmit)}>
-            <FormDiv issigninpage={true}>
+            <FormDiv issigninpage={true} isMobile={isMobile}>
               <label>Email</label>
               <Input
                 type="email"

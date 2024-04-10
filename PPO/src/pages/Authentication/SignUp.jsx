@@ -16,6 +16,7 @@ import { Input } from "../../components/Input/Input";
 import { signupSchema } from "../../schemas/signupSchema";
 import { signup } from "../../services/userService";
 import { useNavigate } from "react-router-dom"
+import { useMediaQuery } from 'react-responsive'
 import Cookies from "js-cookie"
 
 
@@ -28,6 +29,7 @@ const SignUp = () => {
   } = useForm({ resolver: zodResolver(signupSchema) });
 
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   async function inHandleSubmit(data) {
     try {
@@ -46,7 +48,7 @@ const SignUp = () => {
   return (
     <>
       <GlobalStyled isAuthPage={true} />
-      <MainAuthDiv>
+      <MainAuthDiv isMobile={isMobile}>
         <LeftSideDiv>
           <ImageLogo src={purplelogo} alt="PurpleNote logo" />
           <TitleDiv>
@@ -54,11 +56,11 @@ const SignUp = () => {
           </TitleDiv>
         </LeftSideDiv>
         <br />
-        <RightSideDiv>
+        <RightSideDiv isMobile={isMobile}>
           <h1>Inscrever-se</h1>
           <p>Faça parte da nossa comunidade...</p>
           <form onSubmit={handleSubmit(inHandleSubmit)}>
-            <FormDiv issigninpage={false}>
+            <FormDiv issigninpage={false} isMobile={isMobile}>
               <label>Email</label>
               <Input
                 type="email"

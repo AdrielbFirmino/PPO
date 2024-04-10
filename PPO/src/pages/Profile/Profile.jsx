@@ -46,8 +46,6 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    console.log(editedName)
-    console.log(user.name)
     setIsModalOpen(true);
   };
 
@@ -108,7 +106,6 @@ const Profile = () => {
             <h3>{user.username}</h3>
             <section>
               <h1>{user.name}</h1>
-              { /* Aqui vão ficar os seguidores em breve */ }
             </section>
           </TopProfileMidDiv>
         </TopProfileLeftDiv>

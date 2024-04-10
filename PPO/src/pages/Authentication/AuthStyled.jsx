@@ -2,6 +2,7 @@ import styled, {keyframes} from "styled-components"
 
 export const MainAuthDiv = styled.div`
     display: flex;
+    flex-direction: ${(props) => (props.isMobile ? 'column' : 'row')};
     width: 100vw;
     height: 100vh;
     justify-content: space-between;
@@ -9,17 +10,19 @@ export const MainAuthDiv = styled.div`
 `
 export const RightSideDiv = styled.div`
     display: flex;
-    width: 30vw;
+    width: ${(props) => (props.isMobile ? '80vw' : '30vw')};
     height: 100vh;
     background-image: linear-gradient(rgb(31, 31, 31), rgb(10, 10, 10));
     border: 2px solid rgba(78, 17, 125, 1);
-    border-bottom: none;
-    border-top: none;
-    border-right: none;
+    border-radius: ${(props) => (props.isMobile ? '12px' : 'none')};
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     align-items: center;
     color: white;
     flex-direction: column;
+
+    section {
+        width: ${(props) => (props.isMobile ? '70%' : '100%')};
+    }
 
     h1 {
         padding-top: 3rem;
@@ -28,29 +31,32 @@ export const RightSideDiv = styled.div`
     P {
         padding-top: 0.5rem;
         text-align: center;
+        font-size: 2rem;
     }
     hr {
         width: 25vw;
-        margin-top: 2vh;
+        margin-top: ${(props) => (props.isMobile ? '1vh' : '2vh')};
     }
     form {
-        padding-left: 1.5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
     button {
-        margin-top: 2vh;
+        margin-top: ${(props) => (props.isMobile ? '1vh' : '2vh')};
         width: 25vw;
         background-color: rgb(122, 5, 212);
         color: white;
         border: none;
         outline: none;
         border-radius: 3px;
-        font-size: 1rem;
+        font-size: 2rem;
         padding: 0.4rem;
         transition: all 0.4s ease-in-out;
         cursor: pointer;
         font-weight: 500;
         letter-spacing: 0.1rem;
-        margin-right: 1rem;
 
         &:hover {
             background-color: rgb(78, 17, 125);
@@ -63,13 +69,15 @@ export const FormDiv = styled.div`
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 25vw;
+    width: ${(props) => (props.isMobile ? '' : '100%')};
     height: ${(props) => (props.issigninpage ? '35vh' : '49vh')};
     text-align: left;
 
     label {
         display: flex;
         align-self: baseline;
+        font-size: 2.4rem;
+        margin-left: 8%;
     }
 `
 export const LeftSideDiv = styled.div`
@@ -117,5 +125,5 @@ export const SingUpText = styled.p`
     color: rgb(122, 5, 212);
     cursor: pointer;
     transition: all 0.4s ease-in-out;
-    font-size: 1rem;
+    font-size: 2rem;
 `

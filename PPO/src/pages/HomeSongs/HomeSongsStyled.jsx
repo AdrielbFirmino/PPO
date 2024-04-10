@@ -5,6 +5,7 @@ export const FullPageContainer = styled.div`
     flex-direction: row;
     width: 100%;
     height: 100%;
+    margin-top: 3vh;
 `
 
 export const CardMain = styled.div`

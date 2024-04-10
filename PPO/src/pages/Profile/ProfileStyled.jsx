@@ -4,12 +4,12 @@ export const CardMain = styled.div`
     display: flex;
     background-image: linear-gradient(rgb(31, 31, 31), rgb(10, 10, 10));
     border: 2px solid rgb(110, 50, 236);
+    margin: 1vw;
     flex-direction: column;
-    margin-left: 2vw;
-    width: 96vw;
     height: 100%;
     border-radius: 8px;
     border-bottom: none;
+    margin-top: 3vh;
 `
 
 export const TopProfileDiv = styled.div`
@@ -80,13 +80,16 @@ export const ButtonsPostSong = styled.div`
         border: none;
         outline: none;
         border-radius: 3px;
-        padding: 0.5rem;
+        padding: 1rem;
         transition: all 0.4s ease-in-out;
         cursor: pointer;
+        font-size: 1.5rem;
         font-weight: 500;
         letter-spacing: 0.1rem;
         margin: 1rem;
-        width: 8vw;
+        @media (min-width: 1024px) {
+            width: 8vw;
+        }
 
         &:hover {
             background-color: rgb(78, 17, 125);
@@ -256,7 +259,6 @@ export const ModalContent = styled.div`
         border: none;
         outline: none;
         border-radius: 3px;
-        font-size: 1rem;
         transition: all 0.4s ease-in-out;
         cursor: pointer;
 

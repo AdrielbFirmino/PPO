@@ -17,7 +17,7 @@ export const SideBarPost = styled.div`
         cursor: pointer;
 
         i {
-            font-size: 3vh;
+            font-size: 3rem;
             color: white;
             transition: all 0.4s ease-in-out;
 

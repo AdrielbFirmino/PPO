@@ -29,14 +29,15 @@ export const SearchPost = styled.div`
         color: white;
         border: none;
         outline: none;
-        width: 35vw;
+        width: 30vw;
+        border-radius: 4px;
     }
 
     button{
         background-color: black;
         border: none;
         cursor: pointer;
-        
+        border-radius: 6px;
     }
 `
 
@@ -66,6 +67,8 @@ export const CardPost = styled.div`
         align-items: center;
 
         h3 {
+            line-height: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
             transition: all 0.4s ease-in-out;
 
@@ -91,6 +94,7 @@ export const LeftPost = styled.div`
     width: 10vw;
     border-right: 1px solid grey;
     padding-right: 1vw;
+    justify-content: center;
 `
 
 export const RightPost = styled.div`
@@ -99,15 +103,6 @@ export const RightPost = styled.div`
     align-items: center;
     justify-content: center;
     padding-left: 1vw;
-
-    i {
-        cursor: pointer;
-        transition: all 0.4s ease-in-out;
-
-        &:hover {
-            color: rgb(122, 5, 212);
-        }
-    }
 `
 
 export const ValidationErrorMessage = styled.h5`
@@ -124,4 +119,5 @@ export const CardMain = styled.div`
     width: 80vw;
     height: 100%;
     border-radius: 8px;
+    margin-top: 3vh;
 `

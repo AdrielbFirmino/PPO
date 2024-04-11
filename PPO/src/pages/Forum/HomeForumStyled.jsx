@@ -21,14 +21,20 @@ export const PaginationBox = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
-        background-color: ${({ isActive }) => isActive ? 'black' : 'transparent'};
-        border: 3px solid black;
-        border-radius: 90px;
+        color: ${({ isActive }) => isActive ? 'rgb(122, 5, 212)' : 'white'};
         width: 2vw;
         height: 2vw;
         margin-right: 0.5rem;
         margin-left: 0.5rem;
         cursor: pointer;
     }
+`
+
+export const FullPageContainerForum = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 `

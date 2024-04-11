@@ -24,6 +24,10 @@ const Navbar = () => {
   const [menuIsVisible, setMenuIsVisible] = useState(true);
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
+  function goHome() {
+    navigate("/")
+  }
+
   function goAuth() {
     navigate("/signin")
   }
@@ -57,14 +61,10 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <div>
           <LogoText>
-            <Link to="/">
-            <ImageLogo src={purplelogo} alt="PurpleNote logo" title='home'/>
-            </Link>
+            <ImageLogo src={purplelogo} alt="PurpleNote logo" title='home' onClick={goHome}/>
             <LogoTextSpace><h2>PurpleNote</h2></LogoTextSpace>
           </LogoText>
-        </div>
         <SwitchForumSong className='CenterSwitch'>
           <Link to="/home/songs"><ButtonSwitchTop>Músicas</ButtonSwitchTop></Link>
           <LineD> | </LineD>

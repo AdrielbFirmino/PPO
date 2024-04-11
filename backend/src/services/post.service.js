@@ -62,7 +62,6 @@ async function findAllPostsService(limit, offset, currentUrl) {
             id: postItem._id,
             title: postItem.title,
             body: postItem.body,
-            likes: postItem.likes,
             likesCount: postItem.likesCount,
             comments: postItem.comments,
             name: postItem.user.name,

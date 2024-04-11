@@ -6,7 +6,7 @@ export const ContainerMenu = styled.div`
     flex-direction: row;
 
     i {
-        font-size: 2rem;
+        font-size: 3rem;
         margin-right: 1vw;
     }
 `;
@@ -18,5 +18,6 @@ export const MenuOptions = styled.div`
     h4 {
         cursor: pointer;
         color: rgb(122, 5, 212);
+        border-bottom: 1px solid white;
     }
 `;

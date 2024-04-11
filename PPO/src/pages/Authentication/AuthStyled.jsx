@@ -21,7 +21,7 @@ export const RightSideDiv = styled.div`
     flex-direction: column;
 
     section {
-        width: ${(props) => (props.isMobile ? '70%' : '100%')};
+        width: ${(props) => (props.isMobile ? '70%' : '80%')};
     }
 
     h1 {
@@ -83,10 +83,10 @@ export const FormDiv = styled.div`
 export const LeftSideDiv = styled.div`
     display: flex;
     width: 70vw;
-    height: 100vh;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height: ${(props) => (props.isMobile ? '30vh' : '100vh')};
 `
 export const ImageLogo = styled.img`
     width: 6rem;

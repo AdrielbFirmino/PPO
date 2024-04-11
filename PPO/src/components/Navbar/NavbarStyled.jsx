@@ -12,7 +12,7 @@ export const Nav = styled.nav`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 1;
     color: white;
-    padding-top: 1vh;
+    padding-top: 1rem;
     padding-bottom: 1vh;
 
     section {
@@ -51,8 +51,8 @@ export const Nav = styled.nav`
     }
 `
 export const ImageLogo = styled.img`
-    width: 6rem;
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
     object-fit: cover;
     cursor: pointer;
 `
@@ -108,6 +108,6 @@ export const ButtonLogin = styled.button`
     background-color: rgb(78, 17, 125);
   }
   @media (min-width: 768px) {
-    width: 10%;
+    width: 8%;
   }
 `

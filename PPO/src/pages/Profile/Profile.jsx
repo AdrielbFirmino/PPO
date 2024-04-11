@@ -20,7 +20,8 @@ import { CardMain,
   NewPostFormContainer,
   ModalBackground,
   ModalContent,
-  CloseButton
+  CloseButton,
+  ContainerPostProfileShowDiv
 } from "./ProfileStyled";
 import { creatPostSchema } from "../../schemas/createPostSchema";
 import { useForm } from "react-hook-form";
@@ -158,13 +159,15 @@ const Profile = () => {
         </button>
       </ButtonsPostSong>
       <MidLine></MidLine>
-      <PostProfileShowDiv>
-        <h1>{posts.length
-              ? `${posts.length} ${
-                  posts.length > 1 ? "  Posts" : "  Post"
-              }`
-              : "Você não fez nenhum Post até agora..."}</h1>
-      </PostProfileShowDiv>
+      <ContainerPostProfileShowDiv>
+        <PostProfileShowDiv>
+          <h1>{posts.length
+                ? `${posts.length} ${
+                    posts.length > 1 ? "  Posts" : "  Post"
+                }`
+                : "Você não fez nenhum Post até agora..."}</h1>
+        </PostProfileShowDiv>
+      </ContainerPostProfileShowDiv>
       <div>
         <NewPostContainer onClick={toggleNewPost}>
           <i className="bi bi-file-earmark-plus"></i>

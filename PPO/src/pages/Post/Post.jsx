@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { creatCommentSchema } from "../../schemas/createCommentSchema";
 import CardComment from "../../components/Card/CardComment/CardComment";
 import { getPostById, addComment, likePost, removeLikePost } from "../../services/postServices";
-import { CardMain, MidLine, PostProfileShowDiv, NewPostFormContainer } from "../Profile/ProfileStyled";
+import { CardMain, MidLine, PostProfileShowDiv, NewPostFormContainer, ContainerPostProfileShowDiv } from "../Profile/ProfileStyled";
 import { TitleContainer, TituloPost, TopContainer, BodyContainer, PostLikesContainer, TextAreaComment } from "./PostStyled";
 
 const Post = () => {
@@ -92,12 +92,14 @@ const Post = () => {
           {post.body}
         </BodyContainer>
         <MidLine></MidLine>
-        <PostProfileShowDiv>
-          <h1>{post.comments && post.comments.length
-            ? `${post.comments.length} ${post.comments.length > 1 ? "  Comentários" : "  Comentário"
-            }`
-            : "Este post não tem nenhum comentário..."}</h1>
-        </PostProfileShowDiv>
+        <ContainerPostProfileShowDiv>
+          <PostProfileShowDiv>
+            <h1>{post.comments && post.comments.length
+              ? `${post.comments.length} ${post.comments.length > 1 ? "  Comentários" : "  Comentário"
+              }`
+              : "Este post não tem nenhum comentário..."}</h1>
+          </PostProfileShowDiv>
+        </ContainerPostProfileShowDiv>
         <NewPostFormContainer>
           <form onSubmit={handleSubmit((data) => inHandleSubmit(post.id, data))}>
             <TextAreaComment type="text"

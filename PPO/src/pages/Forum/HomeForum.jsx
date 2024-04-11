@@ -2,7 +2,7 @@ import CardForum from "../../components/Card/CardForum/CardForum";
 import { getAllPosts } from "../../services/postServices";
 import { CardMain, SearchPost, TitleForumPage, ValidationErrorMessage } from "../../components/Card/CardForum/CardForumStyled";
 import { FormContainer } from "../Search/SearchStyled";
-import { PaginationBoxContainer, PaginationBox } from "./HomeForumStyled";
+import { PaginationBoxContainer, PaginationBox, FullPageContainerForum } from "./HomeForumStyled";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
@@ -59,7 +59,7 @@ const HomeForum = () => {
   }, [currentPage]);
 
   return (
-    <>
+    <FullPageContainerForum>
       <CardMain>
         <FormContainer>
           <form onSubmit={handleSubmit(onSearch)}>
@@ -82,7 +82,7 @@ const HomeForum = () => {
             name={item.name}
             title={item.title}
             body={item.body}
-            likes={item.likes}
+            likesCount={item.likesCount}
             comments={item.comments}
             postId={item.id}
           />
@@ -109,7 +109,7 @@ const HomeForum = () => {
             : <i className="bi bi-arrow-right-circle"></i>}
         </PaginationBox>
       </PaginationBoxContainer>
-    </>
+    </FullPageContainerForum>
   )
 }
 

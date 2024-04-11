@@ -24,7 +24,7 @@ const CardForum = (props) => {
             </section>
             <RightPost>
                 <i className="bi bi-hand-thumbs-up"></i>
-                <h4>{props.likes?.length}</h4>
+                <h4>{props.likesCount}</h4>
                 <i className="bi bi-chat-left-text"></i>
                 <h4>{props.comments?.length}</h4>
             </RightPost>

@@ -3,119 +3,77 @@ import styled from "styled-components";
 export const FullPageContainer = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 100%;
     height: 100%;
-    margin-top: 3vh;
+    margin-top: 2.5vh;
 `
 
-export const CardMain = styled.div`
-    display: flex;
-    justify-content: center;
+export const MainContainer = styled.div`
     background-image: linear-gradient(rgb(31, 31, 31), rgb(10, 10, 10));
-    border: 2px solid rgb(110, 50, 236);
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    margin-left: 2vw;
-    width: 80%;
-    height: 100%;
-    border-radius: 8px;
-    border-bottom: none;
-    
-    h1 {
-        margin-top: 2vw;
-        margin-left: 2vw;
-        color: white;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(122, 5, 212);
+
+    .top-container {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        padding: 1em;
+        font-size: 1.5rem;
+
+        h1{
+            color: white;
+        }
+
+        input {
+            width: 38%;
+            background-color: black;
+            color: grey;
+            border: none;
+            border-bottom: 2px solid rgb(122, 5, 212);
+            border-radius: 6px;
+            outline: none;
+            padding-left: 1rem;
+        }
+    }
+    .bottom-container {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        padding: 1em;
+        font-size: 1.5rem;
+
+        h1{
+            color: white;
+        }
     }
 `
 
-export const ContainerRowSongs = styled.div`
-    display: flex;
-`
-
-export const ContainerSongs = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin: 1vw;
-    width: 100%;
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    background-image: linear-gradient(rgb(78, 17, 125), transparent);
-`
-
-export const ArrowContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    i {
-        font-size: 4vh;
-        color: white;
-    }
-`
-
-export const PaginationContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 3vh;
-    width: 50%;
-    margin-left: 25%;
-`
-
-export const PaginationBox = styled.div`
-    height: 50%;
-    margin: 1vh;
-    width: 2vh;
-    border: 2px solid white;
-    border-radius: 6px;
-    background-color: ${({ isActive }) => isActive ? 'white' : 'transparent'};
-    box-shadow: ${({ isActive }) => isActive ? 'white' : 'none'};
-`
-
-export const SideBarContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 16%;
-    background-image: linear-gradient(rgb(31, 31, 31), rgb(10, 10, 10));
-`
-
-export const SearchContainer = styled.div`
+export const FeelingsContainer = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 5%;
-    padding-left: 5%;
-    width: 80%;
-    background-color: black;
-    color: grey;
-    border: 2px solid rgb(78, 17, 125);
-    border-radius: 8px;
+    justify-content: space-around;
+    width: 90%;
+    padding: 1rem;
+    font-size: 1.8rem;
     
-    input {
-        background-color: black;
-        color: grey;
-        border: none;
-        outline: none;
-        width: 90%;
-    }
-    button{
-        display: flex;
-        background-color: black;
-        justify-content: center;
-        align-items: center;
-        color: rgb(78, 17, 125);
-        border: none;
+    p{
+        background-image: linear-gradient(90deg, rgb(122, 5, 212), rgb(78, 17, 125));
+        background-repeat: no-repeat;
+        background-size: 0% 3px;
+        background-position: left bottom;
+        transition: background-size 500ms ease;
+        color: white;
         cursor: pointer;
-    }
-`
+        text-decoration: none;
+        font-weight: 300;
 
-export const SongFeeling = styled.p`
-    font-size: 4vh;
-    padding: 5%;
-    color: white;
-    cursor: pointer;
-    transition: all 0.4s ease-in-out;
-
-    &:hover {
-        color: rgb(122, 5, 212);
+        &:hover {
+            background-size: 100% 3px;
+        }
     }
 `

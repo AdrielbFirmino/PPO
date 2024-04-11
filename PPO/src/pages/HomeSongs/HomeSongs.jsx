@@ -1,43 +1,26 @@
 import { getAllSongs } from "../../services/songServices"
-import CardSong from "../../components/Card/CardSong/CardSong"
+import Slider from "../../components/Slider/Slider"
 import {
   FullPageContainer,
-  CardMain,
-  ContainerSongs,
-  ArrowContainer,
-  PaginationContainer,
-  PaginationBox,
-  ContainerRowSongs,
-  SideBarContainer,
-  SearchContainer,
-  SongFeeling
+  MainContainer,
+  FeelingsContainer
 } from "./HomeSongsStyled"
 import { useState, useEffect } from "react"
+import { useMediaQuery } from 'react-responsive'
+import { LeftSideDiv, ImageLogo, TitleDiv, NoteStyled } from "../Authentication/AuthStyled"
+import purplelogo from '../../images/purplelogo.png'
 
 const HomeSongs = () => {
 
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [song, setSong] = useState([])
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [hasNextPage, setHasNextPage] = useState(false);
-  const [hasPreviousPage, setHasPreviousPage] = useState(false);
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
+  const [currentPage] = useState(1);
 
   async function findAllSongs() {
     try {
-      const response = await getAllSongs(5, (currentPage - 1) * 5);
-      const { total, results, nextUrl, previousUrl } = response.data;
+      const response = await getAllSongs(6, 0);
+      const { results } = response.data;
       setSong(results);
-      setTotalPages(Math.ceil(total / 5));
-      setHasNextPage(!!nextUrl);
-      setHasPreviousPage(!!previousUrl);
     } catch (error) {
       console.error("Erro ao tentar encontrar todas as Músicas: ", error);
     }
@@ -49,52 +32,34 @@ const HomeSongs = () => {
 
   return (
     <FullPageContainer>
-      <SideBarContainer>
-        <form>
-          <SearchContainer>
-            <input type="text" placeholder="Procure uma música" />
-            <button type="submit">
-            </button>
-          </SearchContainer>
-        </form>
-        <SongFeeling>Felizes</SongFeeling>
-        <SongFeeling>Tristes</SongFeeling>
-        <SongFeeling>Românticas</SongFeeling>
-        <SongFeeling>Tranquilas</SongFeeling>
-      </SideBarContainer>
-      <CardMain>
-        <h1>Músicas Novas</h1>
-        <ContainerRowSongs>
-          <ContainerSongs>
-            <ArrowContainer>
-              {currentPage === 1
-                ? ""
-                : <i className="bi bi-arrow-bar-left" onClick={handlePreviousPage} disabled={!hasPreviousPage || currentPage === 1}></i>}
-            </ArrowContainer>
-            {song.map((item) => (
-              <CardSong key={item.id}
-                image={item.image}
-                name={item.name}
-                authorName={item.authorName}
-              />
-            ))}
-            <ArrowContainer>
-              {currentPage === totalPages
-                ? ""
-                : <i className="bi bi-arrow-bar-right" onClick={handleNextPage} disabled={!hasNextPage || currentPage === totalPages}></i>}
-            </ArrowContainer>
-          </ContainerSongs>
-        </ContainerRowSongs>
-        <PaginationContainer>
-          {Array.from(Array(totalPages).keys()).map((page) => (
-            <PaginationBox
-              key={page + 1}
-              isActive={currentPage === page + 1}
-            >
-            </PaginationBox>
-          ))}
-        </PaginationContainer>
-      </CardMain>
+      <MainContainer>
+        <FeelingsContainer>
+          <p>Felizes</p>
+          <p>Emocionantes</p>
+          <p>Apaixonantes</p>
+          <p>Relaxantes</p>
+        </FeelingsContainer>
+        <div className="top-container">
+          <h1>Músicas recentes</h1>
+          <input type="text" placeholder="Buscar Músicas" />
+        </div>
+        <Slider song={song} />
+        <div className="bottom-container">
+          <h1>Músicas mais curtidas</h1>
+        </div>
+        <Slider song={song} />
+        {
+          isMobile ?
+            <LeftSideDiv isMobile={isMobile}>
+              <ImageLogo src={purplelogo} alt="PurpleNote logo" />
+              <TitleDiv>
+                <h1>Purple</h1><NoteStyled>Note</NoteStyled>
+              </TitleDiv>
+            </LeftSideDiv>
+          :
+            "" 
+        }
+      </MainContainer>
     </FullPageContainer>
   )
 }

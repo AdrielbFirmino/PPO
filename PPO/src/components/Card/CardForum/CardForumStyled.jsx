@@ -115,9 +115,8 @@ export const CardMain = styled.div`
     display: flex;
     background-image: linear-gradient(rgb(31, 31, 31), rgb(10, 10, 10));
     flex-direction: column;
-    margin-left: 10vw;
-    width: 80vw;
+    width: 90vw;
     height: 100%;
     border-radius: 8px;
-    margin-top: 3vh;
+    margin-top: 2.5vh;
 `

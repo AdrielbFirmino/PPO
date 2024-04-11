@@ -103,8 +103,15 @@ export const MidLine = styled.hr`
     margin-bottom: 2vh;
 `
 
+export const ContainerPostProfileShowDiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
 export const PostProfileShowDiv = styled.div`
     display: flex;
+    width: 80%;
     align-items: center;
     justify-content: center;
     color: white;
@@ -203,7 +210,7 @@ export const NewPostFormContainer = styled.div`
         border: none;
         outline: none;
         border-radius: 3px;
-        font-size: 1rem;
+        font-size: 1.5rem;
         padding: 0.4rem;
         transition: all 0.4s ease-in-out;
         cursor: pointer;

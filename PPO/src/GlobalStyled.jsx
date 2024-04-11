@@ -13,19 +13,18 @@ export const GlobalStyled = createGlobalStyle`
         height: 100%;
         font-size: 62.5%;
         @media (max-width: 1440px) {
-            font-size: 55%;
+            font-size: 52%;
         }
         @media (max-width: 1024px) {
-            font-size: 50%;
+            font-size: 48%;
         }
         @media (max-width: 768px) {
-            font-size: 40%;
+            font-size: 36%;
         }
     }
     body {
         font-size: 1.6rem;
         max-width: 100vw;
-        margin: 0;
         background-image: linear-gradient(black, rgba(78, 17, 125, 1));
         background-repeat: no-repeat;
         background-attachment: fixed;

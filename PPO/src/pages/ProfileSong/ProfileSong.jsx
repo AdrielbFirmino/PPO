@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { useState, useEffect } from "react";
-import { createUserPosts, getUserPosts } from "../../services/postServices";
+import { getAllSongs, getUserSongs } from "../../services/songServices";
 import { editUser } from "../../services/userService";
-import CardProfileForum from "../../components/Card/CardProfile/CardProfileForum/CardProfileForum";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -22,13 +21,14 @@ import { CardMain,
   ModalContent,
   CloseButton,
   ContainerPostProfileShowDiv
-} from "./ProfileStyled";
+} from "../Profile/ProfileStyled";
 import { creatPostSchema } from "../../schemas/createPostSchema";
 import { useForm } from "react-hook-form";
 import { Input } from "../../components/Input/Input";
+import SongModal from "../../components/SongModal/SongModal";
 
 
-const Profile = () => {
+const ProfileSong = () => {
 
   const {
     register,
@@ -38,9 +38,9 @@ const Profile = () => {
 
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate();
-  const [posts, setPosts] = useState([])
+  const [songs, setSongs] = useState([])
   const [menuOpen, setMenuOpen] = useState(false);
-  const [newPostOpen, setNewPostOpen] = useState(false);
+  const [newSongOpen, setNewSongOpen] = useState(false);
   const [editedName, setEditedName] = useState(user.name);
   const [editedUsername, setEditedUsername] = useState(user.username);
   const [editedAvatar, setEditedAvatar] = useState(user.avatar);
@@ -53,6 +53,14 @@ const Profile = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const openModalSong = () => {
+    setNewSongOpen(true);
+  }
+
+  const closeModalSong = () => {
+    setNewSongOpen(false);
+  }
 
   const handleUserEditSubmit = async (event) => {
     event.preventDefault();
@@ -69,12 +77,12 @@ const Profile = () => {
     setMenuOpen(!menuOpen);
   };
   const toggleNewPost = () => {
-    setNewPostOpen(!newPostOpen)
+    setNewSongOpen(!newSongOpen)
   }
 
-  async function findAllUserPosts() {
-    const response = await getUserPosts();
-    setPosts(response.data.results);
+  async function findAllUserSongs() {
+    const response = await getUserSongs();
+    setSongs(response.data.results);
   }
 
   function signout() {
@@ -83,22 +91,21 @@ const Profile = () => {
     navigate("/")
   }
 
-  function goProfileSongs() {
-    navigate("/profile/songs")
+  function goProfilePosts() {
+    navigate("/profile")
   }
 
   async function inHandleSubmit(data) {
     try {
-      const response = await createUserPosts(data);
-      await findAllUserPosts();
-      return console.log(response.data)
+      await createUserSongs(data);
+      await findAllUserSongs();
     } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
-    findAllUserPosts();
+    findAllUserSongs();
   }, []);
 
 
@@ -155,65 +162,38 @@ const Profile = () => {
         </MenuProfileIcon>  
       </TopProfileDiv>
       <ButtonsPostSong>
-        <button>
+        <button onClick={goProfilePosts}>
           Posts
         </button>
-        <button onClick={goProfileSongs}>
+        <button>
           Músicas
         </button>
       </ButtonsPostSong>
       <MidLine></MidLine>
       <ContainerPostProfileShowDiv>
+        {/* Aqui começa o desafio */}
         <PostProfileShowDiv>
-          <h1>{posts.length
-                ? `${posts.length} ${
-                    posts.length > 1 ? "  Posts" : "  Post"
+          <h1>{songs.length
+                ? `${songs.length} ${
+                    songs.length > 1 ? "  Músicas" : "  Música"
                 }`
-                : "Você não fez nenhum Post até agora..."}</h1>
+                : "Você não publicou nenhuma música até agora..."}</h1>
         </PostProfileShowDiv>
       </ContainerPostProfileShowDiv>
       <div>
         <NewPostContainer onClick={toggleNewPost}>
           <i className="bi bi-file-earmark-plus"></i>
-          <h2>Fazer um novo post...</h2>
+          <h2>Publicar uma nova música...</h2>
         </NewPostContainer>
-        {newPostOpen && (
-          <NewPostFormContainer>
-            <form onSubmit={handleSubmit(inHandleSubmit)}>
-              <label>Título do Post: </label>
-              <Input
-                type="text"
-                placeholder="Insira o Titulo do post..."
-                name="title"
-                register = {register} />
-              {errors.title && <span>{errors.title.message}</span>}
-              <label>Conteúdo do post </label>
-              <Input
-                type="text"
-                placeholder="Insira o conteúdo do post..."
-                name="body" 
-                register = {register} />
-              {errors.body && <span>{errors.body.message}</span>}
-              <button type="submit">Postar</button>
-            </form>
-          </NewPostFormContainer>
+        {newSongOpen && (
+          <SongModal 
+          closeModalSong={closeModalSong} 
+          openModalSong={openModalSong}
+          findAllUserSongs={findAllUserSongs}/>
         )}
       </div>
-      {posts.map((item) => (
-        <CardProfileForum key={item.id}
-            userAvatar={item.userAvatar}
-            userName={item.userName}
-            title={item.title}
-            name={item.name}
-            body={item.body}
-            likes={item.likes}
-            comments={item.comments}
-            id={item.id}
-            updatePosts={findAllUserPosts}
-            />
-        ))}
     </CardMain> 
   );
 }
 
-export default Profile
+export default ProfileSong;

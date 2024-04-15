@@ -13,13 +13,21 @@ import { create,
     addLoveFeel,
     addRelaxFeel,
     addLike,
-    removeLike
+    removeLike,
+    removeHappyFeel,
+    removeSadFeel,
+    removeLoveFeel,
+    removeRelaxFeel
 } from '../controllers/song.controller.js';
 
 const songRouter = Router();
 
 songRouter.post("/create", authMiddleware, create);
 songRouter.post('/like', authMiddleware, addLike);
+songRouter.post("/happyFeel", authMiddleware, addHappyFeel);
+songRouter.post("/sadFeel", authMiddleware, addSadFeel);
+songRouter.post("/loveFeel", authMiddleware, addLoveFeel);
+songRouter.post("/relaxFeel", authMiddleware, addRelaxFeel);
 songRouter.get("/", findAll);
 songRouter.get("/recent", recentSongs);
 songRouter.get("/search", searchSongByName);
@@ -28,9 +36,9 @@ songRouter.get("/byIdSong/:id", authMiddleware, findById);
 songRouter.patch("/update/:id", authMiddleware, update);
 songRouter.delete('/like', authMiddleware, removeLike);
 songRouter.delete("/delete/:id", authMiddleware, erase);
-songRouter.patch("/happyFeel/:id", authMiddleware, addHappyFeel);
-songRouter.patch("/sadFeel/:id", authMiddleware, addSadFeel);
-songRouter.patch("/loveFeel/:id", authMiddleware, addLoveFeel);
-songRouter.patch("/relaxFeel/:id", authMiddleware, addRelaxFeel);
+songRouter.delete("/happyFeel", authMiddleware, removeHappyFeel);
+songRouter.delete("/sadFeel", authMiddleware, removeSadFeel);
+songRouter.delete("/loveFeel", authMiddleware, removeLoveFeel);
+songRouter.delete("/relaxFeel", authMiddleware, removeRelaxFeel);
 
 export default songRouter;

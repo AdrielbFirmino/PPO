@@ -133,7 +133,6 @@ async function findSongsByUserIdService(id) {
             sadFeel: songItem.sadFeel,
             loveFeel: songItem.loveFeel,
             relaxFeel: songItem.relaxFeel,
-            likes: songItem.likes,
             likesCount: songItem.likesCount
         }))
     }
@@ -151,6 +150,7 @@ async function findSongByIdService(id) {
         authorName: song.author.name,
         authorAvatar: song.author.avatar,
         happyFeel: song.happyFeel,
+        happyCount: song.happyCount,
         sadFeel: song.sadFeel,
         loveFeel: song.loveFeel,
         relaxFeel: song.relaxFeel,
@@ -184,41 +184,77 @@ async function eraseSongService(id, userId) {
     await songRepositories.eraseSongRespository(id);
 };
 
-async function addHappyFeelService(id, userId) {
-    const songHappy = await songRepositories.addHappyFeelRepository(id, userId)
-    if (!songHappy) {
-        await songRepositories.eraseHappyFeelRepository(id, userId);
-        return { message: "Hapy feel removed successfully" };
+async function addHappyFeelService(songId, userId) {
+    try {
+        const happySong = await songRepositories.addHappyFeelRepository(songId, userId);
+        return happySong;
+    } catch (error) {
+        throw new Error(error.message);
     }
-    return { message: "Hapy feel added successfully" };
 };
 
-async function addSadFeelService(id, userId) {
-    const songSad = await songRepositories.addSadFeelRepository(id, userId)
-    if (!songSad) {
-        await songRepositories.eraseSadFeelRepository(id, userId);
-        return { message: "Sad feel removed successfully" };
+async function removeHappyFeelService(songId, userId) {
+    try {
+        const nonHappySong = await songRepositories.removeHappyFeelRepository(songId, userId);
+        return nonHappySong;
+    } catch (error) {
+        throw new Error(error.message);
     }
-    return { message: "Sad feel added successfully" };
+}
+
+async function addSadFeelService(songId, userId) {
+    try {
+        const sadSong = await songRepositories.addSadFeelRepository(songId, userId);
+        return sadSong;
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
-async function addLoveFeelService(id, userId) {
-    const songLove = await songRepositories.addLoveFeelRepository(id, userId)
-    if (!songLove) {
-        await songRepositories.eraseLoveFeelRepository(id, userId);
-        return { message: "Love feel removed successfully" };
+async function removeSadFeelService(songId, userId) {
+    try {
+        const nonSadSong = await songRepositories.removeSadFeelRepository(songId, userId);
+        return nonSadSong;
+    } catch (error) {
+        throw new Error(error.message);
     }
-    return { message: "Love feel added successfully" };
+}
+
+async function addLoveFeelService(songId, userId) {
+    try {
+        const loveSong = await songRepositories.addLoveFeelRepository(songId, userId);
+        return loveSong;
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
 
-async function addRelaxFeelService(id, userId) {
-    const songRelax = await songRepositories.addRelaxFeelRepository(id, userId)
-    if (!songRelax) {
-        await songRepositories.eraseRelaxFeelRepository(id, userId);
-        return { message: "Relax feel removed successfully" };
+async function removeLoveFeelService(songId, userId) {
+    try {
+        const nonLoveSong = await songRepositories.removeLoveFeelRepository(songId, userId);
+        return nonLoveSong;
+    } catch (error) {
+        throw new Error(error.message);
     }
-    return { message: "Relax feel added successfully" };
+}
+
+async function addRelaxFeelService(songId, userId) {
+    try {
+        const relaxSong = await songRepositories.addRelaxFeelRepository(songId, userId);
+        return relaxSong;
+    } catch (error) {
+        throw new Error(error.message);
+    }
 };
+
+async function removeRelaxFeelService(songId, userId) {
+    try {
+        const nonRelaxSong = await songRepositories.removeRelaxFeelRepository(songId, userId);
+        return nonRelaxSong;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
 export default {
     createSongService,
@@ -234,5 +270,9 @@ export default {
     addLoveFeelService,
     addRelaxFeelService,
     addLikeService,
-    removeLikeService
+    removeLikeService,
+    removeHappyFeelService,
+    removeSadFeelService,
+    removeLoveFeelService,
+    removeRelaxFeelService
 }

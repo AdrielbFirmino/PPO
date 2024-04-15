@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { type } from 'os';
 
 const SongSchema = new mongoose.Schema({
     name: {
@@ -18,17 +19,33 @@ const SongSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
+    happyCount: {
+        type: Number,
+        default: 0
+    },
     sadFeel: {
         type: Array,
         required: true
+    },
+    sadCount: {
+        type: Number,
+        default: 0
     },
     loveFeel: {
         type: Array,
         required: true
     },
+    loveCount: {
+        type: Number,
+        default: 0
+    },
     relaxFeel: {
         type: Array,
         required: true
+    },
+    relaxCount: {
+        type: Number,
+        default: 0
     },
     likes: {
         type: Array,

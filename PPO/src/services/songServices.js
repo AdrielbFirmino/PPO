@@ -12,3 +12,12 @@ export function getAllSongs(limit, offset) {
     });
     return response;
 }
+
+export function getUserSongs() {
+    const response = axios.get(`${baseURL}/song/byUser`, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`
+        }
+    });
+    return response;
+}

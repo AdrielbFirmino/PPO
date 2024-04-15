@@ -111,45 +111,89 @@ export const erase = async (req, res) => {
 };
 
 export const addHappyFeel = async (req, res) => {
-    const { id } = req.params;
+    const { songId } = req.body;
     const userId = req.userId;
     try {
-        const response = await songService.addHappyFeelService(id, userId);
-        res.send(response);
+        const happySong = await songService.addHappyFeelService(songId, userId);
+        res.status(200).send(happySong);
     } catch (err) {
-        res.status(500).send({ message: err.message })
+        res.status(400).send({ message: err.message });
     }
 };
+
+export const removeHappyFeel = async (req, res) => {
+    const { songId } = req.body;
+    const userId = req.userId;
+    try {
+        const nonHappySong = await songService.removeHappyFeelService(songId, userId);
+        res.status(200).send(nonHappySong);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+}
 
 export const addSadFeel = async (req, res) => {
-    const { id } = req.params;
+    const { songId } = req.body;
     const userId = req.userId;
     try {
-        const response = await songService.addSadFeelService(id, userId);
-        res.send(response);
+        const sadSong = await songService.addSadFeelService(songId, userId);
+        res.status(200).send(sadSong);
     } catch (err) {
-        res.status(500).send({ message: err.message })
+        res.status(400).send({ message: err.message });
     }
 };
 
-export const addLoveFeel = async (req, res) => {
-    const { id } = req.params;
+export const removeSadFeel = async (req, res) => {
+    const { songId } = req.body;
     const userId = req.userId;
     try {
-        const response = await songService.addLoveFeelService(id, userId);
-        res.send(response);
+        const nonSadSong = await songService.removeSadFeelService(songId, userId);
+        res.status(200).send(nonSadSong);
     } catch (err) {
-        res.status(500).send({ message: err.message })
+        res.status(400).send({ message: err.message });
+    }
+}
+
+export const addLoveFeel = async (req, res) => {
+    const { songId } = req.body;
+    const userId = req.userId;
+    try {
+        const loveSong = await songService.addLoveFeelService(songId, userId);
+        res.status(200).send(loveSong);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+};
+
+export const removeLoveFeel = async (req, res) => {
+    const { songId } = req.body;
+    const userId = req.userId;
+    try {
+        const nonloveSong = await songService.removeLoveFeelService(songId, userId);
+        res.status(200).send(nonloveSong);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
     }
 };
 
 export const addRelaxFeel = async (req, res) => {
-    const { id } = req.params;
+    const { songId } = req.body;
     const userId = req.userId;
     try {
-        const response = await songService.addRelaxFeelService(id, userId);
-        res.send(response);
+        const relaxSong = await songService.addRelaxFeelService(songId, userId);
+        res.status(200).send(relaxSong);
     } catch (err) {
-        res.status(500).send({ message: err.message })
+        res.status(400).send({ message: err.message });
+    }
+};
+
+export const removeRelaxFeel = async (req, res) => {
+    const { songId } = req.body;
+    const userId = req.userId;
+    try {
+        const nonRelaxSong = await songService.removeRelaxFeelService(songId, userId);
+        res.status(200).send(nonRelaxSong);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
     }
 };

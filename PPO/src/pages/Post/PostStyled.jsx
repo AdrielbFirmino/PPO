@@ -21,7 +21,7 @@ export const TitleContainer = styled.div`
 `
 export const TituloPost = styled.h1`
     color: white;
-    font-size: 5vh;
+    font-size: 5rem;
 `
 export const PostLikesContainer = styled.h1`
     display: flex;

@@ -6,6 +6,7 @@ export const CommentContainer = styled.div`
     align-items: center;
     width: 100%;
     margin-left: 2rem;
+    font-size: 3rem;
 
     i {
         margin-right: 3vh;

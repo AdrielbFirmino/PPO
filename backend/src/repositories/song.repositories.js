@@ -65,45 +65,165 @@ async function removeLikeRepository(songId, userId) {
 
 const eraseSongRespository = (id) => Song.findByIdAndDelete({ _id: id });
 
-const addHappyFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong, "happyFeel.userId": { $nin: [userId] } },
-    { $push: { happyFeel: { userId, created: new Date() } } }
-);
+async function addHappyFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+        if (!song.happyFeel.includes(userId)) {
+            song.happyFeel.push(userId);
+            song.happyCount++;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User already give a happy feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
-const eraseHappyFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong },
-    { $pull: { happyFeel: { userId } } }
-);
+async function removeHappyFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
 
-const addSadFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong, "sadFeel.userId": { $nin: [userId] } },
-    { $push: { sadFeel: { userId, created: new Date() } } }
-);
+        const index = song.happyFeel.indexOf(userId);
+        if (index !== -1) {
+            song.happyFeel.splice(index, 1);
+            song.happyCount--;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User has not add a happy feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
-const eraseSadFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong },
-    { $pull: { sadFeel: { userId } } }
-);
+async function addSadFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+        if (!song.sadFeel.includes(userId)) {
+            song.sadFeel.push(userId);
+            song.sadCount++;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User already give a sad feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
-const addLoveFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong, "loveFeel.userId": { $nin: [userId] } },
-    { $push: { loveFeel: { userId, created: new Date() } } }
-);
+async function removeSadFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
 
-const eraseLoveFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong },
-    { $pull: { loveFeel: { userId } } }
-);
+        const index = song.sadFeel.indexOf(userId);
+        if (index !== -1) {
+            song.sadFeel.splice(index, 1);
+            song.sadCount--;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User has not add a sad feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
-const addRelaxFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong, "relaxFeel.userId": { $nin: [userId] } },
-    { $push: { relaxFeel: { userId, created: new Date() } } }
-);
+async function addLoveFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+        if (!song.loveFeel.includes(userId)) {
+            song.loveFeel.push(userId);
+            song.loveCount++;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User already give a love feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
-const eraseRelaxFeelRepository = (idSong, userId) => Song.findOneAndUpdate(
-    { _id: idSong },
-    { $pull: { relaxFeel: { userId } } }
-);
+async function removeLoveFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+
+        const index = song.loveFeel.indexOf(userId);
+        if (index !== -1) {
+            song.loveFeel.splice(index, 1);
+            song.loveCount--;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User has not add a love feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+async function addRelaxFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+        if (!song.relaxFeel.includes(userId)) {
+            song.relaxFeel.push(userId);
+            song.relaxCount++;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User already give a relax feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+async function removeRelaxFeelRepository(songId, userId) {
+    try {
+        const song = await Song.findById(songId);
+        if (!song) {
+            throw new Error('Song not found');
+        }
+
+        const index = song.relaxFeel.indexOf(userId);
+        if (index !== -1) {
+            song.relaxFeel.splice(index, 1);
+            song.relaxCount--;
+            await song.save();
+            return song;
+        } else {
+            throw new Error('User has not add a relax feel to this song');
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
 export default {
     createSongRepository,
@@ -116,13 +236,13 @@ export default {
     updateSongRepository,
     eraseSongRespository,
     addHappyFeelRepository,
-    eraseHappyFeelRepository,
     addSadFeelRepository,
-    eraseSadFeelRepository,
     addLoveFeelRepository,
-    eraseLoveFeelRepository,
+    removeLoveFeelRepository,
     addRelaxFeelRepository,
-    eraseRelaxFeelRepository,
     removeLikeRepository,
-    addLikeRepository
+    addLikeRepository,
+    removeHappyFeelRepository,
+    removeSadFeelRepository,
+    removeRelaxFeelRepository
 }

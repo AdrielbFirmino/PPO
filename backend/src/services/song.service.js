@@ -2,9 +2,9 @@ import songRepositories from "../repositories/song.repositories.js";
 
 async function createSongService(corpo) {
     const { name, image, userId } = corpo;
-    console.log(corpo);
-    if (!image || !name)
-        throw new Error("Submit all fields to post your song.");
+    if (!image || !name) {
+        throw new Error("Submit all fields to post your song");
+    }
 
     const { id } = await songRepositories.createSongRepository({
         name,
@@ -65,10 +65,10 @@ async function findAllSongsService(limit, offset, currentUrl) {
             image: songItem.image,
             authorName: songItem.author.name,
             authorAvatar: songItem.author.avatar,
-            happyFeel: songItem.happyFeel,
-            sadFeel: songItem.sadFeel,
-            loveFeel: songItem.loveFeel,
-            relaxFeel: songItem.relaxFeel,
+            happyCount: songItem.happyCount,
+            sadCount: songItem.sadCount,
+            loveCount: songItem.loveCount,
+            relaxCount: songItem.relaxCount,
             likesCount: songItem.likesCount
         }))
     }
@@ -129,10 +129,10 @@ async function findSongsByUserIdService(id) {
             image: songItem.image,
             authorName: songItem.author.name,
             authorAvatar: songItem.author.avatar,
-            happyFeel: songItem.happyFeel,
-            sadFeel: songItem.sadFeel,
-            loveFeel: songItem.loveFeel,
-            relaxFeel: songItem.relaxFeel,
+            happyCount: songItem.happyCount,
+            sadCount: songItem.sadCount,
+            loveCount: songItem.loveCount,
+            relaxCount: songItem.relaxCount,
             likesCount: songItem.likesCount
         }))
     }

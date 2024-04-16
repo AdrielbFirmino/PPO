@@ -7,6 +7,10 @@ export const ModalContentSong = styled.div`
   border: 2px solid rgb(78, 17, 125);
   border-radius: 12px;
 
+  span {
+    color: white;
+  }
+
   h2 {
     color: white;
   }
@@ -42,28 +46,6 @@ export const ModalContentSong = styled.div`
         &:hover {
             background-color: rgb(78, 17, 125);
         }
-    }
-
-    section {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-        i {
-          padding: 1rem;
-          color: rgb(122, 5, 212);
-          font-size: 4rem;
-        }
-
-        p {
-          color: white;
-        }
-      }
     }
   }
 `

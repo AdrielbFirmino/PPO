@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { useState, useEffect } from "react";
-import { getAllSongs, getUserSongs } from "../../services/songServices";
+import { getUserSongs } from "../../services/songServices";
 import { editUser } from "../../services/userService";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod"
+import CardProfileSong from "../../components/Card/CardProfileSong/CardProfileSong";
 import { CardMain, 
   TopProfileDiv, 
   TopProfileMidDiv, 
@@ -16,25 +16,15 @@ import { CardMain,
   PostProfileShowDiv,
   MenuDotIcon,
   NewPostContainer,
-  NewPostFormContainer,
   ModalBackground,
   ModalContent,
   CloseButton,
   ContainerPostProfileShowDiv
 } from "../Profile/ProfileStyled";
-import { creatPostSchema } from "../../schemas/createPostSchema";
-import { useForm } from "react-hook-form";
-import { Input } from "../../components/Input/Input";
 import SongModal from "../../components/SongModal/SongModal";
 
 
 const ProfileSong = () => {
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({ resolver: zodResolver(creatPostSchema) });
 
   const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate();
@@ -45,6 +35,7 @@ const ProfileSong = () => {
   const [editedUsername, setEditedUsername] = useState(user.username);
   const [editedAvatar, setEditedAvatar] = useState(user.avatar);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editSongMode, setEditSongMode] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -61,6 +52,9 @@ const ProfileSong = () => {
   const closeModalSong = () => {
     setNewSongOpen(false);
   }
+  const songModeSwitch = () => {
+    setEditSongMode(!editSongMode)
+  }
 
   const handleUserEditSubmit = async (event) => {
     event.preventDefault();
@@ -76,7 +70,7 @@ const ProfileSong = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  const toggleNewPost = () => {
+  const toggleNewSong = () => {
     setNewSongOpen(!newSongOpen)
   }
 
@@ -95,22 +89,14 @@ const ProfileSong = () => {
     navigate("/profile")
   }
 
-  async function inHandleSubmit(data) {
-    try {
-      await createUserSongs(data);
-      await findAllUserSongs();
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   useEffect(() => {
     findAllUserSongs();
-  }, []);
+  }, [newSongOpen, editSongMode]);
 
 
   return (
     <CardMain>
+      {console.log(songs)}
       <TopProfileDiv>
         <TopProfileLeftDiv >
           <img src={user.avatar} alt="" />
@@ -181,7 +167,7 @@ const ProfileSong = () => {
         </PostProfileShowDiv>
       </ContainerPostProfileShowDiv>
       <div>
-        <NewPostContainer onClick={toggleNewPost}>
+        <NewPostContainer onClick={toggleNewSong}>
           <i className="bi bi-file-earmark-plus"></i>
           <h2>Publicar uma nova música...</h2>
         </NewPostContainer>
@@ -189,9 +175,26 @@ const ProfileSong = () => {
           <SongModal 
           closeModalSong={closeModalSong} 
           openModalSong={openModalSong}
-          findAllUserSongs={findAllUserSongs}/>
+          findAllUserSongs={findAllUserSongs}
+          setSongs={setSongs}
+          songs={songs}/>
         )}
       </div>
+      {songs.map((item) => (
+        <CardProfileSong 
+          key={item.id}
+          name={item.name}
+          image={item.image}
+          authorName={item.authorName}
+          authorAvatar={item.authorAvatar}
+          happyCount={item.happyCount}
+          sadCount={item.sadCount}
+          loveCount={item.loveCount}
+          relaxCount={item.relaxCount}
+          id={item.id}
+          updateSongs={findAllUserSongs}
+        />
+      ))}
     </CardMain> 
   );
 }

@@ -65,24 +65,26 @@ const Navbar = () => {
             <ImageLogo src={purplelogo} alt="PurpleNote logo" title='home' onClick={goHome}/>
             <LogoTextSpace><h2>PurpleNote</h2></LogoTextSpace>
           </LogoText>
-        <SwitchForumSong className='CenterSwitch'>
-          <Link to="/home/songs"><ButtonSwitchTop>Músicas</ButtonSwitchTop></Link>
-          <LineD> | </LineD>
-          <Link to="/"><ButtonSwitchTop>Fórum</ButtonSwitchTop></Link>
-        </SwitchForumSong>
         {user ? (
           isMobile ? (
             <MenuMobile
             menuIsVisible={menuIsVisible}
             setMenuIsVisible={setMenuIsVisible}></MenuMobile>
           ) : (
-          <section>
-            <p onClick={goProfile} title='perfil'>{user.name}</p>
-            <img src={user.avatar} onClick={goProfile} title='perfil'/>
-            <div>
-            <i className="bi bi-box-arrow-right" onClick={signout} title='sair'></i>
-            </div>
-          </section>
+            <>
+              <SwitchForumSong className='CenterSwitch'>
+                <Link to="/home/songs"><ButtonSwitchTop>Músicas</ButtonSwitchTop></Link>
+                <LineD> | </LineD>
+                <Link to="/"><ButtonSwitchTop>Fórum</ButtonSwitchTop></Link>
+              </SwitchForumSong>
+              <section>
+                <p onClick={goProfile} title='perfil'>{user.name}</p>
+                <img src={user.avatar} onClick={goProfile} title='perfil'/>
+                <div>
+                <i className="bi bi-box-arrow-right" onClick={signout} title='sair'></i>
+                </div>
+              </section>
+          </>
           )
         ) : (
           <ButtonLogin onClick={goAuth}>Entrar</ButtonLogin>

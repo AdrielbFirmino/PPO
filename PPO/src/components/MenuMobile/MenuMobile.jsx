@@ -13,6 +13,12 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
     function goProfile() {
         navigate("/profile")
     }
+    function goForum() {
+        navigate("/")
+    }
+    function goSongs() {
+        navigate("/home/songs")
+    }
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -23,6 +29,8 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
             {menuOpen ?
                 <MenuOptions>
                     <h4 onClick={goProfile}>Perfil</h4>
+                    <h4 onClick={goSongs}>Músicas</h4>
+                    <h4 onClick={goForum}>Fórum</h4>
                     <h4 onClick={goAuth}>Sair</h4>
                     <h4 onClick={toggleMenu}>Fechar</h4>
                 </MenuOptions>

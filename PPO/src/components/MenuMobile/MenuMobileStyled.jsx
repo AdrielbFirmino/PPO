@@ -13,11 +13,12 @@ export const ContainerMenu = styled.div`
 
 export const MenuOptions = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 1vw;
     h4 {
         cursor: pointer;
         color: rgb(122, 5, 212);
         border-bottom: 1px solid white;
+        margin-right: 1rem;
     }
 `;

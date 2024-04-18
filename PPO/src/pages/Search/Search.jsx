@@ -2,14 +2,15 @@ import { useParams } from "react-router-dom"
 import { searchPosts } from "../../services/postServices";
 import { useState, useEffect } from "react";
 import { TextResult, FormContainer } from "./SearchStyled";
-import { 
-  CardMain, 
-  SearchPost, 
-  ValidationErrorMessage, 
+import { FullPageContainerForum } from "../Forum/HomeForumStyled";
+import {
+  CardMain,
+  SearchPost,
+  ValidationErrorMessage,
   TitleForumPage,
 } from "../../components/Card/CardForum/CardForumStyled";
 import CardForum from "../../components/Card/CardForum/CardForum";
-import {zodResolver} from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import { searchSchema } from "../../schemas/searchSchema";
@@ -34,11 +35,11 @@ const Search = () => {
   }, [title])
 
 
-  const { 
-    register, 
-    handleSubmit, 
-    reset, 
-    formState: {errors} 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
   } = useForm({
     resolver: zodResolver(searchSchema)
   });
@@ -52,15 +53,16 @@ const Search = () => {
 
 
   return (
-    <CardMain>
+    <FullPageContainerForum>
+      <CardMain>
         <FormContainer>
           <form onSubmit={handleSubmit(onSearch)}>
-              <SearchPost>
-                <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
-                <button type="submit">
-                  <i className="bi bi-search"></i>
-                </button>
-              </SearchPost>
+            <SearchPost>
+              <input {...register("title")} type="text" placeholder="Procure por um titulo de um Post..." />
+              <button type="submit">
+                <i className="bi bi-search"></i>
+              </button>
+            </SearchPost>
           </form>
         </FormContainer>
         <ValidationErrorMessage>
@@ -70,8 +72,7 @@ const Search = () => {
         <TextResult>
           <span>
             {post.length
-              ? `Encontramos ${post.length} ${
-                  post.length > 1 ? "posts relacionados a pesquisa" : "post relacionado a pesquisa"
+              ? `Encontramos ${post.length} ${post.length > 1 ? "posts relacionados a pesquisa" : "post relacionado a pesquisa"
               }`
               : "Não encontramos resultados para esta pesquisa"}
           </span>
@@ -89,6 +90,7 @@ const Search = () => {
           />
         ))}
       </CardMain>
+    </FullPageContainerForum>
   )
 }
 

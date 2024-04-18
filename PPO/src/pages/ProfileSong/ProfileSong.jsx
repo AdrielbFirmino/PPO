@@ -52,9 +52,6 @@ const ProfileSong = () => {
   const closeModalSong = () => {
     setNewSongOpen(false);
   }
-  const songModeSwitch = () => {
-    setEditSongMode(!editSongMode)
-  }
 
   const handleUserEditSubmit = async (event) => {
     event.preventDefault();
@@ -96,7 +93,6 @@ const ProfileSong = () => {
 
   return (
     <CardMain>
-      {console.log(songs)}
       <TopProfileDiv>
         <TopProfileLeftDiv >
           <img src={user.avatar} alt="" />

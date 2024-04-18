@@ -18,7 +18,7 @@ const HomeSongs = () => {
 
   async function findAllSongs() {
     try {
-      const response = await getAllSongs(6, 0);
+      const response = await getAllSongs(12, 0);
       const { results } = response.data;
       setSong(results);
     } catch (error) {

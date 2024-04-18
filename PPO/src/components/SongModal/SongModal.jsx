@@ -18,6 +18,7 @@ const SongModal = (props) => {
     try {
       await createSong(data);
       await getUserSongs();
+      props.closeModalSong();
     } catch (err) {
       console.log(err)
     }

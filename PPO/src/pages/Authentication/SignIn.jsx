@@ -36,7 +36,11 @@ const SignIn = () => {
       Cookies.set("token", response.data.token, { expires: 1 })
       navigate("/")
     } catch (err) {
-      console.log(err)
+      if (err.response && err.response.status === 404) {
+        alert("Email ou senha incorretos. Por favor, verifique e tente novamente.");
+      } else {
+        console.log(err)
+      }
     }
   }
 
@@ -67,7 +71,8 @@ const SignIn = () => {
                 type="email"
                 placeholder=" Insira aqui seu email..."
                 name="email"
-                register={register} />
+                register={register}
+                required />
               {errors.email && <span>{errors.email.message}</span>}
               <label>Senha</label>
               <Input

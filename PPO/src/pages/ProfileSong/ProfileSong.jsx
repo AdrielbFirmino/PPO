@@ -153,7 +153,6 @@ const ProfileSong = () => {
       </ButtonsPostSong>
       <MidLine></MidLine>
       <ContainerPostProfileShowDiv>
-        {/* Aqui começa o desafio */}
         <PostProfileShowDiv>
           <h1>{songs.length
                 ? `${songs.length} ${

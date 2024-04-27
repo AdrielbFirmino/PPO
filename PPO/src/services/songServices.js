@@ -22,6 +22,11 @@ export function getUserSongs() {
     return response;
 }
 
+export function searchSongs(title) {
+    const response = axios.get(`${baseURL}/song/search?name=${title}`)
+    return response;
+}
+
 export function createSong(data) {
     const response = axios.post(`${baseURL}/song/create`, data, {
         headers: {

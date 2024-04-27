@@ -29,15 +29,25 @@ export const MainContainer = styled.div`
             color: white;
         }
 
-        input {
-            width: 38%;
-            background-color: black;
-            color: grey;
-            border: none;
-            border-bottom: 2px solid rgb(122, 5, 212);
-            border-radius: 6px;
-            outline: none;
-            padding-left: 1rem;
+        div{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+
+            form{
+            width: 98%;
+        
+                input {
+                    width: 100%;
+                    background-color: black;
+                    color: grey;
+                    border: none;
+                    border-bottom: 2px solid rgb(122, 5, 212);
+                    border-radius: 6px;
+                    outline: none;
+                    padding-left: 1rem;
+                }
+            }
         }
     }
     .bottom-container {

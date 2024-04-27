@@ -9,18 +9,43 @@ import { useState, useEffect } from "react"
 import { useMediaQuery } from 'react-responsive'
 import { LeftSideDiv, ImageLogo, TitleDiv, NoteStyled } from "../Authentication/AuthStyled"
 import purplelogo from '../../images/purplelogo.png'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { ValidationErrorMessage } from "../../components/Card/CardForum/CardForumStyled"
+import { searchSchema } from "../../schemas/searchSchema"
+import { useNavigate } from "react-router-dom"
 
 const HomeSongs = () => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [song, setSong] = useState([])
+  const [likedSong, setLikedSong] = useState([])
   const [currentPage] = useState(1);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({
+    resolver: zodResolver(searchSchema)
+  });
+
+  const navigate = useNavigate();
+
+  function onSearch(data) {
+    const { title } = data;
+    navigate(`/search/song/${title}`);
+    reset;
+  }
 
   async function findAllSongs() {
     try {
       const response = await getAllSongs(12, 0);
       const { results } = response.data;
       setSong(results);
+      const likeSongs = [...results].sort((a, b) => b.likesCount - a.likesCount);
+      setLikedSong(likeSongs);
     } catch (error) {
       console.error("Erro ao tentar encontrar todas as Músicas: ", error);
     }
@@ -32,6 +57,7 @@ const HomeSongs = () => {
 
   return (
     <FullPageContainer>
+      {console.log(likedSong, song)}
       <MainContainer>
         <FeelingsContainer>
           <p>Felizes</p>
@@ -41,13 +67,20 @@ const HomeSongs = () => {
         </FeelingsContainer>
         <div className="top-container">
           <h1>Músicas recentes</h1>
-          <input type="text" placeholder="Buscar Músicas" />
+          <div>
+            <form onSubmit={handleSubmit(onSearch)}>
+              <input {...register("title")} type="text" placeholder="Buscar Músicas" />
+            </form>
+            <ValidationErrorMessage>
+            {errors.title && <span>{errors.title.message}</span>}
+            </ValidationErrorMessage>
+          </div>
         </div>
         <Slider song={song} />
         <div className="bottom-container">
           <h1>Músicas mais curtidas</h1>
         </div>
-        <Slider song={song} />
+        <Slider song={likedSong} />
         {
           isMobile ?
             <LeftSideDiv isMobile={isMobile}>

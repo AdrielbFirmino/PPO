@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar.jsx'
 import HomeForum from './pages/Forum/HomeForum.jsx'
 import HomeSongs from './pages/HomeSongs/HomeSongs.jsx'
 import Search from './pages/Search/Search.jsx'
+import SearchSong from './pages/Search/SearchSong.jsx'
 import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
 import SignIn from './pages/Authentication/Signin.jsx'
 import SignUp from './pages/Authentication/Signup.jsx'
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/search/:title",
         element: <Search />
+      },
+      {
+        path: "/search/song/:title",
+        element: <SearchSong />
       },
       {
         path: "/profile",

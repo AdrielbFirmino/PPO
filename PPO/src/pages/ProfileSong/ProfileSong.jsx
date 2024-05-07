@@ -186,6 +186,7 @@ const ProfileSong = () => {
           sadCount={item.sadCount}
           loveCount={item.loveCount}
           relaxCount={item.relaxCount}
+          spotifyLink={item.spotifyLink}
           id={item.id}
           updateSongs={findAllUserSongs}
         />

@@ -12,21 +12,20 @@ export const CardMain = styled.div`
     border-radius: 8px;
     border-bottom: none;
     margin-top: 3vh;
-    filter: brightness(0.8);
 
     h1 {
         padding: 2rem;
-        color: white;
+        color: rgb(110, 50, 236);
     }
 
     i {
         font-size: 4rem;
-        color: white;
+        color: rgb(110, 50, 236);
         cursor: pointer;
     }
     
     p {
-        color: white;
+        color: rgb(110, 50, 236);
         font-size: 4rem;
     }
 `

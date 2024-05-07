@@ -135,7 +135,8 @@ async function findSongsByUserIdService(id) {
             sadCount: songItem.sadCount,
             loveCount: songItem.loveCount,
             relaxCount: songItem.relaxCount,
-            likesCount: songItem.likesCount
+            likesCount: songItem.likesCount,
+            spotifyLink: songItem.spotifyLink
         }))
     }
 }

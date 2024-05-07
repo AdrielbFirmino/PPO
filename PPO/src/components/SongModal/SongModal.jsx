@@ -16,6 +16,13 @@ const SongModal = (props) => {
 
   async function inHandleSubmit(data) {
     try {
+      const match = data.spotifyLink.match(/track\/([^?]+)/);
+      if (match && match[1]) {
+        data.spotifyLink = match[1];
+      } else {
+        throw new Error("Link do Spotify inválido");
+      }
+
       await createSong(data);
       await getUserSongs();
       props.closeModalSong();
@@ -46,6 +53,14 @@ const SongModal = (props) => {
             register={register}
           />
           {errors.image && <span>{errors.image.message}</span>}
+          <label>Link spotify da música</label>
+          <Input
+            type="text"
+            placeholder="Insira aqui o link do spotify"
+            name="spotifyLink"
+            register={register}
+          />
+          {errors.spotifyLink && <span>{errors.spotifyLink.message}</span>}
           <button type="submit">Salvar</button>
         </form>
       </ModalContentSong>

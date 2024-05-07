@@ -16,6 +16,7 @@ const Song = () => {
 	const [song, setSong] = useState({});
 	const [liked, setLiked] = useState(false);
 	const { user } = useContext(UserContext)
+	const songLink = `https://open.spotify.com/embed/track/${song.spotifyLink}?utm_source=generator`
 
 	useEffect(() => {
 		async function fetchSongById() {
@@ -33,6 +34,7 @@ const Song = () => {
 
 	return (
 		<div>
+			{console.log(songLink)}
 			<CardMain songImage={song.image}>
 				<TopContainer>
 					<div>
@@ -58,7 +60,7 @@ const Song = () => {
 					</div>
 				</TopContainer>
 				<CenterContainer>
-					<iframe style={{ borderRadius: '12px' }} src="https://open.spotify.com/embed/track/2r8RwegunaKMYW4pDFEMKM?utm_source=generator" width="90%" height="250rem" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					<iframe style={{ borderRadius: '12px' }} src={songLink} width="90%" height="250rem" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 				</CenterContainer>
 				<BottomContainer>
 					<div className="author-cont">

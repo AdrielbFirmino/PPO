@@ -1,36 +1,42 @@
-import { CardPost } from "../CardForum/CardForumStyled"
-import { SideBarPost } from "../CardProfile/CardProfileForum/CardProfileForumStyled"
-import { CardProfileSongContainer, IconSong, LeftSong, ContainerSong } from "./CardProfileSongStyled"
-import { deleteSong, editSong } from "../../../services/songServices"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useMediaQuery } from "react-responsive"
+import { CardPost } from "../CardForum/CardForumStyled";
+import { SideBarPost } from "../CardProfile/CardProfileForum/CardProfileForumStyled";
+import { CardProfileSongContainer, IconSong, LeftSong, ContainerSong } from "./CardProfileSongStyled";
+import { deleteSong, editSong } from "../../../services/songServices";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import { EditInput } from "../../Input/Input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { creatSongSchema } from "../../../schemas/createSongSchema";
 
 const CardProfileSong = (props) => {
-
+  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(creatSongSchema) });
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-  
   const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(props.name);
-  const [editedImage, setEditedImage] = useState(props.image);
-	
+
   async function handleDeleteSong(songId) {
     try {
-        await deleteSong(songId);
-        props.updateSongs(); 
+      await deleteSong(songId);
+      props.updateSongs(); 
     } catch (error) {
-        console.error("Erro ao deletar Música:", error);
+      console.error("Erro ao deletar Música:", error);
     }
   }
 
-  async function handleEditSong() {
+  async function handleEditSong(data) {
     try {
-      const newData = { name: editedName, image: editedImage };
-      await editSong(props.id, newData);
+      const match = data.spotifyLink.match(/track\/([^?]+)/);
+      if (match && match[1]) {
+        data.spotifyLink = match[1];
+      } else {
+        throw new Error("Link do Spotify inválido");
+      }
+      await editSong(props.id, data);
       setIsEditing(false);
       props.updateSongs();
-			props.updateSongs();
+      props.updateSongs();
     } catch (error) {
       console.error("Erro ao editar post:", error);
     }
@@ -39,22 +45,36 @@ const CardProfileSong = (props) => {
   return (
     <CardProfileSongContainer>
       {isEditing ? (
-        <form className="edit-form" onSubmit={handleEditSong}>
-          <label>Titulo</label>
-          <input
+        <form className="edit-form" onSubmit={handleSubmit(handleEditSong)}>
+          <label>Nome da música</label>
+          <EditInput
             type="text"
-            value={editedName}
-            onChange={(e) => setEditedName(e.target.value)}
+            placeholder="Insira aqui o nome da sua música"
+            name="name"
+            defaultValue={props.name}
+            register={register}
           />
-          <label>Conteúdo</label>
-          <textarea
-            className="conteudo"
+          {errors.name && <span>{errors.name.message}</span>}
+          <label>Link da imagem</label>
+          <EditInput
             type="text"
-            value={editedImage}
-            onChange={(e) => setEditedImage(e.target.value)}
+            placeholder="Insira aqui link da imagem da sua música"
+            name="image"
+            defaultValue={props.image}
+            register={register}
           />
+          {errors.image && <span>{errors.image.message}</span>}
+          <label>Link do spotify</label>
+          <EditInput
+            type="text"
+            placeholder="Insira aqui o link do spotify"
+            name="spotifyLink"
+            defaultValue={props.spotifyLink}
+            register={register}
+          />
+          {errors.spotifyLink && <span>{errors.spotifyLink.message}</span>}
           <button type="submit">Salvar</button>
-          <button onClick={() => !isEditing}>Fechar</button>
+          <button onClick={() => setIsEditing(false)}>Fechar</button>
         </form>
       ) : (
         <>
@@ -75,20 +95,20 @@ const CardProfileSong = (props) => {
                             <h6>{props.happyCount}</h6>
                         </div>
                         <div className="feeling-card">
-                            <i class="bi bi-emoji-frown"></i>
+                            <i className="bi bi-emoji-frown"></i>
                             <h6>{props.sadCount}</h6>
                         </div>
                         <div className="feeling-card">
-                            <i class="bi bi-emoji-heart-eyes"></i>
+                            <i className="bi bi-emoji-heart-eyes"></i>
                             <h6>{props.loveCount}</h6>
                         </div>
                         <div className="feeling-card">
-                            <i class="bi bi-emoji-sunglasses"></i>
+                            <i className="bi bi-emoji-sunglasses"></i>
                             <h6>{props.relaxCount}</h6>
                         </div>
                     </div>
                 </section>
-                </ContainerSong>
+            </ContainerSong>
           </CardPost>
           <SideBarPost>
               <button className="EditButton" onClick={() => setIsEditing(true)}>
@@ -101,7 +121,7 @@ const CardProfileSong = (props) => {
         </>
       )}
     </CardProfileSongContainer>
-  )
+  );
 }
 
-export default CardProfileSong
+export default CardProfileSong;

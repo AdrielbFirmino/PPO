@@ -14,11 +14,12 @@ export const SliderContainer = styled.section`
     .item{
         min-height: 200px;
         min-width: 200px;
-        padding: 14px;
+        margin: 14px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
 
         h3{
             color: white;

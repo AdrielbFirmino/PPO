@@ -22,8 +22,33 @@ const SongListCard = (props) => {
 					</section>
 				</div>
 				<RightContainer>
-					<i className="bi bi-hand-thumbs-up"></i>
-					<h4>{props.likesCount}</h4>
+					{props.isHappySong ? (
+						<div>
+							<i className="bi bi-emoji-laughing"></i>
+							<h4>{props.happyCount}</h4>
+						</div>
+					) : props.isSadSong ? (
+						<div>
+							<i className="bi bi-emoji-frown"></i>
+							<h4>{props.sadCount}</h4>
+						</div>
+					) : props.isLoveSong ? (
+						<div>
+							<i className="bi bi-emoji-heart-eyes"></i>
+							<h4>{props.loveCount}</h4>
+						</div>
+					) : props.isRelaxSong ? (
+						<div>
+							<i className="bi bi-emoji-sunglasses"></i>
+							<h4>{props.relaxCount}</h4>
+						</div>
+					) : (
+						<></>
+					)}
+					<div>
+						<i className="bi bi-hand-thumbs-up"></i>
+						<h4>{props.likesCount}</h4>
+					</div>
 				</RightContainer>
 			</SongContainer>
 		</>

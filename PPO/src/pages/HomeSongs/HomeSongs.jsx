@@ -39,6 +39,22 @@ const HomeSongs = () => {
     reset;
   }
 
+  function goHappy() {
+    navigate("/home/songs/happy")
+  }
+
+  function goSad() {
+    navigate("/home/songs/sad")
+  }
+  
+  function goLove() {
+    navigate("/home/songs/love")
+  }
+
+  function goRelax() {
+    navigate("/home/songs/relax")
+  }
+
   async function findAllSongs() {
     try {
       const response = await getAllSongs(12, 0);
@@ -57,13 +73,12 @@ const HomeSongs = () => {
 
   return (
     <FullPageContainer>
-      {console.log(likedSong, song)}
       <MainContainer>
         <FeelingsContainer>
-          <p>Felizes</p>
-          <p>Emocionantes</p>
-          <p>Apaixonantes</p>
-          <p>Relaxantes</p>
+          <p onClick={goHappy}>Felizes</p>
+          <p onClick={goSad}>Emocionantes</p>
+          <p onClick={goLove}>Apaixonantes</p>
+          <p onClick={goRelax}>Relaxantes</p>
         </FeelingsContainer>
         <div className="top-container">
           <h1>Músicas recentes</h1>

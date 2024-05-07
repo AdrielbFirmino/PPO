@@ -11,6 +11,15 @@ export const SongContainer = styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
+    background-image: linear-gradient(90deg, rgb(122, 5, 212), rgb(78, 17, 125));
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    background-position: left bottom;
+    transition: background-size 500ms ease;
+
+    &:hover {
+        background-size: 100% 3px;
+    }
 
     .side-container{
         display: flex;
@@ -58,9 +67,16 @@ export const LeftContainer = styled.div`
 
 export const RightContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding-right: 1vw;
     font-size: 3rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem;
+    }
 `

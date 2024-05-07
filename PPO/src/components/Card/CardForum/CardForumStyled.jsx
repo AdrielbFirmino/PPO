@@ -120,3 +120,7 @@ export const CardMain = styled.div`
     border-radius: 8px;
     margin-top: 2.5vh;
 `
+export const FeelingTitle = styled.h1`
+    color: white;
+    padding: 1rem;
+`

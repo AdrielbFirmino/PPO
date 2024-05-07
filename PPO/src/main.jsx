@@ -5,6 +5,8 @@ import { GlobalStyled } from './GlobalStyled.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
 import HomeForum from './pages/Forum/HomeForum.jsx'
 import HomeSongs from './pages/HomeSongs/HomeSongs.jsx'
+import HappySongs from './pages/HappySongs/HappySongs.jsx'
+import SadSongs from './pages/SadSongs/SadSongs.jsx'
 import Search from './pages/Search/Search.jsx'
 import SearchSong from './pages/Search/SearchSong.jsx'
 import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
@@ -14,6 +16,8 @@ import Profile from './pages/Profile/Profile.jsx'
 import ProfileSong from './pages/ProfileSong/ProfileSong.jsx'
 import UserProvider from './Context/UserContext.jsx'
 import Post from './pages/Post/Post.jsx'
+import LoveSongs from './pages/LoveSongs/LoveSongs.jsx'
+import RelaxSongs from './pages/RelaxSongs/RelaxSongs.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,22 @@ const router = createBrowserRouter([
       {
         path: "/home/songs",
         element: <HomeSongs />
+      },
+      {
+        path: "/home/songs/happy",
+        element: <HappySongs />
+      },
+      {
+        path: "/home/songs/sad",
+        element: <SadSongs />
+      },
+      {
+        path: "/home/songs/love",
+        element: <LoveSongs />
+      },
+      {
+        path: "/home/songs/relax",
+        element: <RelaxSongs />
       },
       {
         path: "/search/:title",

@@ -48,7 +48,7 @@ export const FeelingContainer = styled.div`
 `
 export const CenterContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,20 +1,21 @@
 import songRepositories from "../repositories/song.repositories.js";
 
 async function createSongService(corpo) {
-    const { name, image, userId } = corpo;
-    if (!image || !name) {
+    const { name, image, spotifyLink, userId } = corpo;
+    if (!image || !name || !spotifyLink) {
         throw new Error("Submit all fields to post your song");
     }
 
     const { id } = await songRepositories.createSongRepository({
         name,
         image,
+        spotifyLink,
         author: userId
     })
 
     return {
         message: "Song created successfully!",
-        song: { id, name, image },
+        song: { id, name, image, spotifyLink },
     };
 };
 
@@ -92,7 +93,8 @@ async function recentSongsService() {
             loveFeel: song.loveFeel,
             relaxFeel: song.relaxFeel,
             likes: song.likes,
-            likesCount: song.likesCount
+            likesCount: song.likesCount,
+            spotifyLink: song.spotifyLink
         }
     }
 };
@@ -158,17 +160,18 @@ async function findSongByIdService(id) {
         relaxFeel: song.relaxFeel,
         relaxCount: song.relaxCount,
         likes: song.likes,
-        likesCount: song.likesCount
+        likesCount: song.likesCount,
+        spotifyLink: song.spotifyLink
     }
 };
 
-async function updateSongService(id, name, image, userId) {
-    if (!name && !image)
+async function updateSongService(id, name, image, spotifyLink, userId) {
+    if (!name && !image && !spotifyLink)
         throw new Error("Submit at least one field to update the song");
     const song = await songRepositories.findSongByIdRepository(id);
     if (song.author._id != userId)
         throw new Error("You cannot update this song");
-    await songRepositories.updateSongRepository(id, name, image)
+    await songRepositories.updateSongRepository(id, name, image, spotifyLink)
 };
 
 async function removeLikeService(songId, userId) {

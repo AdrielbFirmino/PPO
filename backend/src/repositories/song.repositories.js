@@ -39,7 +39,7 @@ const findSongsByUserIdRepository = (id) => Song.find({ author: id }).sort({ _id
 
 const findSongByIdRepository = (id) => Song.findById(id).populate("author");
 
-const updateSongRepository = (id, name, image) => Song.findOneAndUpdate({ _id: id }, { name, image }, { rawResult: true });
+const updateSongRepository = (id, name, image, spotifyLink) => Song.findOneAndUpdate({ _id: id }, { name, image, spotifyLink }, { rawResult: true });
 
 async function removeLikeRepository(songId, userId) {
     try {

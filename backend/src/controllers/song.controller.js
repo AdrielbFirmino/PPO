@@ -1,15 +1,16 @@
 import songService from '../services/song.service.js'
 
 export const create = async (req, res) => {
-    const { name, image } = req.body;
+    const { name, image, spotifyLink } = req.body;
     const userId = req.userId;
     try {
-        const post = await songService.createSongService({
+        const song = await songService.createSongService({
             name,
             image,
+            spotifyLink,
             userId
         })
-        return res.status(201).send(post);
+        return res.status(201).send(song);
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
@@ -77,11 +78,11 @@ export const findById = async (req, res) => {
 };
 
 export const update = async (req, res) => {
-    const { name, image } = req.body;
+    const { name, image, spotifyLink } = req.body;
     const { id } = req.params;
     const userId = req.userId;
     try {
-        await songService.updateSongService(id, name, image, userId);
+        await songService.updateSongService(id, name, image, spotifyLink, userId);
         return res.status(200).send({ message: "Song sucessfuly updated!" })
     } catch (err) {
         res.status(500).send({ message: err.message })

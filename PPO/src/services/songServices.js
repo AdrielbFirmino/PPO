@@ -27,6 +27,15 @@ export function searchSongs(title) {
     return response;
 }
 
+export function getSongById(songId) {
+    const response = axios.get(`${baseURL}/song/byIdSong/${songId}`, {
+        headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`
+        }
+    });
+    return response;
+}
+
 export function createSong(data) {
     const response = axios.post(`${baseURL}/song/create`, data, {
         headers: {

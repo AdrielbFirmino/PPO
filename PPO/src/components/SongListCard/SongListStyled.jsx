@@ -32,6 +32,12 @@ export const SongContainer = styled.div`
 
             h1{
                 font-size: 4rem;
+                cursor: pointer;
+                transition: background-size 500ms ease;
+
+                &:hover {
+                    color: rgb(122, 5, 212);
+                }
             }
 
             .author-row{

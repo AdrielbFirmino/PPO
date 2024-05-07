@@ -11,10 +11,10 @@ const SongListCard = (props) => {
 			<SongContainer>
 				<div className="side-container">
 					<LeftContainer>
-						<img src={props.image} />
+						<img src={props.image} onClick={() => navigate(`/song/${props.songId}`)} />
 					</LeftContainer>
 					<section>
-						<h1 onClick={() => navigate(`/song/${props.songId}`)}><TextLimit text={props.name} limit={35} /></h1>
+						<h1 onClick={() => navigate(`/song/${props.songId}`)} ><TextLimit text={props.name} limit={35} /></h1>
 						<div className="author-row">
 							<img src={props.authorAvatar} />
 							<p>{props.authorName}</p>

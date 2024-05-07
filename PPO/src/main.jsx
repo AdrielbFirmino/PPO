@@ -18,6 +18,7 @@ import UserProvider from './Context/UserContext.jsx'
 import Post from './pages/Post/Post.jsx'
 import LoveSongs from './pages/LoveSongs/LoveSongs.jsx'
 import RelaxSongs from './pages/RelaxSongs/RelaxSongs.jsx'
+import Song from './pages/Song/Song.jsx'
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/post/:id",
         element: <Post />
+      },
+      {
+        path: "/song/:id",
+        element: <Song />
       }
     ]
   },

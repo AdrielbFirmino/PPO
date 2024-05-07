@@ -3,15 +3,12 @@ import { getAllSongs } from "../../services/songServices";
 import { FullPageContainerForum } from "../Forum/HomeForumStyled";
 import { CardMain, FeelingTitle } from "../../components/Card/CardForum/CardForumStyled";
 import SongListCard from "../../components/SongListCard/SongListCard"
-import { useNavigate } from "react-router-dom";
 
 const HappySongs = () => {
 
 	const [song, setSong] = useState([]);
 	const [happySongs, setHappySongs] = useState([])
 	const [isHappySong] = useState(true)
-
-	const navigate = useNavigate();
 
 	async function findAllHappySongs() {
 		try {

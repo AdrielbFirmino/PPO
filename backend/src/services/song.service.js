@@ -152,8 +152,11 @@ async function findSongByIdService(id) {
         happyFeel: song.happyFeel,
         happyCount: song.happyCount,
         sadFeel: song.sadFeel,
+        sadCount: song.sadCount,
         loveFeel: song.loveFeel,
+        loveCount: song.loveCount,
         relaxFeel: song.relaxFeel,
+        relaxCount: song.relaxCount,
         likes: song.likes,
         likesCount: song.likesCount
     }

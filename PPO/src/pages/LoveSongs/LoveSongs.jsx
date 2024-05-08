@@ -25,6 +25,10 @@ const LoveSongs = () => {
 		}
 	}
 
+	function goHome() {
+		navigate("/home/songs")
+	}
+
 	useEffect(() => {
 		findAllLoveSongs();
 	}, []);
@@ -32,7 +36,10 @@ const LoveSongs = () => {
 	return (
 		<FullPageContainerForum>
 			<CardMain>
-				<FeelingTitle>Top 100 músicas mais Apaixonantes</FeelingTitle>
+				<div className="top-cont">
+					<i className="bi bi-arrow-left-short" onClick={goHome}></i>
+					<FeelingTitle> Top 100 músicas mais Apaixonantes</FeelingTitle>
+				</div>
 				{loveSongs.map((item) => (
 					<SongListCard key={item.id}
 						authorAvatar={item.authorAvatar}

@@ -21,9 +21,21 @@ export const SliderContainer = styled.section`
         justify-content: center;
         cursor: pointer;
 
+        &:hover {
+            h3 {
+                background-size: 100% 3px
+            }
+            
+        }
+
         h3{
             color: white;
             margin: 0.8rem;
+            background-image: linear-gradient(90deg, rgb(122, 5, 212), rgb(78, 17, 125));
+            background-repeat: no-repeat;
+            background-size: 0% 3px;
+            background-position: left bottom;
+            transition: background-size 500ms ease;
         }
 
         h4{

@@ -119,6 +119,25 @@ export const CardMain = styled.div`
     height: 100%;
     border-radius: 8px;
     margin-top: 2.5vh;
+
+    .top-cont {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        i {
+            display: flex;
+            font-size: 6rem;
+            color: white;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+
+            &:hover {
+                color: rgb(122, 5, 212);
+            }
+        }
+    }
 `
 export const FeelingTitle = styled.h1`
     color: white;

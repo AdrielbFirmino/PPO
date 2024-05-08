@@ -3,12 +3,15 @@ import { getAllSongs } from "../../services/songServices";
 import { FullPageContainerForum } from "../Forum/HomeForumStyled";
 import { CardMain, FeelingTitle } from "../../components/Card/CardForum/CardForumStyled";
 import SongListCard from "../../components/SongListCard/SongListCard"
+import { useNavigate } from "react-router-dom";
 
 const HappySongs = () => {
 
 	const [song, setSong] = useState([]);
 	const [happySongs, setHappySongs] = useState([])
 	const [isHappySong] = useState(true)
+
+	const navigate = useNavigate();
 
 	async function findAllHappySongs() {
 		try {
@@ -21,6 +24,10 @@ const HappySongs = () => {
 			console.error("Erro ao tentar encontrar todas as Músicas: ", error);
 		}
 	}
+	
+	function goHome() {
+		navigate("/home/songs")
+	}
 
 	useEffect(() => {
 		findAllHappySongs();
@@ -29,7 +36,10 @@ const HappySongs = () => {
 	return (
 		<FullPageContainerForum>
 			<CardMain>
-				<FeelingTitle>Top 100 músicas mais felizes</FeelingTitle>
+				<div className="top-cont">
+					<i className="bi bi-arrow-left-short" onClick={goHome}></i>
+					<FeelingTitle> Top 100 músicas mais Felizes</FeelingTitle>
+				</div>
 				{happySongs.map((item) => (
 					<SongListCard key={item.id}
 						authorAvatar={item.authorAvatar}

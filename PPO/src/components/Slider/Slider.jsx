@@ -3,11 +3,18 @@ import {
 } from "./SliderStyled"
 import {motion} from 'framer-motion'
 import { useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Slider = (props) => {
     const carousel = useRef();
     const [width, setWidth] = useState(0)
     const song = props.song;
+
+    const navigate = useNavigate();
+    
+    function goSong(songId) {
+        navigate(`/song/${songId}`)
+    }
     
 
     useEffect(() => {
@@ -26,8 +33,8 @@ const Slider = (props) => {
                 transition={{duration: 0.8}}
                 >
                     {song.map(thisSong => (
-                        <motion.div className="item" key={thisSong.id}>
-                            <img src={thisSong.image} alt="imagem"/>
+                        <motion.div className="item" key={thisSong.id} onDoubleClick={() => goSong(thisSong.id)}>
+                            <img src={thisSong.image}/>
                             <h3>{thisSong.name}</h3>
                             <h4>{thisSong.authorName}</h4>
                         </motion.div>

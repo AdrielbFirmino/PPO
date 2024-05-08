@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { getSongById } from "../../services/songServices";
+import { useNavigate } from "react-router-dom";
 
 const Song = () => {
 
@@ -17,6 +18,12 @@ const Song = () => {
 	const [liked, setLiked] = useState(false);
 	const { user } = useContext(UserContext)
 	const songLink = `https://open.spotify.com/embed/track/${song.spotifyLink}?utm_source=generator`
+
+	const navigate = useNavigate();
+
+	function goHome() {
+		navigate("/home/songs")
+	}
 
 	useEffect(() => {
 		async function fetchSongById() {
@@ -37,7 +44,8 @@ const Song = () => {
 			{console.log(songLink)}
 			<CardMain songImage={song.image}>
 				<TopContainer>
-					<div>
+					<div className="left-cont">
+						<i className="bi bi-arrow-left-short" onClick={goHome}></i>
 						<h1>{song.name}</h1>
 					</div>
 					<div className="right-cont">

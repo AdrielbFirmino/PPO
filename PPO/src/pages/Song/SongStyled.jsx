@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CardMain = styled.div`
     display: flex;
-    background-image: ${(props) => `linear-gradient(to bottom, transparent 0%, #101010), url(${props.songImage})`};
+    background-image: ${(props) => `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${props.songImage})`};
     background-size: cover;
     background-position: center;
     border: 2px solid rgb(110, 50, 236);
@@ -14,18 +14,17 @@ export const CardMain = styled.div`
     margin-top: 3vh;
 
     h1 {
-        padding: 2rem;
-        color: rgb(110, 50, 236);
+        color: white;
     }
 
     i {
         font-size: 4rem;
-        color: rgb(110, 50, 236);
+        color: white;
         cursor: pointer;
     }
     
     p {
-        color: rgb(110, 50, 236);
+        color: white;
         font-size: 4rem;
     }
 `
@@ -33,6 +32,18 @@ export const TopContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    .left-cont {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        i{
+            margin: 1rem;
+            display: flex;
+            align-items: center;
+        }
+    }
 
     .right-cont {
         display: flex;

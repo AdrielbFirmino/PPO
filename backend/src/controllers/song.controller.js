@@ -90,7 +90,7 @@ export const update = async (req, res) => {
 };
 
 export const removeLike = async (req, res) => {
-    const { songId } = req.body;
+    const { songId } = req.params;
     const userId = req.userId;
     try {
         const unlikedSong = await songService.removeLikeService(songId, userId);
@@ -123,7 +123,7 @@ export const addHappyFeel = async (req, res) => {
 };
 
 export const removeHappyFeel = async (req, res) => {
-    const { songId } = req.body;
+    const { songId } = req.params;
     const userId = req.userId;
     try {
         const nonHappySong = await songService.removeHappyFeelService(songId, userId);

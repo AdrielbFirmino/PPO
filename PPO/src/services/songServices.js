@@ -45,6 +45,62 @@ export function createSong(data) {
     return response;
 }
 
+export function likeSong(songId) {
+    try {
+        const response = axios.post(`${baseURL}/song/like/`, songId, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao dar like na música:", error);
+        throw error;
+    }
+}
+
+export function addHappySong(songId) {
+    try {
+        const response = axios.post(`${baseURL}/song/happyFeel`, songId, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao dar like na música:", error);
+        throw error;
+    }
+}
+
+export function removeHappySong(songId) {
+    try {
+        const response = axios.delete(`${baseURL}/song/happyFeel/${songId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao remover like na música:", error);
+        throw error;
+    }
+}
+
+export function removeLikeSong(songId) {
+    try {
+        const response = axios.delete(`${baseURL}/song/like/${songId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao remover like na música:", error);
+        throw error;
+    }
+}
+
 export function deleteSong(songId) {
     const response = axios.delete(`${baseURL}/song/delete/${songId}`, {
         headers: {

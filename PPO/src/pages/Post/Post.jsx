@@ -37,7 +37,6 @@ const Post = () => {
   const handleLikeClick = async () => {
     try {
       if (liked) {
-        // Remove like
         await removeLikePost(id);
         setPost((prevPost) => ({
           ...prevPost,
@@ -45,7 +44,6 @@ const Post = () => {
           likesCount: prevPost.likesCount - 1
         }));
       } else {
-        // Add like
         await likePost({ postId: id });
         setPost((prevPost) => ({
           ...prevPost,

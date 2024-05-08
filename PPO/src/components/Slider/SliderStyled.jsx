@@ -25,7 +25,6 @@ export const SliderContainer = styled.section`
             h3 {
                 background-size: 100% 3px
             }
-            
         }
 
         h3{

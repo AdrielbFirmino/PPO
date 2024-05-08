@@ -145,7 +145,7 @@ export const addSadFeel = async (req, res) => {
 };
 
 export const removeSadFeel = async (req, res) => {
-    const { songId } = req.body;
+    const { songId } = req.params;
     const userId = req.userId;
     try {
         const nonSadSong = await songService.removeSadFeelService(songId, userId);
@@ -167,7 +167,7 @@ export const addLoveFeel = async (req, res) => {
 };
 
 export const removeLoveFeel = async (req, res) => {
-    const { songId } = req.body;
+    const { songId } = req.params;
     const userId = req.userId;
     try {
         const nonloveSong = await songService.removeLoveFeelService(songId, userId);
@@ -189,7 +189,7 @@ export const addRelaxFeel = async (req, res) => {
 };
 
 export const removeRelaxFeel = async (req, res) => {
-    const { songId } = req.body;
+    const { songId } = req.params;
     const userId = req.userId;
     try {
         const nonRelaxSong = await songService.removeRelaxFeelService(songId, userId);

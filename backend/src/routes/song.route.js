@@ -37,8 +37,8 @@ songRouter.patch("/update/:id", authMiddleware, update);
 songRouter.delete('/like/:songId', authMiddleware, removeLike);
 songRouter.delete("/delete/:id", authMiddleware, erase);
 songRouter.delete("/happyFeel/:songId", authMiddleware, removeHappyFeel);
-songRouter.delete("/sadFeel", authMiddleware, removeSadFeel);
-songRouter.delete("/loveFeel", authMiddleware, removeLoveFeel);
-songRouter.delete("/relaxFeel", authMiddleware, removeRelaxFeel);
+songRouter.delete("/sadFeel/:songId", authMiddleware, removeSadFeel);
+songRouter.delete("/loveFeel/:songId", authMiddleware, removeLoveFeel);
+songRouter.delete("/relaxFeel/:songId", authMiddleware, removeRelaxFeel);
 
 export default songRouter;

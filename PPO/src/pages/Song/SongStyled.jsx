@@ -51,7 +51,12 @@ export const TopContainer = styled.div`
     }
 `
 export const FeelingContainer = styled.div`
-    color: ${(props) => (props.isLiked ? "rgb(122, 5, 212)" : props.isHappy ? "rgb(122, 5, 212)" : "white")};
+    color: ${(props) => (props.isLiked ? "rgb(122, 5, 212)" 
+        : props.isHappy ? "rgb(122, 5, 212)" 
+        : props.isSad ? "rgb(122, 5, 212)" 
+        : props.isLove ? "rgb(122, 5, 212)"
+        : props.isRelax ? "rgb(122, 5, 212)"
+        : "white" )};
     display: flex;
     flex-direction: column;
     align-items: center;

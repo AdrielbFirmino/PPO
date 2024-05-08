@@ -68,7 +68,91 @@ export function addHappySong(songId) {
         });
         return response;
     } catch (error) {
-        console.error("Erro ao dar like na música:", error);
+        console.error("Erro ao dar emocao na música:", error);
+        throw error;
+    }
+}
+
+export function addSadSong(songId) {
+    try {
+        const response = axios.post(`${baseURL}/song/sadFeel`, songId, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao dar emocao na música:", error);
+        throw error;
+    }
+}
+
+export function addLoveSong(songId) {
+    try {
+        const response = axios.post(`${baseURL}/song/loveFeel`, songId, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao dar emocao na música:", error);
+        throw error;
+    }
+}
+
+export function addRelaxSong(songId) {
+    try {
+        const response = axios.post(`${baseURL}/song/relaxFeel`, songId, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao dar emocao na música:", error);
+        throw error;
+    }
+}
+
+export function removeRelaxSong(songId) {
+    try {
+        const response = axios.delete(`${baseURL}/song/relaxFeel/${songId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao remover emocao na música:", error);
+        throw error;
+    }
+}
+
+export function removeLoveSong(songId) {
+    try {
+        const response = axios.delete(`${baseURL}/song/loveFeel/${songId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao remover emocao na música:", error);
+        throw error;
+    }
+}
+
+export function removeSadSong(songId) {
+    try {
+        const response = axios.delete(`${baseURL}/song/sadFeel/${songId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`
+            }
+        });
+        return response;
+    } catch (error) {
+        console.error("Erro ao remover emocao na música:", error);
         throw error;
     }
 }
@@ -82,7 +166,7 @@ export function removeHappySong(songId) {
         });
         return response;
     } catch (error) {
-        console.error("Erro ao remover like na música:", error);
+        console.error("Erro ao remover emocao na música:", error);
         throw error;
     }
 }

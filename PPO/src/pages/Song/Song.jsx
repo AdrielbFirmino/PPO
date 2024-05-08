@@ -9,10 +9,16 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { addHappySong, 
+	addLoveSong, 
+	addRelaxSong, 
+	addSadSong, 
 	getSongById, 
 	likeSong, 
 	removeHappySong, 
-	removeLikeSong } from "../../services/songServices";
+	removeLikeSong, 
+	removeLoveSong, 
+	removeRelaxSong, 
+	removeSadSong} from "../../services/songServices";
 import { useNavigate } from "react-router-dom";
 
 const Song = () => {
@@ -77,6 +83,75 @@ const Song = () => {
 		}
 	};
 
+	const handleSadClick = async () => {
+		try {
+			if (isSad) {
+				await removeSadSong(id);
+				setSong((prevSong) => ({
+					...prevSong,
+					sadFeel: prevSong.sadFeel.filter((userId) => userId !== user._id),
+					sadCount: prevSong.sadCount - 1
+				}));
+			} else {
+				await addSadSong({ songId: id });
+				setSong((prevSong) => ({
+					...prevSong,
+					sadFeel: [...prevSong.sadFeel, user._id],
+					sadCount: prevSong.sadCount + 1
+				}));
+			}
+			setIsSad(!isSad);
+		} catch (error) {
+			console.error('Error:', error.message);
+		}
+	};
+
+	const handleLoveClick = async () => {
+		try {
+			if (isLove) {
+				await removeLoveSong(id);
+				setSong((prevSong) => ({
+					...prevSong,
+					loveFeel: prevSong.loveFeel.filter((userId) => userId !== user._id),
+					loveCount: prevSong.loveCount - 1
+				}));
+			} else {
+				await addLoveSong({ songId: id });
+				setSong((prevSong) => ({
+					...prevSong,
+					loveFeel: [...prevSong.loveFeel, user._id],
+					loveCount: prevSong.loveCount + 1
+				}));
+			}
+			setIsLove(!isLove);
+		} catch (error) {
+			console.error('Error:', error.message);
+		}
+	};
+
+	const handleRelaxClick = async () => {
+		try {
+			if (isRelax) {
+				await removeRelaxSong(id);
+				setSong((prevSong) => ({
+					...prevSong,
+					relaxFeel: prevSong.relaxFeel.filter((userId) => userId !== user._id),
+					relaxCount: prevSong.relaxCount - 1
+				}));
+			} else {
+				await addRelaxSong({ songId: id });
+				setSong((prevSong) => ({
+					...prevSong,
+					relaxFeel: [...prevSong.relaxFeel, user._id],
+					relaxCount: prevSong.relaxCount + 1
+				}));
+			}
+			setIsRelax(!isRelax);
+		} catch (error) {
+			console.error('Error:', error.message);
+		}
+	};
+
 	function goHome() {
 		navigate("/home/songs")
 	}
@@ -108,15 +183,15 @@ const Song = () => {
 							<i className="bi bi-emoji-laughing"></i>
 							<p>{song.happyCount ? song.happyCount : 0}</p>
 						</FeelingContainer>
-						<FeelingContainer isLiked={liked}>
+						<FeelingContainer isSad={isSad} onClick={handleSadClick}>
 							<i className="bi bi-emoji-frown"></i>
 							<p>{song.sadCount ? song.sadCount : 0}</p>
 						</FeelingContainer>
-						<FeelingContainer isLiked={liked}>
+						<FeelingContainer isLove={isLove} onClick={handleLoveClick}>
 							<i className="bi bi-emoji-heart-eyes"></i>
 							<p>{song.loveCount ? song.loveCount : 0}</p>
 						</FeelingContainer>
-						<FeelingContainer isLiked={liked}>
+						<FeelingContainer isRelax={isRelax} onClick={handleRelaxClick}>
 							<i className="bi bi-emoji-sunglasses"></i>
 							<p>{song.relaxCount ? song.relaxCount : 0}</p>
 						</FeelingContainer>

@@ -20,6 +20,7 @@ import { addHappySong,
 	removeRelaxSong, 
 	removeSadSong} from "../../services/songServices";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const Song = () => {
 
@@ -30,6 +31,8 @@ const Song = () => {
 	const [isSad, setIsSad] = useState(false);
 	const [isLove, setIsLove] = useState(false);
 	const [isRelax, setIsRelax] = useState(false);
+
+	const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
 	const { user } = useContext(UserContext)
 	const songLink = `https://open.spotify.com/embed/track/${song.spotifyLink}?utm_source=generator`
@@ -162,6 +165,10 @@ const Song = () => {
 				const response = await getSongById(id);
 				setSong(response.data);
 				setLiked(response.data.likes?.includes(user._id));
+				setIsHappy(response.data.happyFeel?.includes(user._id));
+				setIsSad(response.data.sadFeel?.includes(user._id));
+				setIsLove(response.data.loveFeel?.includes(user._id));
+				setIsRelax(response.data.relaxFeel?.includes(user._id));
 			} catch (error) {
 				console.error("Erro ao buscar a música:", error);
 			}
@@ -198,7 +205,12 @@ const Song = () => {
 					</div>
 				</TopContainer>
 				<CenterContainer>
-					<iframe style={{ borderRadius: '12px' }} src={songLink} width="90%" height="250rem" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					{
+						isMobile ?
+							<iframe style={{ borderRadius: '12px' }} src={songLink} width="80%" height="500rem" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+						:
+							<iframe style={{ borderRadius: '12px' }} src={songLink} width="90%" height="250rem" frameBorder="0" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+					}
 				</CenterContainer>
 				<BottomContainer>
 					<div className="author-cont">

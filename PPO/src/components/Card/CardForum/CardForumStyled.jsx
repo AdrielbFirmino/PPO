@@ -84,7 +84,6 @@ export const IconPost = styled.img`
     height: 4rem;
     border-radius: 40px;
     object-fit: cover;
-    cursor: pointer;
 `
 
 export const LeftPost = styled.div`

@@ -64,7 +64,7 @@ export const FeelingContainer = styled.div`
 `
 export const CenterContainer = styled.div`
     width: 100vw;
-    height: 80vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +81,6 @@ export const BottomContainer = styled.div`
         height: 12rem;
         border-radius: 50%;
         object-fit: cover;
-        cursor: pointer;
     }
     
     .author-cont {

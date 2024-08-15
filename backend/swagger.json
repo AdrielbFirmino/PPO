@@ -32,7 +32,7 @@
                                         "name": "Gabriel",
                                         "username": "Gabi",
                                         "email": "gabi@gmail.com",
-                                        "password": "1234",
+                                        "password": "123456",
                                         "avatar": "https://imgur.com/ohXh2Cs"
                                     }
                                 }
@@ -209,8 +209,8 @@
                             "examples": {
                                 "User": {
                                     "value": {
-                                        "email": "gabi@gmail.com",
-                                        "password": "1234"
+                                        "email": "wellissonfirmino@gmail.com",
+                                        "password": "123456"
                                     }
                                 }
                             }
@@ -679,6 +679,302 @@
                     }
                 }
             }
+        },
+        "/song/create": {
+            "post": {
+                "summary": "Create a new Song",
+                "description": "Route responsible for creating a new Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "name": "Music Example",
+                                        "image": "https://images.pexels.com/photos/2746823/pexels-photo-2746823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                                        "spotifyLink":"https://open.spotify.com/intl-pt/track/4B2kkxg3wKSTZw5JPaUtzQ?si=aa5626d7b1694fa1"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Post"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/like": {
+            "post": {
+                "summary":"Like a Song",
+                "description":"Route responsible for liking a song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "songId": "6621531e2ccd65c9ed028450"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found or already liked"
+                    },
+                    "201": {
+                        "description": "The song received a Like",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/happyFeel": {
+            "post": {
+                "summary":"Give a Happy feel to a song",
+                "description":"Route responsible for giving a Happy feel to a song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "songId": "6621531e2ccd65c9ed028450"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found or already received a Happy feel by you"
+                    },
+                    "200": {
+                        "description": "The song received a Happy feel",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/sadFeel": {
+            "post": {
+                "summary":"Give a Sad feel to a song",
+                "description":"Route responsible for giving a Sad feel to a song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "songId": "6621531e2ccd65c9ed028450"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found or already received a Sad feel by you"
+                    },
+                    "200": {
+                        "description": "The song received a Sad feel",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/loveFeel": {
+            "post": {
+                "summary":"Give a Love feel to a song",
+                "description":"Route responsible for giving a Love feel to a song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "songId": "6621531e2ccd65c9ed028450"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found or already received a Love feel by you"
+                    },
+                    "200": {
+                        "description": "The song received a Love feel",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/relaxFeel": {
+            "post": {
+                "summary":"Give a Relax feel to a song",
+                "description":"Route responsible for giving a Relax feel to a song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "songId": "6621531e2ccd65c9ed028450"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found or already received a Relax feel by you"
+                    },
+                    "200": {
+                        "description": "The song received a Relax feel",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -714,7 +1010,7 @@
                 "type": "object",
                 "properties": {
                     "user": {
-                        "type": "string"
+                        "type": "object"
                     },
                     "title": {
                         "type": "string"
@@ -738,6 +1034,56 @@
                 "properties": {
                     "message": {
                         "type": "string"
+                    }
+                }
+            },
+            "Song": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "String"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "type": "object"
+                    },
+                    "happyFeel": {
+                        "type": "array"
+                    },
+                    "happyCount": {
+                        "type": "number"
+                    },
+                    "sadFeel": {
+                        "type": "array"
+                    },
+                    "sadCount": {
+                        "type": "number"
+                    },
+                    "loveFeel": {
+                        "type": "array"
+                    },
+                    "loveCount": {
+                        "type": "number"
+                    },
+                    "relaxFeel": {
+                        "type": "array"
+                    },
+                    "relaxCount": {
+                        "type": "number"
+                    },
+                    "likes": {
+                        "type": "array"
+                    },
+                    "likesCount": {
+                        "type": "number"
+                    },
+                    "spotifyLink": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "date"
                     }
                 }
             }

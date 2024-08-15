@@ -106,6 +106,10 @@ export const ContainerSong = styled.div`
 
         .author-container{
             align-items: center;
+            h6 {
+                font-size: 1.5rem;
+                margin-left: 1rem;
+            }
         }
     }
 `

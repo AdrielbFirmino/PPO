@@ -975,6 +975,147 @@
                     }
                 }
             }
+        },
+        "/song": {
+            "get": {
+                "summary": "Search all songs",
+                "description": "Route responsible for fetching all songs",
+                "tags": [
+                    "Song"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Song"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/recent": {
+            "get": {
+                "summary": "Recent song",
+                "description": "Route responsible for get the most recent song.",
+                "tags": [
+                    "Song"
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/byUser": {
+            "get": {
+                "summary": "Search songs by user id",
+                "description": "Route responsible for fetching songs by user id",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Song"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/song/byIdSong/{id}": {
+            "get": {
+                "summary": "Search song by id",
+                "description": "Route responsible for fetching song by id",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Song"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {

@@ -1116,6 +1116,66 @@
                     }
                 }
             }
+        },
+        "/song/update/{id}": {
+            "patch": {
+                "summary": "Update a song",
+                "description": "Route responsible for updating a Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Song"
+                            },
+                            "examples": {
+                                "Song": {
+                                    "value": {
+                                        "name": "",
+                                        "image": "",
+                                        "spotifyLink": ""
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schemma": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Post"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {

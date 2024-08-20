@@ -512,40 +512,6 @@
                 }
             }
         },
-        "/post/delete/{id}/": {
-            "delete": {
-                "summary": "Delete a post",
-                "description": "Route responsible for deleting a Post",
-                "tags": [
-                    "Post"
-                ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "type": "string",
-                        "description": "Post ID",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "400": {
-                        "description": "Not Found"
-                    },
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
         "/post/like/{id}/": {
             "patch": {
                 "summary": "Like a post",
@@ -667,6 +633,40 @@
                         }
                     }
                 },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/post/delete/{id}/": {
+            "delete": {
+                "summary": "Delete a post",
+                "description": "Route responsible for deleting a Post",
+                "tags": [
+                    "Post"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Post ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
@@ -1173,6 +1173,210 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/song/like/{id}": {
+            "delete": {
+                "summary": "Dislike a song",
+                "description": "Route responsible for disliking a song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/song/delete/{id}/": {
+            "delete": {
+                "summary": "Delete a song",
+                "description": "Route responsible for deleting a Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/song/happyFeel/{id}/": {
+            "delete": {
+                "summary": "Delete a Happy Feel",
+                "description": "Route responsible for deleting a Happy Feel of a Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/song/sadFeel/{id}/": {
+            "delete": {
+                "summary": "Delete a Sad Feel",
+                "description": "Route responsible for deleting a Sad Feel of a Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/song/loveFeel/{id}/": {
+            "delete": {
+                "summary": "Delete a Love Feel",
+                "description": "Route responsible for deleting a Love Feel of a Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/song/relaxFeel/{id}/": {
+            "delete": {
+                "summary": "Delete a Relax Feel",
+                "description": "Route responsible for deleting a Relax Feel of a Song",
+                "tags": [
+                    "Song"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "Song ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Not Found"
+                    },
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }
